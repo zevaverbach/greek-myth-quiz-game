@@ -94,6 +94,15 @@
             padding: 15px 20px;
             position: relative;
             flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .header.hidden {
+            display: none;
+        }
+
+        .user-greeting.hidden {
+            display: none;
         }
 
         .header h1 {
@@ -4355,6 +4364,17 @@
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(screenId).classList.add('active');
+
+            // Hide header and greeting during game to maximize space
+            const header = document.querySelector('.header');
+            const greeting = document.querySelector('.user-greeting');
+            if (screenId === 'gameScreen') {
+                header.classList.add('hidden');
+                greeting.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+                if (greeting) greeting.classList.remove('hidden');
+            }
         }
 
         // Start game

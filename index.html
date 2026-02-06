@@ -877,16 +877,21 @@
         <div class="screen" id="completionScreen">
             <div class="completion-card">
                 <div class="trophy">🏆</div>
-                <h2>Quest Complete!</h2>
-                <p>You have conquered all challenges, <strong id="completionName"></strong>!</p>
+                <h2>Round Complete!</h2>
+                <p>Well done, <strong id="completionName"></strong>!</p>
                 <div class="final-score" id="finalScore">0/0</div>
                 <p class="rank" id="rankDisplay"></p>
                 <div class="nav-buttons">
-                    <button class="btn btn-primary" onclick="resetProgress()">
-                        🔄 Begin Anew
+                    <button class="btn btn-primary" onclick="playAgain()">
+                        ⚡ Play Again
                     </button>
                     <button class="btn btn-secondary" onclick="logout()">
                         Change Hero
+                    </button>
+                </div>
+                <div style="margin-top: 15px;">
+                    <button class="btn btn-secondary btn-small" onclick="resetProgress()" style="opacity: 0.7;">
+                        Reset All Progress
                     </button>
                 </div>
             </div>
@@ -4097,12 +4102,14 @@
         ];
 
         // Game State
+        const QUESTIONS_PER_GAME = 20;
         let currentUser = null;
         let currentQuestionIndex = 0;
-        let score = 0;
+        let sessionScore = 0;
         let streak = 0;
-        let answeredQuestions = [];
-        let unansweredQuestions = [];
+        let sessionQuestions = []; // Questions for this session (20)
+        let sessionAnswered = 0;   // How many answered this session
+        let userStats = { seenQuestions: [], correctQuestions: [], totalCorrect: 0, totalAnswered: 0 };
 
         // Initialize background animation
         function createStars() {
@@ -4130,11 +4137,68 @@
         // Local Storage functions
         function getUserData(username) {
             const data = localStorage.getItem(`greek_myth_quiz_${username}`);
-            return data ? JSON.parse(data) : { answeredQuestions: [], score: 0 };
+            return data ? JSON.parse(data) : {
+                seenQuestions: [],      // All questions user has seen
+                correctQuestions: [],   // Questions user has answered correctly
+                totalCorrect: 0,        // Lifetime correct answers
+                totalAnswered: 0        // Lifetime total answers
+            };
         }
 
         function saveUserData(username, data) {
             localStorage.setItem(`greek_myth_quiz_${username}`, JSON.stringify(data));
+        }
+
+        // Select 20 questions with priority: unseen > incorrect > correct
+        function selectSessionQuestions() {
+            const allIndices = questions.map((_, i) => i);
+            const seen = new Set(userStats.seenQuestions);
+            const correct = new Set(userStats.correctQuestions);
+
+            // Categorize questions
+            const unseen = allIndices.filter(i => !seen.has(i));
+            const seenIncorrect = allIndices.filter(i => seen.has(i) && !correct.has(i));
+            const seenCorrect = allIndices.filter(i => correct.has(i));
+
+            // Shuffle each category
+            shuffle(unseen);
+            shuffle(seenIncorrect);
+            shuffle(seenCorrect);
+
+            // Build session: prioritize unseen, then incorrect, then correct
+            const selected = [];
+
+            // Add unseen questions first
+            for (const i of unseen) {
+                if (selected.length >= QUESTIONS_PER_GAME) break;
+                selected.push(i);
+            }
+
+            // Add incorrect questions
+            for (const i of seenIncorrect) {
+                if (selected.length >= QUESTIONS_PER_GAME) break;
+                selected.push(i);
+            }
+
+            // Add correct questions if still need more
+            for (const i of seenCorrect) {
+                if (selected.length >= QUESTIONS_PER_GAME) break;
+                selected.push(i);
+            }
+
+            // Shuffle the final selection so it's not predictable
+            shuffle(selected);
+
+            return selected;
+        }
+
+        // Fisher-Yates shuffle
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
         }
 
         // Screen management
@@ -4159,42 +4223,34 @@
             }
 
             currentUser = username;
-            const userData = getUserData(username);
-            answeredQuestions = userData.answeredQuestions || [];
-            score = userData.score || 0;
+            userStats = getUserData(username);
 
-            // Get unanswered questions
-            unansweredQuestions = questions
-                .map((q, i) => i)
-                .filter(i => !answeredQuestions.includes(i));
+            // Reset session state
+            sessionScore = 0;
+            sessionAnswered = 0;
+            streak = 0;
+
+            // Select 20 questions for this session
+            sessionQuestions = selectSessionQuestions();
 
             document.getElementById('displayName').textContent = username;
 
             updateStats();
-
-            if (unansweredQuestions.length === 0) {
-                showCompletionScreen();
-            } else {
-                showScreen('gameScreen');
-                loadNextQuestion();
-            }
+            showScreen('gameScreen');
+            loadNextQuestion();
         }
 
         // Load next question
         function loadNextQuestion() {
-            if (unansweredQuestions.length === 0) {
+            if (sessionAnswered >= QUESTIONS_PER_GAME) {
                 showCompletionScreen();
                 return;
             }
 
-            // Pick a random unanswered question
-            const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
-            currentQuestionIndex = unansweredQuestions[randomIndex];
-
+            currentQuestionIndex = sessionQuestions[sessionAnswered];
             const question = questions[currentQuestionIndex];
-            const questionNum = answeredQuestions.length + 1;
 
-            document.getElementById('questionNumber').textContent = `Question ${questionNum} of ${questions.length}`;
+            document.getElementById('questionNumber').textContent = `Question ${sessionAnswered + 1} of ${QUESTIONS_PER_GAME}`;
             document.getElementById('questionText').textContent = question.question;
 
             const optionsContainer = document.getElementById('optionsContainer');
@@ -4233,24 +4289,36 @@
 
             // Update score and streak
             if (isCorrect) {
-                score++;
+                sessionScore++;
                 streak++;
                 fireConfetti();
+
+                // Track correct answer (add if not already there)
+                if (!userStats.correctQuestions.includes(currentQuestionIndex)) {
+                    userStats.correctQuestions.push(currentQuestionIndex);
+                }
+                userStats.totalCorrect++;
             } else {
                 streak = 0;
+
+                // Remove from correct if previously correct (they got it wrong this time)
+                const correctIdx = userStats.correctQuestions.indexOf(currentQuestionIndex);
+                if (correctIdx > -1) {
+                    userStats.correctQuestions.splice(correctIdx, 1);
+                }
             }
 
             updateStreak();
 
-            // Mark question as answered
-            answeredQuestions.push(currentQuestionIndex);
-            unansweredQuestions = unansweredQuestions.filter(i => i !== currentQuestionIndex);
+            // Track that question was seen
+            if (!userStats.seenQuestions.includes(currentQuestionIndex)) {
+                userStats.seenQuestions.push(currentQuestionIndex);
+            }
+            userStats.totalAnswered++;
+            sessionAnswered++;
 
             // Save to localStorage
-            saveUserData(currentUser, {
-                answeredQuestions: answeredQuestions,
-                score: score
-            });
+            saveUserData(currentUser, userStats);
 
             // Show result
             const resultContainer = document.getElementById('resultContainer');
@@ -4264,24 +4332,22 @@
             `;
 
             document.getElementById('nextBtn').style.display = 'inline-block';
-            document.getElementById('nextBtn').textContent = unansweredQuestions.length > 0 ? 'Next Question →' : 'View Results 🏆';
+            document.getElementById('nextBtn').textContent = sessionAnswered < QUESTIONS_PER_GAME ? 'Next Question →' : 'View Results 🏆';
 
             updateStats();
         }
 
         // Update stats display
         function updateStats() {
-            const total = questions.length;
-            const answered = answeredQuestions.length;
-            const remaining = total - answered;
-            const accuracy = answered > 0 ? Math.round((score / answered) * 100) : 0;
+            const accuracy = sessionAnswered > 0 ? Math.round((sessionScore / sessionAnswered) * 100) : 0;
+            const remaining = QUESTIONS_PER_GAME - sessionAnswered;
 
-            document.getElementById('scoreDisplay').textContent = score;
-            document.getElementById('answeredDisplay').textContent = answered;
+            document.getElementById('scoreDisplay').textContent = sessionScore;
+            document.getElementById('answeredDisplay').textContent = sessionAnswered;
             document.getElementById('remainingDisplay').textContent = remaining;
             document.getElementById('accuracyDisplay').textContent = accuracy + '%';
 
-            const progress = (answered / total) * 100;
+            const progress = (sessionAnswered / QUESTIONS_PER_GAME) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
         }
 
@@ -4329,7 +4395,7 @@
 
         // Next question
         function nextQuestion() {
-            if (unansweredQuestions.length === 0) {
+            if (sessionAnswered >= QUESTIONS_PER_GAME) {
                 showCompletionScreen();
             } else {
                 loadNextQuestion();
@@ -4340,13 +4406,13 @@
         function showCompletionScreen() {
             showScreen('completionScreen');
             document.getElementById('completionName').textContent = currentUser;
-            document.getElementById('finalScore').textContent = `${score}/${questions.length}`;
+            document.getElementById('finalScore').textContent = `${sessionScore}/${QUESTIONS_PER_GAME}`;
 
-            const percentage = Math.round((score / questions.length) * 100);
+            const percentage = Math.round((sessionScore / QUESTIONS_PER_GAME) * 100);
             let rank = '';
 
             if (percentage === 100) {
-                rank = '🏛️ Oracle of Delphi - Perfect Knowledge!';
+                rank = '🏛️ Oracle of Delphi - Perfect Round!';
                 fireConfetti();
                 setTimeout(fireConfetti, 500);
                 setTimeout(fireConfetti, 1000);
@@ -4363,34 +4429,49 @@
                 rank = '🌱 Humble Mortal';
             }
 
-            document.getElementById('rankDisplay').textContent = rank;
+            // Add lifetime stats
+            const masteryPercent = Math.round((userStats.correctQuestions.length / questions.length) * 100);
+            rank += `<br><small style="font-size: 0.7em; opacity: 0.8;">Mastered: ${userStats.correctQuestions.length}/${questions.length} questions (${masteryPercent}%)</small>`;
+
+            document.getElementById('rankDisplay').innerHTML = rank;
         }
 
-        // Reset progress
+        // Reset progress (full reset)
         function resetProgress() {
-            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
-                answeredQuestions = [];
-                score = 0;
-                streak = 0;
-                unansweredQuestions = questions.map((q, i) => i);
+            if (confirm('Are you sure you want to reset ALL progress? This cannot be undone.')) {
+                userStats = { seenQuestions: [], correctQuestions: [], totalCorrect: 0, totalAnswered: 0 };
+                saveUserData(currentUser, userStats);
 
-                saveUserData(currentUser, {
-                    answeredQuestions: [],
-                    score: 0
-                });
+                // Start a new game
+                sessionScore = 0;
+                sessionAnswered = 0;
+                streak = 0;
+                sessionQuestions = selectSessionQuestions();
 
                 showScreen('gameScreen');
                 loadNextQuestion();
             }
         }
 
+        // Play again (new session, keep progress)
+        function playAgain() {
+            sessionScore = 0;
+            sessionAnswered = 0;
+            streak = 0;
+            sessionQuestions = selectSessionQuestions();
+
+            showScreen('gameScreen');
+            loadNextQuestion();
+        }
+
         // Logout
         function logout() {
             currentUser = null;
-            score = 0;
+            sessionScore = 0;
             streak = 0;
-            answeredQuestions = [];
-            unansweredQuestions = [];
+            sessionQuestions = [];
+            sessionAnswered = 0;
+            userStats = { seenQuestions: [], correctQuestions: [], totalCorrect: 0, totalAnswered: 0 };
             document.getElementById('username').value = '';
             document.getElementById('streakIndicator').classList.remove('visible');
             showScreen('loginScreen');

@@ -1,0 +1,5072 @@
+const questions = [
+    {
+        question: "Who is the king of the Greek gods and ruler of Mount Olympus?",
+        options: ["Poseidon", "Hades", "Zeus", "Apollo"],
+        correct: 2,
+        funFact: "Zeus was known for his thunderbolts, which were crafted by the Cyclopes. He overthrew his father Cronus to become king of the gods.",
+        wiki: "https://en.wikipedia.org/wiki/Zeus"
+    },
+    {
+        question: "Which goddess sprang fully grown and armored from Zeus's head?",
+        options: ["Aphrodite", "Athena", "Artemis", "Hera"],
+        correct: 1,
+        funFact: "Athena was the goddess of wisdom and warfare. She was born after Zeus swallowed her mother, Metis, whole!",
+        wiki: "https://en.wikipedia.org/wiki/Athena"
+    },
+    {
+        question: "What creature did Theseus slay in the Labyrinth of Crete?",
+        options: ["Medusa", "Hydra", "Minotaur", "Chimera"],
+        correct: 2,
+        funFact: "The Minotaur was half-man, half-bull, and was kept in a labyrinth designed by Daedalus. Theseus used a ball of thread to find his way out.",
+        wiki: "https://en.wikipedia.org/wiki/Minotaur"
+    },
+    {
+        question: "Who is the Greek god of the sea?",
+        options: ["Poseidon", "Triton", "Oceanus", "Nereus"],
+        correct: 0,
+        funFact: "Poseidon's weapon was the trident, and he was also the god of earthquakes. Sailors would pray to him for safe voyages.",
+        wiki: "https://en.wikipedia.org/wiki/Poseidon"
+    },
+    {
+        question: "Which hero had to complete twelve labors as penance?",
+        options: ["Perseus", "Achilles", "Heracles", "Jason"],
+        correct: 2,
+        funFact: "Heracles (Hercules in Roman mythology) performed these labors in service to King Eurystheus after being driven mad by Hera.",
+        wiki: "https://en.wikipedia.org/wiki/Labours_of_Heracles"
+    },
+    {
+        question: "What was the name of the winged horse in Greek mythology?",
+        options: ["Arion", "Pegasus", "Sleipnir", "Bucephalus"],
+        correct: 1,
+        funFact: "Pegasus sprang from the blood of Medusa when Perseus beheaded her. He was later tamed by the hero Bellerophon.",
+        wiki: "https://en.wikipedia.org/wiki/Pegasus"
+    },
+    {
+        question: "Who was the messenger of the gods with winged sandals?",
+        options: ["Apollo", "Ares", "Hermes", "Dionysus"],
+        correct: 2,
+        funFact: "Hermes was incredibly versatile - he was also the god of thieves, travelers, and commerce. His staff, the caduceus, is still used as a symbol today.",
+        wiki: "https://en.wikipedia.org/wiki/Hermes"
+    },
+    {
+        question: "Which Titan was condemned to hold up the sky for eternity?",
+        options: ["Prometheus", "Atlas", "Cronus", "Hyperion"],
+        correct: 1,
+        funFact: "Atlas led the Titans in their war against the Olympian gods. His punishment was to bear the weight of the heavens on his shoulders forever.",
+        wiki: "https://en.wikipedia.org/wiki/Atlas_(mythology)"
+    },
+    {
+        question: "Who was the goddess of the harvest and agriculture?",
+        options: ["Hestia", "Persephone", "Demeter", "Gaia"],
+        correct: 2,
+        funFact: "When Demeter's daughter Persephone was taken to the Underworld, Demeter's grief caused winter. Her joy at Persephone's return brings spring.",
+        wiki: "https://en.wikipedia.org/wiki/Demeter"
+    },
+    {
+        question: "What was the name of the three-headed dog guarding the Underworld?",
+        options: ["Orthrus", "Cerberus", "Laelaps", "Argos"],
+        correct: 1,
+        funFact: "Cerberus was one of the monstrous children of Typhon and Echidna. Capturing him was Heracles' final and most dangerous labor.",
+        wiki: "https://en.wikipedia.org/wiki/Cerberus"
+    },
+    {
+        question: "Which mortal woman's beauty caused the Trojan War?",
+        options: ["Andromeda", "Penelope", "Helen", "Cassandra"],
+        correct: 2,
+        funFact: "Helen was said to be the daughter of Zeus and the most beautiful woman in the world. Her abduction by Paris launched a thousand ships.",
+        wiki: "https://en.wikipedia.org/wiki/Helen_of_Troy"
+    },
+    {
+        question: "Who gave fire to humanity and was punished by Zeus?",
+        options: ["Atlas", "Prometheus", "Epimetheus", "Iapetus"],
+        correct: 1,
+        funFact: "Prometheus was chained to a rock where an eagle ate his liver daily, only for it to regenerate each night. He was eventually freed by Heracles.",
+        wiki: "https://en.wikipedia.org/wiki/Prometheus"
+    },
+    {
+        question: "What was the only thing left in Pandora's box after she opened it?",
+        options: ["Love", "Fear", "Hope", "Wisdom"],
+        correct: 2,
+        funFact: "Pandora was the first human woman, created by the gods. Her 'box' (actually a jar in the original Greek) released all evils into the world.",
+        wiki: "https://en.wikipedia.org/wiki/Pandora%27s_box"
+    },
+    {
+        question: "Which hero killed the Gorgon Medusa?",
+        options: ["Theseus", "Perseus", "Heracles", "Bellerophon"],
+        correct: 1,
+        funFact: "Perseus used a mirrored shield to avoid Medusa's petrifying gaze. He later used her head as a weapon before giving it to Athena.",
+        wiki: "https://en.wikipedia.org/wiki/Perseus"
+    },
+    {
+        question: "Who was the god of wine and festivity?",
+        options: ["Pan", "Dionysus", "Silenus", "Priapus"],
+        correct: 1,
+        funFact: "Dionysus was twice-born - first from his mortal mother Semele, and then from Zeus's thigh after Semele was destroyed by Zeus's true form.",
+        wiki: "https://en.wikipedia.org/wiki/Dionysus"
+    },
+    {
+        question: "What instrument did the god Apollo master?",
+        options: ["Pan flute", "Drums", "Lyre", "Trumpet"],
+        correct: 2,
+        funFact: "Apollo received the lyre from Hermes, who invented it. Apollo was also the god of music, poetry, art, prophecy, and the sun.",
+        wiki: "https://en.wikipedia.org/wiki/Apollo"
+    },
+    {
+        question: "Which river in the Underworld caused souls to forget their past lives?",
+        options: ["Styx", "Acheron", "Lethe", "Phlegethon"],
+        correct: 2,
+        funFact: "There were five rivers in the Greek Underworld. The River Lethe's waters granted complete forgetfulness to souls preparing for reincarnation.",
+        wiki: "https://en.wikipedia.org/wiki/Lethe"
+    },
+    {
+        question: "Who was the goddess of love and beauty?",
+        options: ["Hera", "Athena", "Aphrodite", "Artemis"],
+        correct: 2,
+        funFact: "Aphrodite was born from sea foam after Cronus threw Uranus's severed parts into the sea. She was married to Hephaestus but loved Ares.",
+        wiki: "https://en.wikipedia.org/wiki/Aphrodite"
+    },
+    {
+        question: "What was the name of Odysseus's faithful dog who recognized him after 20 years?",
+        options: ["Argos", "Cerberus", "Laelaps", "Maera"],
+        correct: 0,
+        funFact: "Argos waited 20 years for his master to return from the Trojan War. Upon seeing Odysseus, he wagged his tail and died peacefully.",
+        wiki: "https://en.wikipedia.org/wiki/Argos_(dog)"
+    },
+    {
+        question: "Which goddess turned Arachne into a spider?",
+        options: ["Hera", "Athena", "Artemis", "Aphrodite"],
+        correct: 1,
+        funFact: "Arachne was a skilled weaver who boasted she was better than Athena. When her tapestry proved equal, Athena transformed her out of rage.",
+        wiki: "https://en.wikipedia.org/wiki/Arachne"
+    },
+    {
+        question: "Who was the ferryman of the dead across the River Styx?",
+        options: ["Thanatos", "Charon", "Hypnos", "Hades"],
+        correct: 1,
+        funFact: "Charon required payment of one obol (a coin) for passage. Greeks buried their dead with coins on their eyes for this purpose.",
+        wiki: "https://en.wikipedia.org/wiki/Charon"
+    },
+    {
+        question: "Which nymph was transformed into a laurel tree to escape Apollo?",
+        options: ["Echo", "Daphne", "Syrinx", "Eurydice"],
+        correct: 1,
+        funFact: "Daphne's father, the river god Peneus, transformed her at her request. Apollo then made the laurel his sacred tree and symbol of victory.",
+        wiki: "https://en.wikipedia.org/wiki/Daphne"
+    },
+    {
+        question: "What did King Midas's touch turn everything into?",
+        options: ["Silver", "Gold", "Bronze", "Diamonds"],
+        correct: 1,
+        funFact: "Midas was granted this wish by Dionysus but quickly regretted it when he couldn't eat or drink. He washed away his power in the River Pactolus.",
+        wiki: "https://en.wikipedia.org/wiki/Midas"
+    },
+    {
+        question: "Who was the greatest Greek warrior in the Trojan War?",
+        options: ["Ajax", "Hector", "Achilles", "Odysseus"],
+        correct: 2,
+        funFact: "Achilles was dipped in the River Styx by his mother Thetis, making him invulnerable except for his heel, by which she held him.",
+        wiki: "https://en.wikipedia.org/wiki/Achilles"
+    },
+    {
+        question: "Which monster had the head of a lion, body of a goat, and tail of a serpent?",
+        options: ["Sphinx", "Chimera", "Griffin", "Manticore"],
+        correct: 1,
+        funFact: "The Chimera was slain by Bellerophon while riding Pegasus. She was one of many monstrous offspring of Typhon and Echidna.",
+        wiki: "https://en.wikipedia.org/wiki/Chimera_(mythology)"
+    },
+    {
+        question: "Who was Hades's queen and goddess of the Underworld?",
+        options: ["Hecate", "Nyx", "Persephone", "Eris"],
+        correct: 2,
+        funFact: "Persephone was abducted by Hades and tricked into eating pomegranate seeds, binding her to spend part of each year in the Underworld.",
+        wiki: "https://en.wikipedia.org/wiki/Persephone"
+    },
+    {
+        question: "What creature asked travelers a riddle and devoured those who answered wrong?",
+        options: ["Harpy", "Sphinx", "Siren", "Scylla"],
+        correct: 1,
+        funFact: "The Sphinx's riddle was: 'What walks on four legs in the morning, two at noon, and three in the evening?' Oedipus answered: 'Man.'",
+        wiki: "https://en.wikipedia.org/wiki/Sphinx"
+    },
+    {
+        question: "Who was the god of war?",
+        options: ["Ares", "Athena", "Nike", "Kratos"],
+        correct: 0,
+        funFact: "Unlike Athena, who represented strategic warfare, Ares embodied the brutal, violent aspect of war. He was widely disliked even among the gods.",
+        wiki: "https://en.wikipedia.org/wiki/Ares"
+    },
+    {
+        question: "Which mortal was punished to push a boulder uphill for eternity?",
+        options: ["Tantalus", "Ixion", "Sisyphus", "Tityos"],
+        correct: 2,
+        funFact: "Sisyphus was punished for his craftiness and deceit. Each time he nearly reached the top, the boulder would roll back down."
+    },
+    {
+        question: "Who created the first woman, Pandora?",
+        options: ["Zeus", "Prometheus", "Hephaestus", "Athena"],
+        correct: 2,
+        funFact: "Hephaestus crafted Pandora from clay on Zeus's orders. Each god gave her gifts - her name means 'all-gifted' in Greek."
+    },
+    // === OLYMPIAN GODS - EASY ===
+    {
+        question: "What is Zeus's primary weapon?",
+        options: ["Trident", "Thunderbolt", "Sword", "Bow"],
+        correct: 1,
+        funFact: "Zeus's thunderbolts were forged by the Cyclopes as thanks for freeing them from Tartarus."
+    },
+    {
+        question: "Which goddess is Zeus's wife and queen of the gods?",
+        options: ["Athena", "Aphrodite", "Hera", "Demeter"],
+        correct: 2,
+        funFact: "Hera was the goddess of marriage and family, though ironically her own marriage was troubled by Zeus's many affairs.",
+        wiki: "https://en.wikipedia.org/wiki/Hera"
+    },
+    {
+        question: "What animal is sacred to Athena?",
+        options: ["Eagle", "Owl", "Peacock", "Dove"],
+        correct: 1,
+        funFact: "The owl symbolized Athena's wisdom. The Little Owl species is still called Athene noctua in her honor.",
+        wiki: "https://en.wikipedia.org/wiki/Owl_of_Athena"
+    },
+    {
+        question: "Which god rules the Underworld?",
+        options: ["Ares", "Hades", "Thanatos", "Cronus"],
+        correct: 1,
+        funFact: "Hades was not evil - he was stern but fair. Greeks avoided saying his name, calling him 'Plouton' (the wealthy one) instead.",
+        wiki: "https://en.wikipedia.org/wiki/Hades"
+    },
+    {
+        question: "What is Poseidon's weapon?",
+        options: ["Thunderbolt", "Sword", "Trident", "Spear"],
+        correct: 2,
+        funFact: "Poseidon's trident could cause earthquakes and create new bodies of water when struck against the ground.",
+        wiki: "https://en.wikipedia.org/wiki/Trident_of_Poseidon"
+    },
+    {
+        question: "Which goddess is associated with the moon and hunting?",
+        options: ["Athena", "Hera", "Artemis", "Aphrodite"],
+        correct: 2,
+        funFact: "Artemis was a virgin goddess who asked Zeus for eternal chastity. She fiercely protected her hunters and woodland creatures.",
+        wiki: "https://en.wikipedia.org/wiki/Artemis"
+    },
+    {
+        question: "Who is the god of the forge and fire?",
+        options: ["Ares", "Apollo", "Hephaestus", "Hermes"],
+        correct: 2,
+        funFact: "Hephaestus was thrown from Olympus as a baby. Despite his lameness, he crafted the most beautiful objects in existence.",
+        wiki: "https://en.wikipedia.org/wiki/Hephaestus"
+    },
+    {
+        question: "Which god drives the sun chariot across the sky?",
+        options: ["Zeus", "Apollo", "Helios", "Hyperion"],
+        correct: 2,
+        funFact: "While Apollo became associated with the sun, Helios was the original sun god who drove the chariot daily across the heavens.",
+        wiki: "https://en.wikipedia.org/wiki/Helios"
+    },
+    {
+        question: "What is Hera's sacred animal?",
+        options: ["Owl", "Peacock", "Eagle", "Cow"],
+        correct: 1,
+        funFact: "The peacock's 'eyes' on its feathers were said to be the hundred eyes of Argus, Hera's faithful guardian.",
+        wiki: "https://en.wikipedia.org/wiki/Hera#Emblems"
+    },
+    {
+        question: "Which god is known for his winged helmet and sandals?",
+        options: ["Ares", "Apollo", "Dionysus", "Hermes"],
+        correct: 3,
+        funFact: "Hermes' winged sandals were called 'talaria' and allowed him to fly as fast as any bird.",
+        wiki: "https://en.wikipedia.org/wiki/Talaria"
+    },
+    {
+        question: "Who is the goddess of the hearth?",
+        options: ["Hera", "Demeter", "Hestia", "Athena"],
+        correct: 2,
+        funFact: "Hestia gave up her seat among the Twelve Olympians to Dionysus to avoid conflict, preferring to tend the sacred fire.",
+        wiki: "https://en.wikipedia.org/wiki/Hestia"
+    },
+    {
+        question: "Which god was born from Zeus's thigh?",
+        options: ["Apollo", "Hermes", "Dionysus", "Ares"],
+        correct: 2,
+        funFact: "After Semele died, Zeus sewed the unborn Dionysus into his thigh until he was ready to be born.",
+        wiki: "https://en.wikipedia.org/wiki/Dionysus#Birth"
+    },
+    {
+        question: "What does Aphrodite's name literally mean?",
+        options: ["Born of foam", "Golden beauty", "Love's arrow", "Heart's desire"],
+        correct: 0,
+        funFact: "Aphrodite emerged from sea foam (aphros) near Cyprus after Cronus cast Uranus's remains into the ocean.",
+        wiki: "https://en.wikipedia.org/wiki/Aphrodite#Etymology"
+    },
+    {
+        question: "Which goddess carries a torch and is associated with crossroads?",
+        options: ["Artemis", "Hecate", "Selene", "Nyx"],
+        correct: 1,
+        funFact: "Hecate was worshipped at crossroads where three roads met. Offerings were left for her at these 'triple crossroads.'",
+        wiki: "https://en.wikipedia.org/wiki/Hecate"
+    },
+    {
+        question: "What is Apollo's twin sister's name?",
+        options: ["Athena", "Artemis", "Aphrodite", "Hestia"],
+        correct: 1,
+        funFact: "Artemis was born first and immediately helped her mother Leto deliver Apollo, making her a protector of childbirth.",
+        wiki: "https://en.wikipedia.org/wiki/Artemis"
+    },
+    // === TITANS - MEDIUM ===
+    {
+        question: "Who was the leader of the Titans?",
+        options: ["Atlas", "Prometheus", "Cronus", "Hyperion"],
+        correct: 2,
+        funFact: "Cronus ruled during the Golden Age, but his fear of being overthrown led him to swallow his own children.",
+        wiki: "https://en.wikipedia.org/wiki/Cronus"
+    },
+    {
+        question: "Which Titan is the mother of Zeus, Hera, and their siblings?",
+        options: ["Gaia", "Rhea", "Tethys", "Theia"],
+        correct: 1,
+        funFact: "Rhea saved Zeus by giving Cronus a stone wrapped in swaddling clothes to swallow instead of the baby.",
+        wiki: "https://en.wikipedia.org/wiki/Rhea_(mythology)"
+    },
+    {
+        question: "What did Cronus use to castrate his father Uranus?",
+        options: ["A sword", "An adamantine sickle", "A thunderbolt", "A spear"],
+        correct: 1,
+        funFact: "Gaia created the sickle and convinced Cronus to attack Uranus, freeing her children from imprisonment.",
+        wiki: "https://en.wikipedia.org/wiki/Cronus#Mythology"
+    },
+    {
+        question: "Who is the Titan of the ocean that encircles the world?",
+        options: ["Pontus", "Nereus", "Oceanus", "Poseidon"],
+        correct: 2,
+        funFact: "Oceanus was depicted as a great river that encircled the flat Earth, and he stayed neutral during the Titanomachy.",
+        wiki: "https://en.wikipedia.org/wiki/Oceanus"
+    },
+    {
+        question: "Which Titan gave birth to the sun, moon, and dawn?",
+        options: ["Rhea", "Theia", "Tethys", "Phoebe"],
+        correct: 1,
+        funFact: "Theia, 'the divine,' was mother to Helios (sun), Selene (moon), and Eos (dawn) with her brother Hyperion.",
+        wiki: "https://en.wikipedia.org/wiki/Theia"
+    },
+    {
+        question: "What is the name of the war between the Olympians and Titans?",
+        options: ["Gigantomachy", "Titanomachy", "Theogony", "Typhonomachy"],
+        correct: 1,
+        funFact: "The Titanomachy lasted ten years until Zeus freed the Cyclopes and Hundred-Handed Ones to help defeat the Titans.",
+        wiki: "https://en.wikipedia.org/wiki/Titanomachy"
+    },
+    {
+        question: "Where were the defeated Titans imprisoned?",
+        options: ["Hades", "Elysium", "Tartarus", "Erebus"],
+        correct: 2,
+        funFact: "Tartarus is as far below Hades as Earth is below the sky. A bronze anvil would fall nine days to reach it.",
+        wiki: "https://en.wikipedia.org/wiki/Tartarus"
+    },
+    {
+        question: "Which Titan is associated with prophetic wisdom and the oracle at Delphi?",
+        options: ["Themis", "Mnemosyne", "Phoebe", "Tethys"],
+        correct: 2,
+        funFact: "Phoebe held the oracle at Delphi before passing it to her grandson Apollo. Her name means 'bright' or 'pure.'",
+        wiki: "https://en.wikipedia.org/wiki/Phoebe_(Titaness)"
+    },
+    {
+        question: "Who is the Titan goddess of memory and mother of the Muses?",
+        options: ["Themis", "Mnemosyne", "Rhea", "Tethys"],
+        correct: 1,
+        funFact: "Zeus lay with Mnemosyne for nine nights, and she gave birth to the nine Muses, goddesses of arts and sciences.",
+        wiki: "https://en.wikipedia.org/wiki/Mnemosyne"
+    },
+    {
+        question: "Which Titan represents divine law and order?",
+        options: ["Themis", "Dike", "Astraea", "Nemesis"],
+        correct: 0,
+        funFact: "Themis was Zeus's second wife and counselor. She could see the future and presided over divine law.",
+        wiki: "https://en.wikipedia.org/wiki/Themis"
+    },
+    {
+        question: "What was the name of Prometheus's brother who accepted Pandora?",
+        options: ["Atlas", "Menoetius", "Epimetheus", "Cronus"],
+        correct: 2,
+        funFact: "Epimetheus means 'afterthought' - unlike his brother Prometheus ('forethought'), he never considered consequences.",
+        wiki: "https://en.wikipedia.org/wiki/Epimetheus"
+    },
+    {
+        question: "Which Titan was punished to hold up the celestial heavens?",
+        options: ["Prometheus", "Epimetheus", "Atlas", "Menoetius"],
+        correct: 2,
+        funFact: "Contrary to popular belief, Atlas held up the sky (Uranus), not the Earth. This was his punishment after the Titanomachy.",
+        wiki: "https://en.wikipedia.org/wiki/Atlas_(mythology)"
+    },
+    // === HEROES - HERACLES ===
+    {
+        question: "What was Heracles's name before he was renamed?",
+        options: ["Alcaeus", "Alcides", "Amphitryon", "Iphicles"],
+        correct: 1,
+        funFact: "Heracles was born Alcides but was renamed 'Heracles' ('Glory of Hera') to appease the goddess who tormented him.",
+        wiki: "https://en.wikipedia.org/wiki/Heracles"
+    },
+    {
+        question: "Who was Heracles's mortal mother?",
+        options: ["Semele", "Alcmene", "Danae", "Leda"],
+        correct: 1,
+        funFact: "Alcmene was so beautiful that Zeus disguised himself as her husband Amphitryon to seduce her.",
+        wiki: "https://en.wikipedia.org/wiki/Alcmene"
+    },
+    {
+        question: "What was Heracles's first labor?",
+        options: ["Hydra", "Nemean Lion", "Erymanthian Boar", "Cerberus"],
+        correct: 1,
+        funFact: "The Nemean Lion's hide was impervious to weapons. Heracles strangled it and wore its skin as armor.",
+        wiki: "https://en.wikipedia.org/wiki/Nemean_lion"
+    },
+    {
+        question: "How many heads did the Lernaean Hydra have originally?",
+        options: ["Five", "Seven", "Nine", "Twelve"],
+        correct: 2,
+        funFact: "The Hydra grew two heads for each one cut off. The central head was immortal and had to be buried under a rock.",
+        wiki: "https://en.wikipedia.org/wiki/Lernaean_Hydra"
+    },
+    {
+        question: "Who helped Heracles defeat the Hydra by cauterizing the stumps?",
+        options: ["Theseus", "Iolaus", "Perseus", "Jason"],
+        correct: 1,
+        funFact: "Iolaus was Heracles's nephew and companion. Eurystheus refused to count this labor because Heracles had help.",
+        wiki: "https://en.wikipedia.org/wiki/Iolaus"
+    },
+    {
+        question: "What creature did Heracles capture alive in the Erymanthian mountains?",
+        options: ["Lion", "Bear", "Boar", "Bull"],
+        correct: 2,
+        funFact: "Heracles drove the boar into deep snow to tire it out, then bound it and carried it back to Eurystheus.",
+        wiki: "https://en.wikipedia.org/wiki/Erymanthian_Boar"
+    },
+    {
+        question: "Whose stables did Heracles clean in a single day?",
+        options: ["Eurystheus", "Augeas", "Diomedes", "Geryon"],
+        correct: 1,
+        funFact: "The Augean stables held divine cattle and hadn't been cleaned in 30 years. Heracles diverted two rivers through them.",
+        wiki: "https://en.wikipedia.org/wiki/Augean_stables"
+    },
+    {
+        question: "What birds did Heracles drive away from Lake Stymphalia?",
+        options: ["Eagles", "Bronze-beaked birds", "Harpies", "Phoenixes"],
+        correct: 1,
+        funFact: "The Stymphalian Birds had bronze beaks and metallic feathers they could launch like arrows at their victims.",
+        wiki: "https://en.wikipedia.org/wiki/Stymphalian_birds"
+    },
+    {
+        question: "Which queen's girdle did Heracles retrieve?",
+        options: ["Penthesilea", "Hippolyta", "Antiope", "Andromache"],
+        correct: 1,
+        funFact: "Hippolyta was willing to give the girdle freely, but Hera caused confusion that led to battle and Hippolyta's death.",
+        wiki: "https://en.wikipedia.org/wiki/Hippolyta"
+    },
+    {
+        question: "Whose man-eating horses did Heracles capture?",
+        options: ["Augeas", "Geryon", "Diomedes", "Eurystheus"],
+        correct: 2,
+        funFact: "Diomedes fed his horses human flesh. Heracles fed Diomedes to his own horses to calm them.",
+        wiki: "https://en.wikipedia.org/wiki/Mares_of_Diomedes"
+    },
+    {
+        question: "How many bodies did Geryon have?",
+        options: ["One", "Two", "Three", "Four"],
+        correct: 2,
+        funFact: "Geryon had three heads, three bodies, and six arms. He was the grandson of Medusa.",
+        wiki: "https://en.wikipedia.org/wiki/Geryon"
+    },
+    {
+        question: "What golden fruit did Heracles retrieve from the garden of the Hesperides?",
+        options: ["Pomegranates", "Apples", "Oranges", "Pears"],
+        correct: 1,
+        funFact: "The golden apples gave immortality. They were a wedding gift from Gaia to Hera and Zeus.",
+        wiki: "https://en.wikipedia.org/wiki/Apples_of_the_Hesperides"
+    },
+    {
+        question: "What did Heracles wear that made him invulnerable?",
+        options: ["Golden fleece", "Nemean lion skin", "Aegis", "Adamantine armor"],
+        correct: 1,
+        funFact: "After killing the Nemean Lion, Heracles used its own claws to skin it, as no weapon could pierce its hide.",
+        wiki: "https://en.wikipedia.org/wiki/Nemean_lion"
+    },
+    {
+        question: "What poisoned Heracles and led to his death?",
+        options: ["Hydra blood", "Medusa's gaze", "Typhon's venom", "Manticore poison"],
+        correct: 0,
+        funFact: "Heracles's wife Deianira unknowingly gave him a robe soaked in Hydra blood, thinking it was a love potion.",
+        wiki: "https://en.wikipedia.org/wiki/Deianira"
+    },
+    {
+        question: "What happened to Heracles after his death?",
+        options: ["Went to Tartarus", "Became an Olympian god", "Went to Elysium", "Was reborn"],
+        correct: 1,
+        funFact: "Heracles was the only hero to become a full Olympian god. He married Hebe, goddess of youth.",
+        wiki: "https://en.wikipedia.org/wiki/Heracles#Death"
+    },
+    // === HEROES - PERSEUS ===
+    {
+        question: "Who was Perseus's divine father?",
+        options: ["Poseidon", "Apollo", "Zeus", "Ares"],
+        correct: 2,
+        funFact: "Zeus visited Danae as a shower of golden rain while she was imprisoned in a bronze chamber.",
+        wiki: "https://en.wikipedia.org/wiki/Perseus"
+    },
+    {
+        question: "Why was Danae imprisoned by her father Acrisius?",
+        options: ["She refused to marry", "A deadly prophecy", "She was cursed", "She insulted Athena"],
+        correct: 1,
+        funFact: "Despite Acrisius's precautions, Perseus eventually killed him accidentally with a discus throw.",
+        wiki: "https://en.wikipedia.org/wiki/Dana%C3%AB"
+    },
+    {
+        question: "Who were the three sisters who shared one eye and one tooth?",
+        options: ["The avenging Furies", "The petrifying Gorgons", "The ancient Graeae", "The deadly Sirens"],
+        correct: 2,
+        funFact: "Perseus stole the Graeae's eye and tooth, forcing them to reveal the location of the Gorgons.",
+        wiki: "https://en.wikipedia.org/wiki/Graeae"
+    },
+    {
+        question: "What item made Perseus invisible?",
+        options: ["Cloak of Athena", "Helm of Hades", "Ring of Gyges", "Mist of Hecate"],
+        correct: 1,
+        funFact: "The Helm of Darkness was made by the Cyclopes. It rendered the wearer completely invisible to all.",
+        wiki: "https://en.wikipedia.org/wiki/Cap_of_invisibility"
+    },
+    {
+        question: "What did Perseus use to safely carry Medusa's head?",
+        options: ["Bronze shield", "Magical bag", "Golden chest", "Lead box"],
+        correct: 1,
+        funFact: "The kibisis was a special bag that could contain Medusa's head without the stone gaze affecting anything.",
+        wiki: "https://en.wikipedia.org/wiki/Kibisis"
+    },
+    {
+        question: "Who did Perseus rescue from a sea monster?",
+        options: ["Helen", "Andromeda", "Ariadne", "Eurydice"],
+        correct: 1,
+        funFact: "Andromeda was chained to a rock as sacrifice to Cetus. Perseus used Medusa's head to turn the monster to stone.",
+        wiki: "https://en.wikipedia.org/wiki/Andromeda_(mythology)"
+    },
+    {
+        question: "What constellation represents the princess Perseus saved?",
+        options: ["Cassiopeia", "Andromeda", "Virgo", "Lyra"],
+        correct: 1,
+        funFact: "The entire Perseus myth is represented in the night sky, with constellations for Perseus, Andromeda, Cassiopeia, and Cepheus.",
+        wiki: "https://en.wikipedia.org/wiki/Andromeda_(constellation)"
+    },
+    {
+        question: "Who gave Perseus the winged sandals?",
+        options: ["Athena", "Hermes", "The Nymphs", "Zeus"],
+        correct: 2,
+        funFact: "The Hesperides (or nymphs) gave Perseus the winged sandals, kibisis, and the helm of invisibility.",
+        wiki: "https://en.wikipedia.org/wiki/Talaria"
+    },
+    {
+        question: "What emerged from Medusa's blood when Perseus killed her?",
+        options: ["Pegasus and Chrysaor", "The Furies", "Snakes", "The Gorgons"],
+        correct: 0,
+        funFact: "Pegasus the winged horse and Chrysaor the golden warrior sprang from Medusa's neck - children of Poseidon.",
+        wiki: "https://en.wikipedia.org/wiki/Pegasus"
+    },
+    {
+        question: "How did Perseus kill Medusa without looking at her?",
+        options: ["He closed his eyes", "He used a mirror shield", "He fought blindfolded", "He wore the helm"],
+        correct: 1,
+        funFact: "Athena guided Perseus's hand as he watched Medusa's reflection in his polished bronze shield.",
+        wiki: "https://en.wikipedia.org/wiki/Medusa"
+    },
+    // === HEROES - THESEUS ===
+    {
+        question: "Who was Theseus's father according to Athenian tradition?",
+        options: ["The god Zeus", "The god Poseidon", "King Aegeus", "Aegeus and Poseidon both"],
+        correct: 3,
+        funFact: "Theseus had two fathers - King Aegeus of Athens and Poseidon, as both visited his mother on the same night.",
+        wiki: "https://en.wikipedia.org/wiki/Theseus"
+    },
+    {
+        question: "What did Aegeus leave under a heavy rock for Theseus to find?",
+        options: ["Crown and scepter", "Sword and sandals", "Shield and spear", "Bow and arrows"],
+        correct: 1,
+        funFact: "When Theseus was strong enough to lift the rock and claim these tokens, he would be recognized as Aegeus's son.",
+        wiki: "https://en.wikipedia.org/wiki/Aegeus"
+    },
+    {
+        question: "Who gave Theseus the thread to escape the Labyrinth?",
+        options: ["Athena", "Phaedra", "Ariadne", "Pasiphae"],
+        correct: 2,
+        funFact: "Ariadne fell in love with Theseus and gave him the thread on the condition that he would take her with him.",
+        wiki: "https://en.wikipedia.org/wiki/Ariadne"
+    },
+    {
+        question: "On which island did Theseus abandon Ariadne?",
+        options: ["Crete", "Naxos", "Delos", "Cyprus"],
+        correct: 1,
+        funFact: "Dionysus found Ariadne on Naxos and made her his wife, giving her a crown that became a constellation.",
+        wiki: "https://en.wikipedia.org/wiki/Naxos"
+    },
+    {
+        question: "Why did Aegeus throw himself into the sea?",
+        options: ["He was cursed", "He saw black sails", "He was pushed", "He went mad"],
+        correct: 1,
+        funFact: "Theseus forgot to change his sails from black to white, making Aegeus think his son had died. The Aegean Sea bears his name.",
+        wiki: "https://en.wikipedia.org/wiki/Aegean_Sea"
+    },
+    {
+        question: "Which bandit did Theseus defeat by bending pine trees?",
+        options: ["Procrustes", "Sinis", "Sciron", "Periphetes"],
+        correct: 1,
+        funFact: "Sinis the 'Pine-Bender' killed travelers by tying them to bent pines. Theseus killed him the same way.",
+        wiki: "https://en.wikipedia.org/wiki/Sinis_(mythology)"
+    },
+    {
+        question: "What was Procrustes famous for?",
+        options: ["Turning victims to stone", "Fitting victims to his bed", "Feeding victims to pigs", "Kicking victims off cliffs"],
+        correct: 1,
+        funFact: "Procrustes had two beds - he put tall people in the short one and short people in the long one.",
+        wiki: "https://en.wikipedia.org/wiki/Procrustes"
+    },
+    {
+        question: "Which Amazon queen did Theseus abduct or marry?",
+        options: ["Hippolyta", "Penthesilea", "Antiope", "Melanippe"],
+        correct: 2,
+        funFact: "Theseus's abduction of Antiope led to an Amazon invasion of Athens - one of their greatest conflicts.",
+        wiki: "https://en.wikipedia.org/wiki/Antiope_(Amazon)"
+    },
+    {
+        question: "Who was Theseus's best friend who tried to abduct Persephone?",
+        options: ["Heracles", "Pirithous", "Jason", "Iolaus"],
+        correct: 1,
+        funFact: "Pirithous and Theseus were trapped in the Underworld on chairs of forgetfulness. Only Theseus was rescued by Heracles.",
+        wiki: "https://en.wikipedia.org/wiki/Pirithous"
+    },
+    {
+        question: "How did Theseus die?",
+        options: ["In battle", "Pushed off a cliff", "Poisoned", "Old age"],
+        correct: 1,
+        funFact: "King Lycomedes of Skyros pushed Theseus off a cliff, either from treachery or because Theseus sought to reclaim land.",
+        wiki: "https://en.wikipedia.org/wiki/Theseus#Death"
+    },
+    // === HEROES - JASON AND ARGONAUTS ===
+    {
+        question: "What was the name of Jason's ship?",
+        options: ["Odyssey", "Argo", "Triton", "Pegasus"],
+        correct: 1,
+        funFact: "The Argo was built by Argus with Athena's help and contained a timber from the sacred oaks of Dodona.",
+        wiki: "https://en.wikipedia.org/wiki/Argo"
+    },
+    {
+        question: "Who was the rightful king whose throne Jason sought to reclaim?",
+        options: ["Aeson", "Pelias", "Aeetes", "Phrixus"],
+        correct: 0,
+        funFact: "Aeson was Jason's father, dethroned by his half-brother Pelias. Jason was raised secretly by the centaur Chiron.",
+        wiki: "https://en.wikipedia.org/wiki/Jason"
+    },
+    {
+        question: "In which land was the Golden Fleece kept?",
+        options: ["Crete", "Troy", "Colchis", "Ithaca"],
+        correct: 2,
+        funFact: "Colchis was at the eastern edge of the known world, on the Black Sea in modern-day Georgia.",
+        wiki: "https://en.wikipedia.org/wiki/Golden_Fleece"
+    },
+    {
+        question: "Who was the sorceress who helped Jason obtain the Golden Fleece?",
+        options: ["Circe", "Medea", "Calypso", "Hecate"],
+        correct: 1,
+        funFact: "Medea was a priestess of Hecate and Aeetes's daughter. She fell in love with Jason through Aphrodite's intervention.",
+        wiki: "https://en.wikipedia.org/wiki/Medea"
+    },
+    {
+        question: "What fire-breathing creatures did Jason have to yoke?",
+        options: ["Dragons", "Bulls", "Horses", "Serpents"],
+        correct: 1,
+        funFact: "The Khalkotauroi were bronze-hoofed bulls that breathed fire. Medea's ointment protected Jason from their flames.",
+        wiki: "https://en.wikipedia.org/wiki/Khalkotauroi"
+    },
+    {
+        question: "What sprang from the dragon's teeth that Jason sowed?",
+        options: ["Serpents", "Armed warriors", "Monsters", "Golden trees"],
+        correct: 1,
+        funFact: "The Spartoi (sown men) rose from the earth. Jason threw a stone among them, causing them to fight each other.",
+        wiki: "https://en.wikipedia.org/wiki/Spartoi"
+    },
+    {
+        question: "Who was the famous musician among the Argonauts?",
+        options: ["Apollo", "Orpheus", "Pan", "Marsyas"],
+        correct: 1,
+        funFact: "Orpheus's music drowned out the Sirens' song, saving the Argonauts from their deadly enchantment.",
+        wiki: "https://en.wikipedia.org/wiki/Orpheus"
+    },
+    {
+        question: "Which female warrior joined the Argonauts?",
+        options: ["Hippolyta", "Atalanta", "Penthesilea", "Camilla"],
+        correct: 1,
+        funFact: "Atalanta was the only woman among the Argonauts. She was also famous for refusing to marry anyone who couldn't outrun her.",
+        wiki: "https://en.wikipedia.org/wiki/Atalanta"
+    },
+    {
+        question: "Which hero with incredible eyesight was an Argonaut?",
+        options: ["Castor", "Lynceus", "Idas", "Polydeuces"],
+        correct: 1,
+        funFact: "Lynceus could see through solid objects and spot things from enormous distances - even seeing into the earth.",
+        wiki: "https://en.wikipedia.org/wiki/Lynceus_(Argonaut)"
+    },
+    {
+        question: "What did Medea do to distract her father during the escape?",
+        options: ["Cast a spell", "Killed her brother", "Created an illusion", "Summoned a storm"],
+        correct: 1,
+        funFact: "Medea killed and dismembered her brother Absyrtus, scattering his pieces so Aeetes had to stop and collect them.",
+        wiki: "https://en.wikipedia.org/wiki/Absyrtus"
+    },
+    {
+        question: "How did Medea help Jason defeat Pelias?",
+        options: ["Poisoned his drink", "Tricked his daughters", "Summoned monsters", "Cast a death spell"],
+        correct: 1,
+        funFact: "Medea convinced Pelias's daughters that boiling him would restore his youth. They killed him, but Medea didn't rejuvenate him.",
+        wiki: "https://en.wikipedia.org/wiki/Pelias"
+    },
+    {
+        question: "How did Jason eventually die?",
+        options: ["Died in battle", "Killed by Medea", "Crushed by the Argo", "Drowned at sea"],
+        correct: 2,
+        funFact: "Jason died alone and unhappy when a beam from the decaying Argo fell on him as he slept beneath it.",
+        wiki: "https://en.wikipedia.org/wiki/Jason#Death"
+    },
+    // === TROJAN WAR - CAUSES ===
+    {
+        question: "What did Eris throw among the goddesses at Peleus's wedding?",
+        options: ["A cursed ring", "A golden apple", "A poisoned crown", "A magic mirror"],
+        correct: 1,
+        funFact: "The apple was inscribed 'For the Fairest,' sparking a dispute between Hera, Athena, and Aphrodite.",
+        wiki: "https://en.wikipedia.org/wiki/Apple_of_Discord"
+    },
+    {
+        question: "Who judged the contest between Hera, Athena, and Aphrodite?",
+        options: ["Zeus", "Hermes", "Paris", "Priam"],
+        correct: 2,
+        funFact: "Paris, a Trojan prince, was chosen because he was considered the most handsome mortal and thus qualified to judge beauty.",
+        wiki: "https://en.wikipedia.org/wiki/Judgement_of_Paris"
+    },
+    {
+        question: "What did Aphrodite promise Paris to win the golden apple?",
+        options: ["Supreme wisdom", "Kingly power", "The fairest woman", "Divine immortality"],
+        correct: 2,
+        funFact: "Hera offered power, Athena offered wisdom in battle, but Aphrodite's promise of Helen won Paris's vote.",
+        wiki: "https://en.wikipedia.org/wiki/Paris_(mythology)"
+    },
+    {
+        question: "Who was Helen's mortal husband before she was taken to Troy?",
+        options: ["Agamemnon", "Odysseus", "Menelaus", "Ajax"],
+        correct: 2,
+        funFact: "Menelaus was King of Sparta. All Helen's suitors had sworn to defend whoever married her, leading to the Greek alliance.",
+        wiki: "https://en.wikipedia.org/wiki/Menelaus"
+    },
+    {
+        question: "Who was Helen's divine father?",
+        options: ["Poseidon", "Apollo", "Zeus", "Ares"],
+        correct: 2,
+        funFact: "Zeus came to Leda as a swan, and Helen was born from an egg along with her siblings Castor, Pollux, and Clytemnestra.",
+        wiki: "https://en.wikipedia.org/wiki/Helen_of_Troy"
+    },
+    {
+        question: "Who led the Greek forces against Troy?",
+        options: ["Menelaus", "Achilles", "Agamemnon", "Odysseus"],
+        correct: 2,
+        funFact: "Agamemnon was King of Mycenae and brother of Menelaus. His arrogance caused many problems for the Greek army.",
+        wiki: "https://en.wikipedia.org/wiki/Agamemnon"
+    },
+    {
+        question: "What oath bound all Greek kings to help retrieve Helen?",
+        options: ["Oath of Zeus", "Oath of Tyndareus", "Oath of Agamemnon", "Oath of the Gods"],
+        correct: 1,
+        funFact: "Odysseus devised this oath to prevent conflict over Helen. Ironically, he later tried to avoid the war himself.",
+        wiki: "https://en.wikipedia.org/wiki/Oath_of_Tyndareus"
+    },
+    {
+        question: "How did Odysseus try to avoid going to war?",
+        options: ["Hid in a cave", "Pretended to be mad", "Faked his death", "Fled to Egypt"],
+        correct: 1,
+        funFact: "Odysseus plowed his fields with salt, sowing it like seeds. Palamedes placed baby Telemachus in front of the plow, proving Odysseus sane.",
+        wiki: "https://en.wikipedia.org/wiki/Odysseus"
+    },
+    {
+        question: "Why was Achilles hidden among girls on Skyros?",
+        options: ["To avoid a prophecy", "He was cursed by gods", "To learn fine weaving", "He was deeply in love"],
+        correct: 0,
+        funFact: "Thetis knew Achilles would die at Troy, so she disguised him as a girl. Odysseus tricked him with weapons hidden among gifts.",
+        wiki: "https://en.wikipedia.org/wiki/Achilles"
+    },
+    {
+        question: "What sacrifice did Agamemnon make to get winds for his fleet?",
+        options: ["A hundred oxen", "His daughter Iphigenia", "Captured Trojan prisoners", "Sacred temple treasures"],
+        correct: 1,
+        funFact: "Agamemnon had offended Artemis, who calmed the winds. Some versions say Artemis replaced Iphigenia with a deer at the last moment.",
+        wiki: "https://en.wikipedia.org/wiki/Iphigenia"
+    },
+    // === TROJAN WAR - BATTLES ===
+    {
+        question: "How long did the Trojan War last?",
+        options: ["Five years", "Seven years", "Ten years", "Twelve years"],
+        correct: 2,
+        funFact: "The war lasted ten years, with most of the Iliad covering just a few weeks in the final year.",
+        wiki: "https://en.wikipedia.org/wiki/Trojan_War"
+    },
+    {
+        question: "Why did Achilles withdraw from battle?",
+        options: ["He was badly wounded", "Agamemnon took Briseis", "His mother asked him", "He had a dire vision"],
+        correct: 1,
+        funFact: "Agamemnon took Briseis to replace Chryseis, whom he had to return. Achilles's wrath is the central theme of the Iliad.",
+        wiki: "https://en.wikipedia.org/wiki/Iliad"
+    },
+    {
+        question: "Who was Hector's father?",
+        options: ["Anchises", "Priam", "Antenor", "Laomedon"],
+        correct: 1,
+        funFact: "Priam was King of Troy and father to 50 sons and many daughters. Hector was his greatest warrior and heir.",
+        wiki: "https://en.wikipedia.org/wiki/Priam"
+    },
+    {
+        question: "Who killed Achilles's beloved companion Patroclus?",
+        options: ["Paris", "Hector", "Aeneas", "Deiphobus"],
+        correct: 1,
+        funFact: "Patroclus wore Achilles's armor to rally the Greeks. Apollo stunned him, allowing Hector to deliver the killing blow.",
+        wiki: "https://en.wikipedia.org/wiki/Patroclus"
+    },
+    {
+        question: "What drove Achilles back to battle after his withdrawal?",
+        options: ["A vision from Zeus", "Patroclus's death", "Promise of glory", "Athena's command"],
+        correct: 1,
+        funFact: "Achilles's grief and rage over Patroclus's death led to his brutal revenge against Hector.",
+        wiki: "https://en.wikipedia.org/wiki/Hector"
+    },
+    {
+        question: "Who made Achilles's new armor after Patroclus died?",
+        options: ["Athena", "Zeus", "Hephaestus", "The Cyclopes"],
+        correct: 2,
+        funFact: "Thetis asked Hephaestus to forge new armor. The shield's description in the Iliad is one of literature's most famous passages.",
+        wiki: "https://en.wikipedia.org/wiki/Shield_of_Achilles"
+    },
+    {
+        question: "How many times did Achilles drag Hector's body around Troy?",
+        options: ["Once", "Three times", "Seven times", "Twelve times"],
+        correct: 3,
+        funFact: "Achilles dragged Hector's body for twelve days, but the gods preserved it from decay and damage.",
+        wiki: "https://en.wikipedia.org/wiki/Hector#Death"
+    },
+    {
+        question: "Who convinced Achilles to return Hector's body?",
+        options: ["Athena", "Thetis", "Hermes", "Zeus"],
+        correct: 1,
+        funFact: "Zeus sent Thetis to tell Achilles to accept ransom. Priam came alone at night, guided by Hermes.",
+        wiki: "https://en.wikipedia.org/wiki/Thetis"
+    },
+    {
+        question: "Which Trojan ally came with an army of Ethiopians?",
+        options: ["Memnon", "Rhesus", "Penthesilea", "Sarpedon"],
+        correct: 0,
+        funFact: "Memnon was the son of Eos (Dawn). He was nearly Achilles's equal and his death greatly grieved his mother.",
+        wiki: "https://en.wikipedia.org/wiki/Memnon_(mythology)"
+    },
+    {
+        question: "Which Amazon queen came to aid Troy and was killed by Achilles?",
+        options: ["Hippolyta", "Penthesilea", "Antiope", "Melanippe"],
+        correct: 1,
+        funFact: "Achilles fell in love with Penthesilea at the moment he killed her, overcome by her beauty and bravery.",
+        wiki: "https://en.wikipedia.org/wiki/Penthesilea"
+    },
+    {
+        question: "How did Paris kill Achilles?",
+        options: ["Stabbed him sleeping", "Shot his vulnerable heel", "Poisoned his wine", "Won single combat"],
+        correct: 1,
+        funFact: "Apollo guided Paris's arrow to Achilles's only vulnerable spot - his heel, which Thetis had held when dipping him in the Styx.",
+        wiki: "https://en.wikipedia.org/wiki/Achilles%27_heel"
+    },
+    {
+        question: "Who received Achilles's armor after his death?",
+        options: ["Ajax", "Odysseus", "Diomedes", "Agamemnon"],
+        correct: 1,
+        funFact: "The armor went to Odysseus rather than Ajax, who many thought deserved it. This drove Ajax to madness and suicide.",
+        wiki: "https://en.wikipedia.org/wiki/Ajax_the_Great"
+    },
+    // === TROJAN WAR - THE FALL ===
+    {
+        question: "Who devised the plan for the Trojan Horse?",
+        options: ["Agamemnon", "Odysseus", "Athena", "Calchas"],
+        correct: 1,
+        funFact: "Odysseus's cunning plan finally ended the war. The horse was built by Epeius with Athena's help.",
+        wiki: "https://en.wikipedia.org/wiki/Trojan_Horse"
+    },
+    {
+        question: "What did the Greeks pretend the wooden horse was?",
+        options: ["A peace offering", "An offering to Poseidon", "An offering to Athena", "A gift for Priam"],
+        correct: 2,
+        funFact: "The Greeks claimed the horse was an offering to Athena for a safe voyage home.",
+        wiki: "https://en.wikipedia.org/wiki/Trojan_Horse"
+    },
+    {
+        question: "Who warned the Trojans not to accept the horse?",
+        options: ["Cassandra and Laocoon", "Priam and Hecuba", "Paris and Helen", "The ghost of Hector"],
+        correct: 0,
+        funFact: "Laocoon famously said 'Beware of Greeks bearing gifts.' He and his sons were killed by sea serpents.",
+        wiki: "https://en.wikipedia.org/wiki/Laoco%C3%B6n"
+    },
+    {
+        question: "Why did no one believe Cassandra's prophecies?",
+        options: ["She was mad", "Apollo cursed her", "She spoke in riddles", "She was a child"],
+        correct: 1,
+        funFact: "Apollo gave Cassandra the gift of prophecy, but when she rejected him, he cursed her to never be believed.",
+        wiki: "https://en.wikipedia.org/wiki/Cassandra"
+    },
+    {
+        question: "Who led the Greek warriors inside the Trojan Horse?",
+        options: ["Agamemnon", "Odysseus", "Menelaus", "Neoptolemus"],
+        correct: 1,
+        funFact: "About 30-40 warriors hid inside the horse, including Odysseus, Menelaus, and Neoptolemus (Achilles's son).",
+        wiki: "https://en.wikipedia.org/wiki/Neoptolemus"
+    },
+    {
+        question: "What happened to King Priam during the fall of Troy?",
+        options: ["He escaped alive", "He was captured", "He was killed at altar", "He surrendered"],
+        correct: 2,
+        funFact: "Neoptolemus killed the aged Priam at the altar of Zeus, a sacrilege that would haunt the Greeks.",
+        wiki: "https://en.wikipedia.org/wiki/Priam#Death"
+    },
+    {
+        question: "What happened to Hector's young son Astyanax?",
+        options: ["Made a slave", "Escaped with Aeneas", "Thrown from walls", "Adopted by Greeks"],
+        correct: 2,
+        funFact: "The Greeks feared Astyanax would grow up to avenge Troy. Odysseus or Neoptolemus threw him from the walls.",
+        wiki: "https://en.wikipedia.org/wiki/Astyanax"
+    },
+    {
+        question: "Who took Hector's widow Andromache as a prize?",
+        options: ["Odysseus", "Agamemnon", "Neoptolemus", "Menelaus"],
+        correct: 2,
+        funFact: "Neoptolemus claimed Andromache. She later married Helenus, Hector's brother and a Trojan seer.",
+        wiki: "https://en.wikipedia.org/wiki/Andromache"
+    },
+    {
+        question: "What did Menelaus do when he found Helen in Troy?",
+        options: ["Killed her immediately", "Instantly forgave her", "Nearly killed then forgave", "Imprisoned her forever"],
+        correct: 2,
+        funFact: "Menelaus intended to kill Helen but was overcome by her beauty and dropped his sword.",
+        wiki: "https://en.wikipedia.org/wiki/Helen_of_Troy"
+    },
+    {
+        question: "Which Trojan hero escaped to found a new city?",
+        options: ["The seer Helenus", "The elder Antenor", "The hero Aeneas", "The prince Paris"],
+        correct: 2,
+        funFact: "Aeneas fled with his father and son. According to Virgil, he eventually founded the lineage that would establish Rome.",
+        wiki: "https://en.wikipedia.org/wiki/Aeneas"
+    },
+    // === THE ODYSSEY ===
+    {
+        question: "How long did it take Odysseus to return home after the Trojan War?",
+        options: ["Three years", "Seven years", "Ten years", "Twenty years"],
+        correct: 2,
+        funFact: "Combined with the ten-year war, Odysseus was away from Ithaca for twenty years total.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "What was the name of Odysseus's wife?",
+        options: ["Helen", "Penelope", "Andromache", "Calypso"],
+        correct: 1,
+        funFact: "Penelope remained faithful for twenty years, using her weaving trick to delay choosing a new husband.",
+        wiki: "https://en.wikipedia.org/wiki/Penelope"
+    },
+    {
+        question: "What was Penelope weaving and unweaving to delay the suitors?",
+        options: ["A tapestry", "A sail", "A burial shroud", "A wedding dress"],
+        correct: 2,
+        funFact: "Penelope promised to choose a suitor when she finished Laertes's shroud, but secretly unraveled her work each night.",
+        wiki: "https://en.wikipedia.org/wiki/Penelope#The_Suitors"
+    },
+    {
+        question: "Who was Odysseus's son?",
+        options: ["Telemachus", "Orestes", "Neoptolemus", "Thersites"],
+        correct: 0,
+        funFact: "Telemachus was only an infant when Odysseus left. He grew up and eventually helped his father defeat the suitors.",
+        wiki: "https://en.wikipedia.org/wiki/Telemachus"
+    },
+    {
+        question: "Which one-eyed giant did Odysseus blind?",
+        options: ["Brontes", "Polyphemus", "Steropes", "Arges"],
+        correct: 1,
+        funFact: "Polyphemus was Poseidon's son, and blinding him earned Odysseus the god's lasting wrath.",
+        wiki: "https://en.wikipedia.org/wiki/Polyphemus"
+    },
+    {
+        question: "What name did Odysseus give to Polyphemus?",
+        options: ["Nobody", "Stranger", "Greek", "Hero"],
+        correct: 0,
+        funFact: "When Polyphemus cried 'Nobody is hurting me,' the other Cyclopes thought he was fine and didn't help.",
+        wiki: "https://en.wikipedia.org/wiki/Polyphemus#Homer's_Odyssey"
+    },
+    {
+        question: "Which goddess kept Odysseus on her island for seven years?",
+        options: ["Circe", "Calypso", "Athena", "Aphrodite"],
+        correct: 1,
+        funFact: "Calypso offered Odysseus immortality if he stayed, but he longed for home and mortal life with Penelope.",
+        wiki: "https://en.wikipedia.org/wiki/Calypso_(mythology)"
+    },
+    {
+        question: "Which witch turned Odysseus's men into pigs?",
+        options: ["Calypso", "Medea", "Circe", "Hecate"],
+        correct: 2,
+        funFact: "Hermes gave Odysseus the herb moly to protect him from Circe's magic. He stayed with her for a year.",
+        wiki: "https://en.wikipedia.org/wiki/Circe"
+    },
+    {
+        question: "Who did Odysseus visit in the Underworld for advice?",
+        options: ["Achilles", "Tiresias", "Hades", "Heracles"],
+        correct: 1,
+        funFact: "Tiresias, even in death, retained his prophetic powers. He warned Odysseus about the cattle of the sun.",
+        wiki: "https://en.wikipedia.org/wiki/Tiresias"
+    },
+    {
+        question: "What creatures lured sailors with their beautiful singing?",
+        options: ["Harpies", "Nereids", "Sirens", "Muses"],
+        correct: 2,
+        funFact: "Odysseus had his men plug their ears with wax while he was tied to the mast, so he could hear and survive.",
+        wiki: "https://en.wikipedia.org/wiki/Siren_(mythology)"
+    },
+    {
+        question: "What happened when Odysseus's men ate the cattle of Helios?",
+        options: ["They became animals", "Their ship was destroyed", "They forgot home", "Nothing happened"],
+        correct: 1,
+        funFact: "Zeus destroyed the ship with a thunderbolt. Odysseus alone survived, clinging to wreckage.",
+        wiki: "https://en.wikipedia.org/wiki/Helios#Cattle_of_Helios"
+    },
+    {
+        question: "What two sea monsters did Odysseus have to sail between?",
+        options: ["Hydra and Chimera", "Scylla and Charybdis", "Cetus and Typhon", "Python and Ladon"],
+        correct: 1,
+        funFact: "Scylla was a six-headed monster; Charybdis was a whirlpool. Odysseus chose to pass near Scylla, losing six men.",
+        wiki: "https://en.wikipedia.org/wiki/Scylla_and_Charybdis"
+    },
+    {
+        question: "What did Aeolus give Odysseus to help him sail home?",
+        options: ["A magic ship", "A bag of winds", "A compass", "A sea chart"],
+        correct: 1,
+        funFact: "Odysseus's crew opened the bag thinking it contained treasure, releasing the winds and blowing them off course.",
+        wiki: "https://en.wikipedia.org/wiki/Aeolus_(son_of_Hippotes)"
+    },
+    {
+        question: "Which people kept Odysseus and fed him lotus?",
+        options: ["Phaeacians", "Cicones", "Lotus-eaters", "Laestrygonians"],
+        correct: 2,
+        funFact: "The lotus fruit made people forget their homes and wish only to stay eating lotus forever.",
+        wiki: "https://en.wikipedia.org/wiki/Lotus-eaters"
+    },
+    {
+        question: "Who were the giant cannibals that destroyed most of Odysseus's fleet?",
+        options: ["The Cyclopes", "The Titans", "The Laestrygonians", "The Giants"],
+        correct: 2,
+        funFact: "The Laestrygonians hurled boulders at the ships and speared men like fish. Only Odysseus's ship escaped.",
+        wiki: "https://en.wikipedia.org/wiki/Laestrygonians"
+    },
+    {
+        question: "Which people helped Odysseus finally reach Ithaca?",
+        options: ["Cretans", "Spartans", "Phaeacians", "Athenians"],
+        correct: 2,
+        funFact: "The Phaeacians gave Odysseus treasure and sailed him home while he slept. Poseidon turned their ship to stone.",
+        wiki: "https://en.wikipedia.org/wiki/Phaeacians"
+    },
+    {
+        question: "How did Odysseus prove his identity to win back his bow?",
+        options: ["Showed his scar", "Told secrets", "Strung the bow", "Called to Athena"],
+        correct: 2,
+        funFact: "Only Odysseus could string his great bow. He then shot an arrow through twelve axe heads.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey#Slaying_of_the_suitors"
+    },
+    {
+        question: "Who recognized Odysseus by his scar?",
+        options: ["His wife Penelope", "His old nurse Eurycleia", "His son Telemachus", "His hound Argos"],
+        correct: 1,
+        funFact: "Eurycleia recognized Odysseus while washing his feet, seeing the scar from a boar hunt in his youth.",
+        wiki: "https://en.wikipedia.org/wiki/Eurycleia"
+    },
+    {
+        question: "How did Penelope finally test Odysseus's identity?",
+        options: ["Asked about their son", "Mentioned moving the bed", "Showed his famous bow", "Asked his mother's name"],
+        correct: 1,
+        funFact: "Odysseus built their bed around a living olive tree. Only he would know it couldn't be moved.",
+        wiki: "https://en.wikipedia.org/wiki/Penelope#Reunion_with_Odysseus"
+    },
+    // === UNDERWORLD ===
+    {
+        question: "What river formed the boundary of the Underworld?",
+        options: ["Lethe", "Styx", "Acheron", "Phlegethon"],
+        correct: 1,
+        funFact: "The gods swore their most binding oaths upon the River Styx. Breaking such an oath brought terrible punishment.",
+        wiki: "https://en.wikipedia.org/wiki/Styx"
+    },
+    {
+        question: "What is the name of the pleasant afterlife for heroes?",
+        options: ["Olympus", "Tartarus", "Elysium", "Asphodel"],
+        correct: 2,
+        funFact: "The Elysian Fields were ruled by Cronus in some accounts. Heroes could choose to be reborn or stay forever.",
+        wiki: "https://en.wikipedia.org/wiki/Elysium"
+    },
+    {
+        question: "Where did ordinary souls wander in the Underworld?",
+        options: ["Tartarus", "Elysium", "Asphodel Meadows", "Erebus"],
+        correct: 2,
+        funFact: "The Asphodel Meadows were neither punishment nor reward - just a gray, dreamy existence for average souls.",
+        wiki: "https://en.wikipedia.org/wiki/Asphodel_Meadows"
+    },
+    {
+        question: "Which musician descended to the Underworld to rescue his wife?",
+        options: ["Apollo", "Pan", "Orpheus", "Marsyas"],
+        correct: 2,
+        funFact: "Orpheus's music was so beautiful that it moved Hades to release Eurydice - on one condition.",
+        wiki: "https://en.wikipedia.org/wiki/Orpheus_and_Eurydice"
+    },
+    {
+        question: "Why did Orpheus fail to rescue Eurydice?",
+        options: ["She refused to leave", "He looked back", "Cerberus attacked", "He couldn't find her"],
+        correct: 1,
+        funFact: "Orpheus was told not to look back until they reached the surface. He looked just before they emerged.",
+        wiki: "https://en.wikipedia.org/wiki/Eurydice"
+    },
+    {
+        question: "Who were the judges of the dead?",
+        options: ["Zeus, Poseidon, Hades", "Minos, Rhadamanthys, Aeacus", "The vengeful Furies", "Hermes and Charon"],
+        correct: 1,
+        funFact: "All three judges were sons of Zeus known for their wisdom. They decided where each soul would go.",
+        wiki: "https://en.wikipedia.org/wiki/Minos"
+    },
+    {
+        question: "What food bound Persephone to the Underworld?",
+        options: ["Ambrosia", "Pomegranate seeds", "Lotus", "Nectar"],
+        correct: 1,
+        funFact: "Eating food in the Underworld bound you there. Persephone ate six (or four) seeds, spending months there yearly.",
+        wiki: "https://en.wikipedia.org/wiki/Persephone"
+    },
+    {
+        question: "Which goddess pursued blood vengeance and punished the guilty?",
+        options: ["Nemesis", "The Furies", "Hecate", "Nyx"],
+        correct: 1,
+        funFact: "The Furies (Erinyes) especially punished those who wronged family members. They drove Orestes mad.",
+        wiki: "https://en.wikipedia.org/wiki/Erinyes"
+    },
+    {
+        question: "What were the Furies' Greek name?",
+        options: ["Erinyes", "Moirai", "Horae", "Charites"],
+        correct: 0,
+        funFact: "They were also called the Eumenides ('Kindly Ones') as a euphemism to avoid attracting their attention.",
+        wiki: "https://en.wikipedia.org/wiki/Eumenides"
+    },
+    {
+        question: "Which river's waters granted forgetfulness?",
+        options: ["Styx", "Acheron", "Lethe", "Cocytus"],
+        correct: 2,
+        funFact: "Souls drank from Lethe before reincarnation to forget their past lives. Lethe means 'forgetfulness' in Greek.",
+        wiki: "https://en.wikipedia.org/wiki/Lethe"
+    },
+    {
+        question: "Who was the god of death (not the Underworld)?",
+        options: ["Hades", "Thanatos", "Charon", "Hypnos"],
+        correct: 1,
+        funFact: "Thanatos was the personification of death itself. He was the twin brother of Hypnos (Sleep).",
+        wiki: "https://en.wikipedia.org/wiki/Thanatos"
+    },
+    {
+        question: "What punishment did Tantalus receive in the Underworld?",
+        options: ["Pushing a boulder forever", "Bound to a wheel", "Food and water eluding", "Liver eaten daily"],
+        correct: 2,
+        funFact: "Tantalus stood in a pool that drained when he tried to drink, under fruit that blew away when he reached. We get 'tantalize' from his name.",
+        wiki: "https://en.wikipedia.org/wiki/Tantalus"
+    },
+    {
+        question: "What was Ixion's punishment for trying to seduce Hera?",
+        options: ["Bound in eternal chains", "Bound to a fiery wheel", "Turned to cold stone", "Drowned for eternity"],
+        correct: 1,
+        funFact: "Zeus tricked Ixion with a cloud shaped like Hera. From this union came the Centaurs.",
+        wiki: "https://en.wikipedia.org/wiki/Ixion"
+    },
+    {
+        question: "Which fifty daughters murdered their husbands and were punished?",
+        options: ["The warrior Amazons", "The cursed Danaids", "The avenging Furies", "The ancient Graeae"],
+        correct: 1,
+        funFact: "The Danaids must forever fill leaking jars with water - an endless, futile task.",
+        wiki: "https://en.wikipedia.org/wiki/Danaids"
+    },
+    // === MONSTERS AND CREATURES ===
+    {
+        question: "Who was the father of many Greek monsters, including Typhon?",
+        options: ["Cronus", "Tartarus", "Poseidon", "Chaos"],
+        correct: 1,
+        funFact: "Tartarus was both a god and a place - the deepest pit beneath the Underworld.",
+        wiki: "https://en.wikipedia.org/wiki/Tartarus"
+    },
+    {
+        question: "What was Typhon?",
+        options: ["A Titan", "A giant storm monster", "A sea serpent", "A dragon"],
+        correct: 1,
+        funFact: "Typhon was so terrible that the gods fled to Egypt in fear. Only Zeus stood and fought him.",
+        wiki: "https://en.wikipedia.org/wiki/Typhon"
+    },
+    {
+        question: "Which monster was half-woman, half-serpent and mother of many creatures?",
+        options: ["The gorgon Medusa", "The beast Scylla", "The serpent Echidna", "The demon Lamia"],
+        correct: 2,
+        funFact: "Echidna and Typhon were the parents of the Hydra, Cerberus, Chimera, Sphinx, Nemean Lion, and more.",
+        wiki: "https://en.wikipedia.org/wiki/Echidna_(mythology)"
+    },
+    {
+        question: "What creature had the face of a woman, body of a lion, and wings of an eagle?",
+        options: ["The Harpy", "The Sphinx", "The Siren", "The Lamia"],
+        correct: 1,
+        funFact: "The Greek Sphinx was female and strangled those who couldn't solve her riddle. The Egyptian Sphinx was male.",
+        wiki: "https://en.wikipedia.org/wiki/Sphinx"
+    },
+    {
+        question: "What were Harpies?",
+        options: ["Beautiful sea singers", "Bird-bodied wind spirits", "Snake-haired monsters", "Shape-shifting nymphs"],
+        correct: 1,
+        funFact: "Harpies were 'snatchers' who personified storm winds. They tortured the blind prophet Phineus.",
+        wiki: "https://en.wikipedia.org/wiki/Harpy"
+    },
+    {
+        question: "How many Gorgon sisters were there?",
+        options: ["One", "Two", "Three", "Four"],
+        correct: 2,
+        funFact: "Stheno, Euryale, and Medusa were the three Gorgons. Only Medusa was mortal.",
+        wiki: "https://en.wikipedia.org/wiki/Gorgon"
+    },
+    {
+        question: "What made Medusa different from her sisters?",
+        options: ["She was the eldest", "She was mortal", "She was beautiful", "She could speak"],
+        correct: 1,
+        funFact: "Medusa was once beautiful until Athena transformed her for desecrating her temple with Poseidon.",
+        wiki: "https://en.wikipedia.org/wiki/Medusa"
+    },
+    {
+        question: "What creature has the head and torso of a man and body of a horse?",
+        options: ["Satyr", "Faun", "Centaur", "Minotaur"],
+        correct: 2,
+        funFact: "Most Centaurs were wild and violent, except for the wise Chiron who tutored heroes.",
+        wiki: "https://en.wikipedia.org/wiki/Centaur"
+    },
+    {
+        question: "Who was the wise centaur who taught many Greek heroes?",
+        options: ["Nessus", "Chiron", "Pholus", "Eurytion"],
+        correct: 1,
+        funFact: "Chiron taught Achilles, Jason, Asclepius, and others. Unlike other centaurs, he was immortal.",
+        wiki: "https://en.wikipedia.org/wiki/Chiron"
+    },
+    {
+        question: "What are Satyrs known for?",
+        options: ["Wisdom", "Wine and revelry", "War", "Sea voyages"],
+        correct: 1,
+        funFact: "Satyrs were companions of Dionysus - half-man, half-goat, known for drinking, dancing, and chasing nymphs.",
+        wiki: "https://en.wikipedia.org/wiki/Satyr"
+    },
+    {
+        question: "What creature guarded the golden fleece?",
+        options: ["Hydra", "Chimera", "Dragon", "Serpent"],
+        correct: 2,
+        funFact: "The dragon never slept. Medea used magic to put it to sleep so Jason could take the fleece.",
+        wiki: "https://en.wikipedia.org/wiki/Colchian_dragon"
+    },
+    {
+        question: "What was the Nemean Lion's invulnerability due to?",
+        options: ["Divine blessing", "Its golden hide", "Magic armor", "Titan blood"],
+        correct: 1,
+        funFact: "The lion's fur could not be penetrated by any weapon. Heracles had to strangle it to death.",
+        wiki: "https://en.wikipedia.org/wiki/Nemean_lion"
+    },
+    {
+        question: "What was unique about the Erymanthian Boar?",
+        options: ["It was immortal", "It was enormous", "It breathed fire", "It could fly"],
+        correct: 1,
+        funFact: "This giant boar terrorized the region of Arcadia until Heracles captured it alive in deep snow.",
+        wiki: "https://en.wikipedia.org/wiki/Erymanthian_Boar"
+    },
+    {
+        question: "What was the Calydonian Boar sent to punish?",
+        options: ["Impiety to Artemis", "Theft from Zeus", "Broken oath", "Murder"],
+        correct: 0,
+        funFact: "King Oeneus forgot to honor Artemis in his harvest offerings. She sent the monstrous boar in revenge.",
+        wiki: "https://en.wikipedia.org/wiki/Calydonian_Boar"
+    },
+    {
+        question: "Which serpent guarded the golden apples of the Hesperides?",
+        options: ["Python", "Ladon", "Typhon", "The Hydra"],
+        correct: 1,
+        funFact: "Ladon was a hundred-headed dragon. Heracles either killed it or had Atlas retrieve the apples for him.",
+        wiki: "https://en.wikipedia.org/wiki/Ladon_(mythology)"
+    },
+    {
+        question: "What was the Cretan Bull?",
+        options: ["The Minotaur", "Father of the Minotaur", "A bronze statue", "Poseidon himself"],
+        correct: 1,
+        funFact: "Poseidon sent this beautiful bull for sacrifice, but Minos kept it. The bull mated with Pasiphae to produce the Minotaur.",
+        wiki: "https://en.wikipedia.org/wiki/Cretan_Bull"
+    },
+    // === NYMPHS AND MINOR DEITIES ===
+    {
+        question: "What type of nymph lives in trees?",
+        options: ["Naiad", "Nereid", "Dryad", "Oread"],
+        correct: 2,
+        funFact: "Dryads were bound to their trees. If the tree died, so did the nymph. Cutting sacred trees was a grave offense.",
+        wiki: "https://en.wikipedia.org/wiki/Dryad"
+    },
+    {
+        question: "What type of nymph lives in fresh water?",
+        options: ["Nereid", "Naiad", "Oceanid", "Dryad"],
+        correct: 1,
+        funFact: "Naiads inhabited springs, streams, and fountains. They were often associated with healing waters.",
+        wiki: "https://en.wikipedia.org/wiki/Naiad"
+    },
+    {
+        question: "What type of nymph lives in the sea?",
+        options: ["Naiad", "Nereid", "Oread", "Dryad"],
+        correct: 1,
+        funFact: "The 50 Nereids were daughters of Nereus, the Old Man of the Sea. Thetis, mother of Achilles, was one.",
+        wiki: "https://en.wikipedia.org/wiki/Nereid"
+    },
+    {
+        question: "What happened to the nymph Echo?",
+        options: ["Turned into a flower", "Could only repeat words", "Became a constellation", "Turned into stone"],
+        correct: 1,
+        funFact: "Hera cursed Echo for distracting her while Zeus dallied with nymphs. Echo faded away until only her voice remained.",
+        wiki: "https://en.wikipedia.org/wiki/Echo_(mythology)"
+    },
+    {
+        question: "Who did Echo fall in love with?",
+        options: ["Pan", "Narcissus", "Apollo", "Hermes"],
+        correct: 1,
+        funFact: "Narcissus rejected Echo cruelly, leading to her fading away. He was punished by falling in love with his own reflection.",
+        wiki: "https://en.wikipedia.org/wiki/Narcissus_(mythology)"
+    },
+    {
+        question: "What happened to Narcissus after he died?",
+        options: ["Became a god", "Turned into a flower", "Went to Elysium", "Became a star"],
+        correct: 1,
+        funFact: "The narcissus flower grew where he died, forever bending toward its reflection in the water.",
+        wiki: "https://en.wikipedia.org/wiki/Narcissus_(plant)"
+    },
+    {
+        question: "Who was the god of shepherds and wild places?",
+        options: ["Dionysus", "Hermes", "Pan", "Apollo"],
+        correct: 2,
+        funFact: "Pan was half-goat, son of Hermes. The word 'panic' comes from the fear he could induce in lonely places.",
+        wiki: "https://en.wikipedia.org/wiki/Pan_(god)"
+    },
+    {
+        question: "Which nymph fled from Pan and became reeds?",
+        options: ["Echo", "Daphne", "Syrinx", "Callisto"],
+        correct: 2,
+        funFact: "Pan made his famous pan pipes from the reeds that Syrinx had become.",
+        wiki: "https://en.wikipedia.org/wiki/Syrinx"
+    },
+    {
+        question: "Who was the primordial goddess of night?",
+        options: ["Selene", "Hecate", "Nyx", "Hemera"],
+        correct: 2,
+        funFact: "Even Zeus feared Nyx. She was mother to many forces including Sleep, Death, Fate, and Strife.",
+        wiki: "https://en.wikipedia.org/wiki/Nyx"
+    },
+    {
+        question: "Who was Iris in Greek mythology?",
+        options: ["Goddess of rainbows", "Goddess of spring", "Goddess of flowers", "A creative Muse"],
+        correct: 0,
+        funFact: "Iris was a messenger goddess like Hermes, traveling on the rainbow between heaven and earth.",
+        wiki: "https://en.wikipedia.org/wiki/Iris_(mythology)"
+    },
+    {
+        question: "What were the Muses goddesses of?",
+        options: ["Beauty", "Seasons", "Arts and sciences", "Fate"],
+        correct: 2,
+        funFact: "There were nine Muses, each presiding over a different art: epic poetry, history, music, tragedy, etc.",
+        wiki: "https://en.wikipedia.org/wiki/Muse"
+    },
+    {
+        question: "How many Muses were there?",
+        options: ["Three", "Seven", "Nine", "Twelve"],
+        correct: 2,
+        funFact: "Calliope (epic poetry), Clio (history), Erato (love poetry), Euterpe (music), and five others.",
+        wiki: "https://en.wikipedia.org/wiki/Muse#The_nine_Muses"
+    },
+    {
+        question: "What were the Fates called in Greek?",
+        options: ["Erinyes", "Moirai", "Charites", "Horae"],
+        correct: 1,
+        funFact: "The three Moirai - Clotho, Lachesis, and Atropos - controlled the thread of every mortal's life.",
+        wiki: "https://en.wikipedia.org/wiki/Moirai"
+    },
+    {
+        question: "Which Fate cut the thread of life?",
+        options: ["Clotho", "Lachesis", "Atropos", "Nemesis"],
+        correct: 2,
+        funFact: "Atropos ('she who cannot be turned') was the most feared, as her shears brought death.",
+        wiki: "https://en.wikipedia.org/wiki/Atropos"
+    },
+    {
+        question: "What goddess personified divine retribution?",
+        options: ["Nike", "Nemesis", "Nyx", "Eris"],
+        correct: 1,
+        funFact: "Nemesis punished hubris - excessive pride or arrogance toward the gods. No mortal could escape her.",
+        wiki: "https://en.wikipedia.org/wiki/Nemesis"
+    },
+    {
+        question: "Who was the goddess of victory?",
+        options: ["Athena", "Nike", "Enyo", "Bia"],
+        correct: 1,
+        funFact: "Nike was a winged goddess who flew over battlefields. She is depicted in the famous Winged Victory of Samothrace statue.",
+        wiki: "https://en.wikipedia.org/wiki/Nike_(mythology)"
+    },
+    {
+        question: "Who was the goddess of strife and discord?",
+        options: ["Nemesis", "Ate", "Eris", "Enyo"],
+        correct: 2,
+        funFact: "Eris threw the golden apple that started the chain of events leading to the Trojan War.",
+        wiki: "https://en.wikipedia.org/wiki/Eris_(mythology)"
+    },
+    // === PLACES AND GEOGRAPHY ===
+    {
+        question: "Where did the Greek gods live?",
+        options: ["Mount Etna", "Mount Olympus", "Mount Parnassus", "Mount Ida"],
+        correct: 1,
+        funFact: "Mount Olympus is the highest mountain in Greece at 9,573 feet. Its peak was often hidden by clouds.",
+        wiki: "https://en.wikipedia.org/wiki/Mount_Olympus"
+    },
+    {
+        question: "Where was the most famous oracle located?",
+        options: ["Athens", "Delphi", "Olympia", "Sparta"],
+        correct: 1,
+        funFact: "The Oracle at Delphi was considered the center of the world, marked by the omphalos stone.",
+        wiki: "https://en.wikipedia.org/wiki/Delphi"
+    },
+    {
+        question: "What was the omphalos?",
+        options: ["Zeus's throne", "The navel of the world", "An altar to Apollo", "A sacred spring"],
+        correct: 1,
+        funFact: "Zeus released two eagles from opposite ends of the world. Where they met was the omphalos at Delphi.",
+        wiki: "https://en.wikipedia.org/wiki/Omphalos"
+    },
+    {
+        question: "Where was the Labyrinth located?",
+        options: ["Athens", "Thebes", "Crete", "Argos"],
+        correct: 2,
+        funFact: "King Minos commissioned Daedalus to build the Labyrinth under the palace of Knossos.",
+        wiki: "https://en.wikipedia.org/wiki/Labyrinth"
+    },
+    {
+        question: "What island was Daedalus and Icarus imprisoned on?",
+        options: ["Naxos", "Delos", "Crete", "Sicily"],
+        correct: 2,
+        funFact: "Daedalus built wings of wax and feathers to escape Crete. Icarus flew too close to the sun and fell.",
+        wiki: "https://en.wikipedia.org/wiki/Daedalus"
+    },
+    {
+        question: "What sea is named after King Aegeus?",
+        options: ["Ionian Sea", "Aegean Sea", "Black Sea", "Mediterranean Sea"],
+        correct: 1,
+        funFact: "Aegeus threw himself into this sea when he saw black sails on Theseus's returning ship.",
+        wiki: "https://en.wikipedia.org/wiki/Aegean_Sea"
+    },
+    {
+        question: "Where was the entrance to the Underworld located?",
+        options: ["A single location", "Multiple locations", "The site of Delphi", "Only at sea"],
+        correct: 1,
+        funFact: "Various caves and lakes were considered entrances to Hades, including those at Cape Taenarum and Avernus.",
+        wiki: "https://en.wikipedia.org/wiki/Greek_underworld"
+    },
+    {
+        question: "What city was founded by Cadmus after following a cow?",
+        options: ["The city of Athens", "The city of Sparta", "The city of Thebes", "The city of Corinth"],
+        correct: 2,
+        funFact: "The oracle told Cadmus to follow a cow and found a city where she rested. This became Thebes.",
+        wiki: "https://en.wikipedia.org/wiki/Cadmus"
+    },
+    {
+        question: "Which island was sacred to Apollo, where he was born?",
+        options: ["Crete", "Naxos", "Delos", "Rhodes"],
+        correct: 2,
+        funFact: "Delos was a floating island until Leto gave birth there. Apollo then anchored it in place.",
+        wiki: "https://en.wikipedia.org/wiki/Delos"
+    },
+    {
+        question: "Where was Athena's great temple, the Parthenon?",
+        options: ["Sparta", "Delphi", "Athens", "Corinth"],
+        correct: 2,
+        funFact: "The Parthenon still stands atop the Acropolis in Athens, built between 447-432 BCE.",
+        wiki: "https://en.wikipedia.org/wiki/Parthenon"
+    },
+    // === CREATION AND COSMOGONY ===
+    {
+        question: "What existed before anything else in Greek creation myth?",
+        options: ["Gaia", "Chaos", "Uranus", "Eros"],
+        correct: 1,
+        funFact: "Chaos was the void or abyss from which the first gods emerged. It was not disorder but emptiness.",
+        wiki: "https://en.wikipedia.org/wiki/Chaos_(cosmogony)"
+    },
+    {
+        question: "Who was the first goddess to emerge and personify Earth?",
+        options: ["Rhea", "Nyx", "Gaia", "Themis"],
+        correct: 2,
+        funFact: "Gaia (Earth) emerged from Chaos and gave birth to Uranus (Sky), whom she then married.",
+        wiki: "https://en.wikipedia.org/wiki/Gaia"
+    },
+    {
+        question: "Who created humans from clay in some Greek myths?",
+        options: ["Zeus", "Prometheus", "Hephaestus", "Athena"],
+        correct: 1,
+        funFact: "Prometheus shaped humans from clay, and Athena breathed life into them.",
+        wiki: "https://en.wikipedia.org/wiki/Prometheus"
+    },
+    {
+        question: "What were the first races of beings born to Gaia and Uranus?",
+        options: ["The young Olympians", "The great Titans", "Cyclopes and Giants", "The first humans"],
+        correct: 2,
+        funFact: "Uranus imprisoned these first children in Gaia's body, causing her great pain and leading to his overthrow.",
+        wiki: "https://en.wikipedia.org/wiki/Cyclopes"
+    },
+    {
+        question: "How many ages of man did Hesiod describe?",
+        options: ["Three", "Four", "Five", "Seven"],
+        correct: 2,
+        funFact: "The ages were Gold, Silver, Bronze, Heroic, and Iron. Humanity declined through each except the Heroic age.",
+        wiki: "https://en.wikipedia.org/wiki/Ages_of_Man"
+    },
+    {
+        question: "Which age of man was considered the best?",
+        options: ["Silver", "Bronze", "Heroic", "Golden"],
+        correct: 3,
+        funFact: "In the Golden Age under Cronus, humans lived without toil or sorrow, in eternal spring.",
+        wiki: "https://en.wikipedia.org/wiki/Golden_Age"
+    },
+    {
+        question: "What was the great flood survivor in Greek mythology?",
+        options: ["Prometheus", "Deucalion", "Epimetheus", "Atlas"],
+        correct: 1,
+        funFact: "Deucalion and his wife Pyrrha survived Zeus's flood in a chest, then repopulated earth by throwing stones.",
+        wiki: "https://en.wikipedia.org/wiki/Deucalion"
+    },
+    {
+        question: "How did Deucalion and Pyrrha recreate humanity?",
+        options: ["Prayers to Zeus", "Throwing stones", "Mixing sacred clay", "Planting magic seeds"],
+        correct: 1,
+        funFact: "They threw 'the bones of their mother' (stones from Gaia/Earth) over their shoulders, which became people.",
+        wiki: "https://en.wikipedia.org/wiki/Pyrrha"
+    },
+    // === DIFFICULT QUESTIONS ===
+    {
+        question: "Who was the mother of the Minotaur?",
+        options: ["Ariadne", "Phaedra", "Pasiphae", "Europa"],
+        correct: 2,
+        funFact: "Pasiphae was cursed by Poseidon to fall in love with the Cretan Bull. Daedalus built a wooden cow for her.",
+        wiki: "https://en.wikipedia.org/wiki/Pasiphae"
+    },
+    {
+        question: "Which hero accidentally killed his father with a discus?",
+        options: ["Theseus", "Perseus", "Heracles", "Bellerophon"],
+        correct: 1,
+        funFact: "Perseus's discus was blown off course (or guided by fate) and struck his grandfather Acrisius.",
+        wiki: "https://en.wikipedia.org/wiki/Acrisius"
+    },
+    {
+        question: "Who raised Zeus in secret?",
+        options: ["Nymphs on Mount Ida", "Rhea alone", "Prometheus", "Atlas"],
+        correct: 0,
+        funFact: "The nymphs Adrasteia and Ida raised Zeus. The Curetes clashed their shields to hide his cries from Cronus.",
+        wiki: "https://en.wikipedia.org/wiki/Zeus#Infancy"
+    },
+    {
+        question: "What was the ship Argo's special ability?",
+        options: ["Could fly", "Could speak prophecy", "Was invincible", "Could sail without wind"],
+        correct: 1,
+        funFact: "A beam from Dodona's sacred oak was built into the prow, giving the ship the power of prophecy.",
+        wiki: "https://en.wikipedia.org/wiki/Argo"
+    },
+    {
+        question: "Who killed the Calydonian Boar?",
+        options: ["Heracles", "Meleager", "Theseus", "Atalanta"],
+        correct: 1,
+        funFact: "Atalanta drew first blood, but Meleager struck the killing blow and gave her the hide, causing family conflict.",
+        wiki: "https://en.wikipedia.org/wiki/Meleager"
+    },
+    {
+        question: "What happened to Meleager because of the Calydonian hunt?",
+        options: ["He became immortal", "He was killed by his mother", "He became a god", "He was exiled"],
+        correct: 1,
+        funFact: "Meleager's life was tied to a brand. When his mother burned it in anger over her brothers' deaths, he died.",
+        wiki: "https://en.wikipedia.org/wiki/Meleager#Death"
+    },
+    {
+        question: "Who taught Achilles to fight?",
+        options: ["Peleus", "Phoenix and Chiron", "Odysseus", "Patroclus"],
+        correct: 1,
+        funFact: "The centaur Chiron and the old warrior Phoenix both educated Achilles in warfare and virtue.",
+        wiki: "https://en.wikipedia.org/wiki/Chiron"
+    },
+    {
+        question: "What was Bellerophon's fatal flaw?",
+        options: ["Excessive hubris", "Uncontrolled anger", "Shameful cowardice", "Consuming greed"],
+        correct: 0,
+        funFact: "After many victories, Bellerophon tried to ride Pegasus to Olympus. Zeus sent a gadfly that caused him to fall.",
+        wiki: "https://en.wikipedia.org/wiki/Bellerophon"
+    },
+    {
+        question: "Which king was granted the ears of a donkey?",
+        options: ["Tantalus", "Midas", "Sisyphus", "Ixion"],
+        correct: 1,
+        funFact: "Midas judged Pan's music better than Apollo's. Apollo gave him donkey ears as punishment.",
+        wiki: "https://en.wikipedia.org/wiki/Midas"
+    },
+    {
+        question: "Who was Orestes and what did he do?",
+        options: ["Killed his own mother", "Founded the city of Rome", "Killed the Minotaur", "Won the Golden Fleece"],
+        correct: 0,
+        funFact: "Orestes killed Clytemnestra to avenge Agamemnon. The Furies pursued him until Athena held a trial.",
+        wiki: "https://en.wikipedia.org/wiki/Orestes"
+    },
+    {
+        question: "Which prophetess was loved by Apollo but rejected him?",
+        options: ["Circe", "Medea", "Cassandra", "Pythia"],
+        correct: 2,
+        funFact: "Apollo gave Cassandra prophecy, but when she refused him, he cursed her to never be believed.",
+        wiki: "https://en.wikipedia.org/wiki/Cassandra"
+    },
+    {
+        question: "What was the curse of the House of Atreus?",
+        options: ["Crushing poverty", "Cycles of murder", "Inability to reproduce", "Eternal wandering"],
+        correct: 1,
+        funFact: "Beginning with Tantalus, this family suffered generations of murder, cannibalism, and betrayal.",
+        wiki: "https://en.wikipedia.org/wiki/House_of_Atreus"
+    },
+    {
+        question: "Who killed Clytemnestra?",
+        options: ["Aegisthus", "Agamemnon's ghost", "Orestes", "Electra"],
+        correct: 2,
+        funFact: "Orestes and his sister Electra plotted revenge. Apollo commanded Orestes to kill his mother.",
+        wiki: "https://en.wikipedia.org/wiki/Clytemnestra"
+    },
+    {
+        question: "What was Oedipus's tragic fate?",
+        options: ["Unwitting patricide and incest", "Was turned to stone", "Was devoured by Sphinx", "Became an Olympian"],
+        correct: 0,
+        funFact: "Despite efforts to avoid the prophecy, Oedipus unknowingly killed his father at a crossroads and married his mother.",
+        wiki: "https://en.wikipedia.org/wiki/Oedipus"
+    },
+    {
+        question: "What did Oedipus do when he learned the truth?",
+        options: ["Killed himself", "Blinded himself", "Fled to Troy", "Challenged the gods"],
+        correct: 1,
+        funFact: "Oedipus blinded himself with his mother/wife Jocasta's brooches after she hanged herself.",
+        wiki: "https://en.wikipedia.org/wiki/Oedipus"
+    },
+    {
+        question: "Which of Oedipus's children killed each other?",
+        options: ["Antigone and Ismene", "Eteocles and Polynices", "All four", "None"],
+        correct: 1,
+        funFact: "The brothers agreed to share the throne of Thebes but Eteocles refused to give it up, leading to war.",
+        wiki: "https://en.wikipedia.org/wiki/Seven_Against_Thebes"
+    },
+    {
+        question: "What happened to Antigone?",
+        options: ["Married happily", "Entombed alive", "Became a priestess", "Fled to Athens"],
+        correct: 1,
+        funFact: "Antigone defied Creon's order and buried Polynices. She was sealed in a tomb where she hanged herself.",
+        wiki: "https://en.wikipedia.org/wiki/Antigone"
+    },
+    {
+        question: "Which Greek author wrote the Iliad and Odyssey?",
+        options: ["Hesiod", "Aeschylus", "Homer", "Sophocles"],
+        correct: 2,
+        funFact: "Homer is traditionally credited with both epics, though scholars debate whether one person wrote both.",
+        wiki: "https://en.wikipedia.org/wiki/Homer"
+    },
+    {
+        question: "Which poet wrote the Theogony, describing the gods' origins?",
+        options: ["Homer", "Hesiod", "Pindar", "Sappho"],
+        correct: 1,
+        funFact: "Hesiod's Theogony ('Birth of the Gods') is our most complete source for Greek creation myths.",
+        wiki: "https://en.wikipedia.org/wiki/Hesiod"
+    },
+    {
+        question: "What were mystery cults?",
+        options: ["Secret religious rites", "Criminal organizations", "Philosophical schools", "Military orders"],
+        correct: 0,
+        funFact: "The Eleusinian Mysteries, dedicated to Demeter, were the most famous. Initiates were promised a blessed afterlife.",
+        wiki: "https://en.wikipedia.org/wiki/Eleusinian_Mysteries"
+    },
+    {
+        question: "What was the Orphic religion focused on?",
+        options: ["Warfare glory", "Sacred wine", "Soul purification", "Athletic prowess"],
+        correct: 2,
+        funFact: "Orphism taught that humans contained both divine and Titanic nature, and through ritual one could free the divine spark.",
+        wiki: "https://en.wikipedia.org/wiki/Orphism_(religion)"
+    },
+    {
+        question: "Who were the Hundred-Handed Ones?",
+        options: ["Ancient Titans", "Children of Gaia", "Servants of Hades", "Fearsome sea monsters"],
+        correct: 1,
+        funFact: "The Hecatoncheires - Briareos, Cottus, and Gyges - each had 100 hands and 50 heads. They helped Zeus defeat the Titans.",
+        wiki: "https://en.wikipedia.org/wiki/Hecatoncheires"
+    },
+    {
+        question: "What were the Cyclopes' names?",
+        options: ["Arges, Brontes, Steropes", "Polyphemus, Antiphates, Sinis", "Minos, Rhadamanthys, Aeacus", "Cottus, Briareos, Gyges"],
+        correct: 0,
+        funFact: "These three Cyclopes (Thunder, Lightning, Bright) forged Zeus's thunderbolts, Poseidon's trident, and Hades's helm.",
+        wiki: "https://en.wikipedia.org/wiki/Cyclopes"
+    },
+    {
+        question: "How did the Gigantes differ from the Titans?",
+        options: ["They were mortal", "They needed mortal help to die", "They were much smaller", "They loyally served Zeus"],
+        correct: 1,
+        funFact: "A prophecy said only a mortal could kill the Giants, so Heracles fought alongside the gods in the Gigantomachy.",
+        wiki: "https://en.wikipedia.org/wiki/Gigantomachy"
+    },
+    {
+        question: "What did Metis give Zeus that helped him defeat Cronus?",
+        options: ["A divine weapon", "An emetic potion", "Magical armor", "A guiding prophecy"],
+        correct: 1,
+        funFact: "The potion made Cronus regurgitate Zeus's swallowed siblings: Hestia, Demeter, Hera, Hades, and Poseidon.",
+        wiki: "https://en.wikipedia.org/wiki/Metis_(mythology)"
+    },
+    {
+        question: "Why did Zeus swallow Metis?",
+        options: ["She was poisonous", "A dangerous prophecy", "She requested it", "It was an accident"],
+        correct: 1,
+        funFact: "Like his father and grandfather, Zeus feared being overthrown. Athena was born from his head as a result.",
+        wiki: "https://en.wikipedia.org/wiki/Metis_(mythology)"
+    },
+    {
+        question: "Who were the Pleiades?",
+        options: ["The Titanesses", "Seven star sisters", "Daughters of Helios", "Handmaidens of Hera"],
+        correct: 1,
+        funFact: "The seven daughters of Atlas were pursued by Orion and turned into stars by Zeus.",
+        wiki: "https://en.wikipedia.org/wiki/Pleiades_(Greek_mythology)"
+    },
+    {
+        question: "What constellation was Orion transformed into?",
+        options: ["Ursa Major", "Orion", "Scorpius", "Leo"],
+        correct: 1,
+        funFact: "Orion the hunter was placed in the sky. In some myths, the scorpion that killed him became Scorpius.",
+        wiki: "https://en.wikipedia.org/wiki/Orion_(mythology)"
+    },
+    {
+        question: "Who turned Callisto into a bear?",
+        options: ["The god Zeus", "The goddess Hera", "The goddess Artemis", "Hera or Artemis"],
+        correct: 3,
+        funFact: "Different versions blame either jealous Hera or angry Artemis. Callisto became the constellation Ursa Major.",
+        wiki: "https://en.wikipedia.org/wiki/Callisto_(mythology)"
+    },
+    {
+        question: "What constellation represents Ariadne's wedding crown?",
+        options: ["Corona Australis", "Corona Borealis", "Cassiopeia", "Lyra"],
+        correct: 1,
+        funFact: "Dionysus placed Ariadne's crown in the sky as Corona Borealis, the Northern Crown.",
+        wiki: "https://en.wikipedia.org/wiki/Corona_Borealis"
+    },
+    {
+        question: "Who was Asclepius?",
+        options: ["God of healing", "A Titan", "King of Corinth", "Builder of the Labyrinth"],
+        correct: 0,
+        funFact: "Asclepius was so skilled he could resurrect the dead. Zeus killed him with a thunderbolt for disrupting nature's order.",
+        wiki: "https://en.wikipedia.org/wiki/Asclepius"
+    },
+    {
+        question: "What symbol is associated with Asclepius?",
+        options: ["Owl", "Snake-wrapped staff", "Lyre", "Trident"],
+        correct: 1,
+        funFact: "The Rod of Asclepius with its single serpent is the true medical symbol, often confused with the caduceus.",
+        wiki: "https://en.wikipedia.org/wiki/Rod_of_Asclepius"
+    },
+    {
+        question: "Who was Hyacinthus?",
+        options: ["A prince loved by Apollo", "A river god", "A Titan", "A giant"],
+        correct: 0,
+        funFact: "Apollo accidentally killed Hyacinthus with a discus (or Zephyrus redirected it in jealousy). A flower grew from his blood.",
+        wiki: "https://en.wikipedia.org/wiki/Hyacinth_(mythology)"
+    },
+    {
+        question: "Who was Adonis?",
+        options: ["A hunter loved by Aphrodite", "God of beauty", "King of Cyprus", "A river god"],
+        correct: 0,
+        funFact: "Adonis was so beautiful that both Aphrodite and Persephone claimed him. Zeus decreed he spend time with each.",
+        wiki: "https://en.wikipedia.org/wiki/Adonis"
+    },
+    {
+        question: "How did Adonis die?",
+        options: ["Old age", "Killed by a boar", "In battle", "Drowned"],
+        correct: 1,
+        funFact: "Ares, jealous of Aphrodite's love for Adonis, sent a wild boar that gored the young hunter to death.",
+        wiki: "https://en.wikipedia.org/wiki/Adonis"
+    },
+    {
+        question: "What grew from Adonis's blood?",
+        options: ["Roses", "Anemones", "Lilies", "Hyacinths"],
+        correct: 1,
+        funFact: "Anemone flowers sprang from Adonis's blood, while Aphrodite's tears became roses.",
+        wiki: "https://en.wikipedia.org/wiki/Adonis"
+    },
+    {
+        question: "Who was Ganymede?",
+        options: ["Zeus's cupbearer", "A river god", "A wise centaur", "A mighty giant"],
+        correct: 0,
+        funFact: "Zeus, in the form of an eagle, abducted the beautiful Ganymede to serve as cupbearer on Olympus.",
+        wiki: "https://en.wikipedia.org/wiki/Ganymede_(mythology)"
+    },
+    {
+        question: "What is Ganymede associated with in the sky?",
+        options: ["A planet", "The constellation Aquarius", "A star", "The moon"],
+        correct: 1,
+        funFact: "Ganymede became Aquarius, the water-bearer constellation. One of Jupiter's moons is also named after him.",
+        wiki: "https://en.wikipedia.org/wiki/Aquarius_(constellation)"
+    },
+    {
+        question: "Who was Selene?",
+        options: ["Goddess of the moon", "Goddess of dawn", "A Fury", "A Muse"],
+        correct: 0,
+        funFact: "Selene drove the moon chariot across the night sky. She fell in love with the shepherd Endymion.",
+        wiki: "https://en.wikipedia.org/wiki/Selene"
+    },
+    {
+        question: "What happened to Endymion?",
+        options: ["Turned to stone", "Put to eternal sleep", "Made fully immortal", "Killed by Zeus"],
+        correct: 1,
+        funFact: "Zeus granted Selene's wish to preserve Endymion's beauty forever in eternal sleep. She visited him nightly.",
+        wiki: "https://en.wikipedia.org/wiki/Endymion_(mythology)"
+    },
+    {
+        question: "Who was Eos?",
+        options: ["Goddess of night", "Goddess of dawn", "Goddess of stars", "A Titaness of the moon"],
+        correct: 1,
+        funFact: "Eos (Aurora in Roman myth) was cursed by Aphrodite to be perpetually in love for revealing Ares's affair.",
+        wiki: "https://en.wikipedia.org/wiki/Eos"
+    },
+    {
+        question: "What happened to Tithonus, Eos's lover?",
+        options: ["Became a god", "Aged but never died", "Was killed by Ares", "Became a star"],
+        correct: 1,
+        funFact: "Eos asked Zeus for Tithonus's immortality but forgot to ask for eternal youth. He withered into a grasshopper.",
+        wiki: "https://en.wikipedia.org/wiki/Tithonus"
+    },
+    {
+        question: "Who was Psyche?",
+        options: ["A divine goddess", "A beautiful mortal", "A sea Nereid", "An ancient Titaness"],
+        correct: 1,
+        funFact: "Psyche's beauty drew worshippers from Aphrodite's temples. The goddess sent Eros to punish her, but he fell in love.",
+        wiki: "https://en.wikipedia.org/wiki/Psyche_(mythology)"
+    },
+    {
+        question: "What task did Aphrodite give Psyche involving the Underworld?",
+        options: ["Capture the hound Cerberus", "Retrieve Persephone's beauty", "Find the lost Eurydice", "Count the dead souls"],
+        correct: 1,
+        funFact: "Psyche had to retrieve a box of Persephone's beauty. When she opened it, she fell into deathlike sleep.",
+        wiki: "https://en.wikipedia.org/wiki/Cupid_and_Psyche"
+    },
+    {
+        question: "What became of Psyche in the end?",
+        options: ["She died", "She became an immortal goddess", "She was turned to stone", "She forgot Eros"],
+        correct: 1,
+        funFact: "Zeus granted Psyche immortality so she could marry Eros. They had a daughter named Hedone (Pleasure).",
+        wiki: "https://en.wikipedia.org/wiki/Psyche_(mythology)"
+    },
+    {
+        question: "Who was Pygmalion?",
+        options: ["A sculptor of Galatea", "A king of Thebes", "A one-eyed Cyclops", "A powerful river god"],
+        correct: 0,
+        funFact: "Pygmalion carved Galatea and fell in love with his creation. Aphrodite brought her to life.",
+        wiki: "https://en.wikipedia.org/wiki/Pygmalion_(mythology)"
+    },
+    {
+        question: "What was unusual about the Myrmidons?",
+        options: ["They were giants", "Created from ants", "Could fly", "Were immortal"],
+        correct: 1,
+        funFact: "Zeus turned ants into warriors for King Aeacus after plague killed his people. Achilles later led them at Troy.",
+        wiki: "https://en.wikipedia.org/wiki/Myrmidons"
+    },
+    {
+        question: "Who was Teiresias/Tiresias?",
+        options: ["A powerful king", "A blind prophet", "An Olympian god", "An elder Titan"],
+        correct: 1,
+        funFact: "Tiresias lived as both genders and was blinded by Hera for siding with Zeus in an argument about pleasure.",
+        wiki: "https://en.wikipedia.org/wiki/Tiresias"
+    },
+    {
+        question: "Who was the mother of Dionysus?",
+        options: ["Hera", "Leto", "Semele", "Demeter"],
+        correct: 2,
+        funFact: "Semele was tricked by Hera into asking Zeus to reveal his true form, which destroyed her.",
+        wiki: "https://en.wikipedia.org/wiki/Semele"
+    },
+    {
+        question: "What did Hera do to drive Dionysus mad?",
+        options: ["Cursed him directly", "Killed his followers", "Made him wander the earth", "Sent the Titans to tear him apart"],
+        correct: 2,
+        funFact: "Hera drove Dionysus mad, causing him to wander through Egypt and Asia. Rhea eventually cured him.",
+        wiki: "https://en.wikipedia.org/wiki/Dionysus"
+    },
+    {
+        question: "What happened to King Pentheus who opposed Dionysus?",
+        options: ["Was turned to wine", "Torn apart by women", "Became a satyr", "Was drowned at sea"],
+        correct: 1,
+        funFact: "Dionysus drove the women of Thebes mad. Pentheus's mother Agave, not recognizing him, led his dismemberment.",
+        wiki: "https://en.wikipedia.org/wiki/Pentheus"
+    },
+    {
+        question: "Who were the Maenads?",
+        options: ["Beautiful sea nymphs", "Dionysus's followers", "Priestesses of Athena", "The avenging Furies"],
+        correct: 1,
+        funFact: "Maenads (or Bacchae) were women driven to ecstatic frenzy by Dionysus. They could tear animals apart barehanded.",
+        wiki: "https://en.wikipedia.org/wiki/Maenad"
+    },
+    {
+        question: "What wood was Hera's sacred tree?",
+        options: ["Oak", "Olive", "Willow", "Pomegranate"],
+        correct: 2,
+        funFact: "The willow was sacred to Hera, while the pomegranate was associated with her as a symbol of marriage.",
+        wiki: "https://en.wikipedia.org/wiki/Hera"
+    },
+    {
+        question: "What tree was sacred to Zeus?",
+        options: ["Oak", "Olive", "Laurel", "Pine"],
+        correct: 0,
+        funFact: "The oracle at Dodona interpreted Zeus's will through the rustling of sacred oak leaves.",
+        wiki: "https://en.wikipedia.org/wiki/Dodona"
+    },
+    {
+        question: "What plant did Athena give Athens that won her the city?",
+        options: ["Wheat", "Grape vine", "Olive tree", "Fig tree"],
+        correct: 2,
+        funFact: "Poseidon offered a salt spring; Athena's olive tree was more useful. The original tree was said to still exist.",
+        wiki: "https://en.wikipedia.org/wiki/Athena#Patron_of_Athens"
+    },
+    {
+        question: "What did Dionysus give humanity?",
+        options: ["Fire", "Agriculture", "Wine", "Writing"],
+        correct: 2,
+        funFact: "Dionysus was not only god of wine but of vegetation, fertility, ritual madness, and theater.",
+        wiki: "https://en.wikipedia.org/wiki/Dionysus"
+    },
+    {
+        question: "What was the thyrsus?",
+        options: ["A sacred wine vessel", "Dionysus's ivy-wrapped staff", "A ceremonial drinking cup", "A Bacchic ritual dance"],
+        correct: 1,
+        funFact: "The thyrsus was topped with a pine cone and carried by Dionysus and his followers during rituals.",
+        wiki: "https://en.wikipedia.org/wiki/Thyrsus"
+    },
+    {
+        question: "Who was Iacchus?",
+        options: ["A form of Dionysus", "A river god", "A wise centaur", "A mortal king"],
+        correct: 0,
+        funFact: "Iacchus was the divine personification of the ritual cry during the Eleusinian Mysteries, associated with Dionysus.",
+        wiki: "https://en.wikipedia.org/wiki/Iacchus"
+    },
+    {
+        question: "What was Dionysus's Roman name?",
+        options: ["Mercury", "Bacchus", "Mars", "Neptune"],
+        correct: 1,
+        funFact: "Bacchus was worshipped in Rome with wild festivals called Bacchanalia, eventually banned by the Senate.",
+        wiki: "https://en.wikipedia.org/wiki/Bacchus"
+    },
+    {
+        question: "What was Hermes's Roman name?",
+        options: ["Jupiter", "Mercury", "Mars", "Vulcan"],
+        correct: 1,
+        funFact: "Mercury inherited Hermes's role as messenger and god of commerce, giving his name to the planet and the element.",
+        wiki: "https://en.wikipedia.org/wiki/Mercury_(mythology)"
+    },
+    {
+        question: "What was Ares's Roman equivalent?",
+        options: ["Mars", "Jupiter", "Saturn", "Neptune"],
+        correct: 0,
+        funFact: "Unlike Ares, Mars was highly respected in Rome as father of Romulus and protector of the state.",
+        wiki: "https://en.wikipedia.org/wiki/Mars_(mythology)"
+    },
+    {
+        question: "What was Hephaestus's Roman name?",
+        options: ["Vulcan", "Pluto", "Saturn", "Mercury"],
+        correct: 0,
+        funFact: "Vulcan gave his name to volcanoes - his forge was said to be beneath Mount Etna.",
+        wiki: "https://en.wikipedia.org/wiki/Vulcan_(god)"
+    },
+    {
+        question: "What was Hades's Roman name?",
+        options: ["Neptune", "Pluto", "Saturn", "Vulcan"],
+        correct: 1,
+        funFact: "Pluto ('the wealthy one') was a euphemistic name since Greeks avoided speaking of death.",
+        wiki: "https://en.wikipedia.org/wiki/Pluto_(mythology)"
+    },
+    {
+        question: "Who were the Horae?",
+        options: ["Goddesses of the seasons", "Muses", "Furies", "Fates"],
+        correct: 0,
+        funFact: "The Horae (Hours/Seasons) were daughters of Zeus and Themis. They guarded the gates of Olympus.",
+        wiki: "https://en.wikipedia.org/wiki/Horae"
+    },
+    {
+        question: "Who were the Charites/Graces?",
+        options: ["Goddesses of beauty", "Oceanic sea nymphs", "Divine huntresses", "Sacred priestesses"],
+        correct: 0,
+        funFact: "The three Graces - Aglaea, Euphrosyne, and Thalia - attended Aphrodite and represented grace and beauty.",
+        wiki: "https://en.wikipedia.org/wiki/Charites"
+    },
+    {
+        question: "What was ambrosia?",
+        options: ["The gods' drink", "The gods' food", "A healing herb", "A magical stone"],
+        correct: 1,
+        funFact: "Ambrosia was the food of the gods, while nectar was their drink. Both could confer immortality.",
+        wiki: "https://en.wikipedia.org/wiki/Ambrosia"
+    },
+    {
+        question: "What was ichor?",
+        options: ["A weapon", "Divine blood", "A river", "A sacrifice"],
+        correct: 1,
+        funFact: "Instead of blood, ichor flowed in the veins of immortals. It was described as a golden or ethereal fluid.",
+        wiki: "https://en.wikipedia.org/wiki/Ichor"
+    },
+    {
+        question: "What was the aegis?",
+        options: ["A ship", "A shield or breastplate", "A throne", "A temple"],
+        correct: 1,
+        funFact: "The aegis was Zeus's shield, often lent to Athena. It bore the Gorgon's head and caused terror.",
+        wiki: "https://en.wikipedia.org/wiki/Aegis"
+    },
+    {
+        question: "What was Hades's helm of invisibility called?",
+        options: ["Cap of Hades only", "Helm of Darkness only", "Crown of Night", "Cap of Hades or Helm"],
+        correct: 3,
+        funFact: "Perseus borrowed this helm to escape after killing Medusa. It rendered the wearer invisible even to gods.",
+        wiki: "https://en.wikipedia.org/wiki/Cap_of_invisibility"
+    },
+    {
+        question: "What were Hermes's winged sandals called?",
+        options: ["Talaria", "Pteruges", "Caduceus", "Petasos"],
+        correct: 0,
+        funFact: "The talaria allowed Hermes to fly swiftly as a bird. Perseus also borrowed them for his quest.",
+        wiki: "https://en.wikipedia.org/wiki/Talaria"
+    },
+    {
+        question: "What was Hermes's staff with two snakes called?",
+        options: ["The Thyrsus", "The Caduceus only", "The Kerykeion only", "Caduceus or Kerykeion"],
+        correct: 3,
+        funFact: "The caduceus (Greek: kerykeion) could induce sleep and was the herald's staff of peace.",
+        wiki: "https://en.wikipedia.org/wiki/Caduceus"
+    },
+    {
+        question: "Who was Eileithyia?",
+        options: ["Goddess of childbirth", "A Muse", "A Nereid", "A Fate"],
+        correct: 0,
+        funFact: "Eileithyia was daughter of Hera. By delaying her arrival, Hera could prevent births, as she did with Leto.",
+        wiki: "https://en.wikipedia.org/wiki/Eileithyia"
+    },
+    {
+        question: "Who was Hebe?",
+        options: ["Goddess of youth", "Goddess of wisdom", "A Titaness", "A nymph"],
+        correct: 0,
+        funFact: "Hebe served nectar and ambrosia to the gods before Ganymede. She married Heracles after his apotheosis.",
+        wiki: "https://en.wikipedia.org/wiki/Hebe_(mythology)"
+    },
+    {
+        question: "Who were the Dioscuri?",
+        options: ["Castor and Pollux", "Eros and Anteros", "Hypnos and Thanatos", "Deimos and Phobos"],
+        correct: 0,
+        funFact: "The 'sons of Zeus' - Castor was mortal, Pollux divine. They shared immortality, alternating between Olympus and Hades.",
+        wiki: "https://en.wikipedia.org/wiki/Castor_and_Pollux"
+    },
+    {
+        question: "What were Ares's sons Phobos and Deimos?",
+        options: ["Gods of fear and terror", "Heroes", "Titans", "Monsters"],
+        correct: 0,
+        funFact: "Phobos (Fear) and Deimos (Terror) accompanied their father Ares into battle. Mars's moons are named after them.",
+        wiki: "https://en.wikipedia.org/wiki/Phobos_(mythology)"
+    },
+    {
+        question: "Who was Enyo?",
+        options: ["An ancient Titaness", "A war goddess", "A beautiful Nereid", "A creative Muse"],
+        correct: 1,
+        funFact: "Enyo was a war goddess who accompanied Ares. She was associated with the devastation of cities.",
+        wiki: "https://en.wikipedia.org/wiki/Enyo"
+    },
+    {
+        question: "Who was Eros's counterpart who avenged unrequited love?",
+        options: ["The god Himeros", "The god Pothos", "The god Anteros", "The goddess Hedone"],
+        correct: 2,
+        funFact: "Anteros punished those who didn't return love. He was sometimes shown wrestling with his brother Eros.",
+        wiki: "https://en.wikipedia.org/wiki/Anteros"
+    },
+    {
+        question: "What is the Homeric Hymn to Demeter about?",
+        options: ["The Trojan War saga", "Persephone's abduction", "Demeter's divine birth", "The harvest festival"],
+        correct: 1,
+        funFact: "This hymn tells the full story of Persephone's abduction and establishes the origin of the seasons.",
+        wiki: "https://en.wikipedia.org/wiki/Homeric_Hymn_to_Demeter"
+    },
+    {
+        question: "What was the Eleusinian Mysteries' greatest secret?",
+        options: ["A ritual drama", "The location of Olympus", "The path to immortality", "Unknown to outsiders"],
+        correct: 3,
+        funFact: "Initiates were sworn to secrecy on pain of death. Despite thousands of participants, the core mystery was never revealed.",
+        wiki: "https://en.wikipedia.org/wiki/Eleusinian_Mysteries"
+    },
+    {
+        question: "Who founded the city of Thebes by sowing dragon's teeth?",
+        options: ["Oedipus", "Cadmus", "Amphion", "Laius"],
+        correct: 1,
+        funFact: "Cadmus killed a dragon sacred to Ares. Warriors called Spartoi sprang from its teeth and became Thebes' first citizens.",
+        wiki: "https://en.wikipedia.org/wiki/Spartoi"
+    },
+    {
+        question: "What instrument did Amphion use to build Thebes' walls?",
+        options: ["Lyre", "Flute", "Drums", "Voice"],
+        correct: 0,
+        funFact: "Amphion's lyre music was so powerful that stones moved themselves into place to form Thebes' walls.",
+        wiki: "https://en.wikipedia.org/wiki/Amphion"
+    },
+    {
+        question: "Who was Niobe and why was she punished?",
+        options: ["Boasted over Leto", "Insulted Athena", "Stole from a temple", "Rejected Apollo"],
+        correct: 0,
+        funFact: "Leto's children Apollo and Artemis killed all fourteen of Niobe's children. She was turned to weeping stone.",
+        wiki: "https://en.wikipedia.org/wiki/Niobe"
+    },
+    {
+        question: "Who was Phaethon?",
+        options: ["Helios's doomed son", "An elder Titan", "A mighty river god", "An earth-born giant"],
+        correct: 0,
+        funFact: "Phaethon lost control of the sun chariot and nearly burned Earth. Zeus struck him down with a thunderbolt.",
+        wiki: "https://en.wikipedia.org/wiki/Phaethon"
+    },
+    {
+        question: "What sisters wept for Phaethon and became poplar trees?",
+        options: ["The Graces", "The Heliades", "The Pleiades", "The Hesperides"],
+        correct: 1,
+        funFact: "The Heliades, Phaethon's sisters, wept so long that they turned to trees, their tears becoming amber.",
+        wiki: "https://en.wikipedia.org/wiki/Heliades"
+    },
+    {
+        question: "Who was Philomela in Greek myth?",
+        options: ["A transformed princess", "An Olympian goddess", "An inspiring Muse", "A temple priestess"],
+        correct: 0,
+        funFact: "After being assaulted and silenced by Tereus, Philomela was transformed into a nightingale by the gods.",
+        wiki: "https://en.wikipedia.org/wiki/Philomela"
+    },
+    {
+        question: "What did Procne do to avenge her sister Philomela?",
+        options: ["Killed her husband", "Fed Tereus their son", "Cursed Tereus forever", "Called on the gods"],
+        correct: 1,
+        funFact: "Procne killed her son Itys and served him to his father Tereus. The gods turned them all into birds.",
+        wiki: "https://en.wikipedia.org/wiki/Procne"
+    },
+    {
+        question: "Who was Marsyas?",
+        options: ["A music-playing satyr", "A powerful river god", "A wise centaur", "An earth-born giant"],
+        correct: 0,
+        funFact: "Marsyas found Athena's discarded flute and mastered it. Apollo won their contest and flayed Marsyas alive.",
+        wiki: "https://en.wikipedia.org/wiki/Marsyas"
+    },
+    {
+        question: "Who was Alcestis?",
+        options: ["A self-sacrificing queen", "An Olympian goddess", "A gifted prophetess", "A warrior Amazon"],
+        correct: 0,
+        funFact: "Alcestis volunteered to die in place of her husband Admetus. Heracles wrestled Death to bring her back.",
+        wiki: "https://en.wikipedia.org/wiki/Alcestis"
+    },
+    {
+        question: "What was the first thing Heracles did as an infant?",
+        options: ["Walked", "Spoke", "Strangled snakes", "Drank wine"],
+        correct: 2,
+        funFact: "Hera sent two serpents to kill baby Heracles. He strangled them in his cradle while his twin brother screamed.",
+        wiki: "https://en.wikipedia.org/wiki/Heracles"
+    },
+    {
+        question: "Who was Heracles's mortal twin brother?",
+        options: ["Iolaus", "Iphicles", "Eurystheus", "Amphitryon"],
+        correct: 1,
+        funFact: "Iphicles was the son of Amphitryon, born the same night as Heracles. He was an ordinary mortal.",
+        wiki: "https://en.wikipedia.org/wiki/Iphicles"
+    },
+    {
+        question: "What drove Heracles to perform the Twelve Labors?",
+        options: ["Quest for glory", "To win a princess", "Penance for murder", "Zeus's direct command"],
+        correct: 2,
+        funFact: "Hera drove Heracles mad, causing him to kill his wife Megara and their children. The labors were his purification.",
+        wiki: "https://en.wikipedia.org/wiki/Labours_of_Hercules"
+    },
+    {
+        question: "Who was Linus?",
+        options: ["Heracles's slain teacher", "A famous poet", "A powerful river god", "A noble centaur"],
+        correct: 0,
+        funFact: "When Linus struck Heracles for poor lyre playing, Heracles killed him with the instrument.",
+        wiki: "https://en.wikipedia.org/wiki/Linus_(mythology)"
+    },
+    {
+        question: "What was the name of the centaur killed by Heracles whose blood would later kill the hero?",
+        options: ["The wise Chiron", "The kind Pholus", "The vengeful Nessus", "The wild Eurytion"],
+        correct: 2,
+        funFact: "Dying Nessus told Deianira to keep his blood as a love charm. She later used it on Heracles, killing him.",
+        wiki: "https://en.wikipedia.org/wiki/Nessus_(mythology)"
+    },
+    {
+        question: "Who were the Hesperides?",
+        options: ["Apple-guarding nymphs", "The avenging Furies", "The beautiful Graces", "The inspiring Muses"],
+        correct: 0,
+        funFact: "These 'Daughters of Evening' tended the garden at the edge of the world where golden apples grew.",
+        wiki: "https://en.wikipedia.org/wiki/Hesperides"
+    },
+    {
+        question: "Who was Laomedon?",
+        options: ["A treacherous Trojan king", "A legendary hero", "An ancient Titan", "A fearsome giant"],
+        correct: 0,
+        funFact: "Laomedon refused to pay the gods for building Troy's walls. His broken promises led to Troy's eventual downfall.",
+        wiki: "https://en.wikipedia.org/wiki/Laomedon"
+    },
+    {
+        question: "What happened to Ajax the Greater after the Trojan War?",
+        options: ["Returned home safely", "Committed suicide", "Founded a city", "Became a god"],
+        correct: 1,
+        funFact: "Losing Achilles's armor to Odysseus drove Ajax mad. He killed sheep thinking they were Greek leaders, then killed himself.",
+        wiki: "https://en.wikipedia.org/wiki/Ajax_the_Great"
+    },
+    {
+        question: "What happened to Ajax the Lesser?",
+        options: ["Lived happily", "Was killed by Athena/Poseidon", "Became king", "Married Helen"],
+        correct: 1,
+        funFact: "Ajax the Lesser violated Cassandra in Athena's temple. The gods destroyed his ship, and Poseidon drowned him.",
+        wiki: "https://en.wikipedia.org/wiki/Ajax_the_Lesser"
+    },
+    {
+        question: "Who killed Agamemnon upon his return home?",
+        options: ["Orestes", "Clytemnestra and Aegisthus", "The Furies", "Menelaus"],
+        correct: 1,
+        funFact: "Clytemnestra never forgave Agamemnon for sacrificing Iphigenia. She and her lover killed him in his bath.",
+        wiki: "https://en.wikipedia.org/wiki/Agamemnon"
+    },
+    {
+        question: "What was Agamemnon's death weapon?",
+        options: ["Sword", "Net and axe", "Poison", "Spear"],
+        correct: 1,
+        funFact: "Clytemnestra trapped Agamemnon in a net or robe while bathing, then struck him with an axe.",
+        wiki: "https://en.wikipedia.org/wiki/Agamemnon"
+    },
+    {
+        question: "Who was Aegisthus?",
+        options: ["Clytemnestra's lover", "An army general", "An Olympian god", "A temple prophet"],
+        correct: 0,
+        funFact: "Aegisthus's father Thyestes was fed his own children by Atreus. Aegisthus avenged this on Atreus's son Agamemnon.",
+        wiki: "https://en.wikipedia.org/wiki/Aegisthus"
+    },
+    {
+        question: "What did Atreus do to Thyestes?",
+        options: ["Exiled him", "Fed him his own children", "Blinded him", "Enslaved him"],
+        correct: 1,
+        funFact: "The House of Atreus was cursed by this deed. Thyestes's surviving son Aegisthus continued the cycle of revenge.",
+        wiki: "https://en.wikipedia.org/wiki/Atreus"
+    },
+    {
+        question: "Who was the first to wound the Calydonian Boar?",
+        options: ["Meleager", "Atalanta", "Theseus", "Jason"],
+        correct: 1,
+        funFact: "Atalanta's arrow drew first blood. Meleager gave her the boar's hide, enraging his uncles.",
+        wiki: "https://en.wikipedia.org/wiki/Atalanta"
+    },
+    {
+        question: "What happened when Meleager's uncles took the boar hide from Atalanta?",
+        options: ["Nothing", "Meleager killed them", "Atalanta killed them", "A god intervened"],
+        correct: 1,
+        funFact: "Meleager killed his uncles for dishonoring Atalanta. His mother Althaea then burned the brand that held his life.",
+        wiki: "https://en.wikipedia.org/wiki/Calydonian_boar"
+    },
+    {
+        question: "How did Atalanta avoid marriage?",
+        options: ["Became a priestess", "Raced suitors to death", "Hid in the mountains", "Joined Artemis's hunters"],
+        correct: 1,
+        funFact: "Atalanta outran all suitors until Hippomenes (or Melanion) used golden apples from Aphrodite to distract her.",
+        wiki: "https://en.wikipedia.org/wiki/Atalanta"
+    },
+    {
+        question: "What happened to Atalanta and Hippomenes after their marriage?",
+        options: ["Lived happily ever after", "Turned to lions", "Became immortal", "Were separated forever"],
+        correct: 1,
+        funFact: "They made love in a sacred precinct. Zeus (or Cybele) transformed them into lions as punishment.",
+        wiki: "https://en.wikipedia.org/wiki/Hippomenes"
+    },
+    {
+        question: "Who was Cecrops?",
+        options: ["Athens's first king", "An ancient Titan", "A towering giant", "A river god"],
+        correct: 0,
+        funFact: "Cecrops judged the contest between Athena and Poseidon for Athens, ruling in Athena's favor.",
+        wiki: "https://en.wikipedia.org/wiki/Cecrops_I"
+    },
+    {
+        question: "Who invented the alphabet according to Greek myth?",
+        options: ["Prometheus", "Cadmus", "Hermes", "Athena"],
+        correct: 1,
+        funFact: "Cadmus was credited with bringing the Phoenician alphabet to Greece. Several letters bore his name.",
+        wiki: "https://en.wikipedia.org/wiki/Cadmus"
+    },
+    {
+        question: "Who was Triptolemus?",
+        options: ["Demeter's student", "An elder Titan", "A river god", "A Trojan hero"],
+        correct: 0,
+        funFact: "Demeter gave Triptolemus a flying chariot and wheat seeds to teach agriculture throughout the world.",
+        wiki: "https://en.wikipedia.org/wiki/Triptolemus"
+    },
+    {
+        question: "What was the Palladium?",
+        options: ["A sacred Athena statue", "A divine weapon", "A royal crown", "A magical ship"],
+        correct: 0,
+        funFact: "Troy could not fall while it possessed the Palladium. Odysseus and Diomedes stole it before Troy's end.",
+        wiki: "https://en.wikipedia.org/wiki/Palladium_(classical_antiquity)"
+    },
+    {
+        question: "Who were the Amazons' queens at Troy?",
+        options: ["Hippolyta", "Penthesilea", "Andromache", "Cassandra"],
+        correct: 1,
+        funFact: "Penthesilea led the Amazons to aid Troy. Achilles killed her and fell in love with her at the moment of death.",
+        wiki: "https://en.wikipedia.org/wiki/Penthesilea"
+    },
+    {
+        question: "What was Philoctetes famous for?",
+        options: ["Owning Heracles's bow", "Killing Hector", "Building the horse", "Capturing Priam"],
+        correct: 0,
+        funFact: "Philoctetes was abandoned on Lemnos due to a foul wound. Odysseus retrieved him when prophecy demanded Heracles's bow.",
+        wiki: "https://en.wikipedia.org/wiki/Philoctetes"
+    },
+    {
+        question: "Who killed Paris?",
+        options: ["Achilles", "Philoctetes", "Odysseus", "Menelaus"],
+        correct: 1,
+        funFact: "Philoctetes shot Paris with Heracles's bow, using arrows dipped in Hydra blood. Paris died in agony.",
+        wiki: "https://en.wikipedia.org/wiki/Paris_(mythology)"
+    },
+    {
+        question: "What happened to Hecuba after Troy's fall?",
+        options: ["Became a queen again", "Was transformed into a dog", "Returned safely to Greece", "Killed herself in grief"],
+        correct: 1,
+        funFact: "After enduring many losses and committing revenge, Hecuba was transformed into a dog and leapt into the sea.",
+        wiki: "https://en.wikipedia.org/wiki/Hecuba"
+    },
+    {
+        question: "Who was Telephus?",
+        options: ["A son of Heracles", "A Trojan prince", "An Olympian god", "A river deity"],
+        correct: 0,
+        funFact: "Wounded by Achilles, Telephus was healed by rust from the same spear. He showed Greeks the way to Troy.",
+        wiki: "https://en.wikipedia.org/wiki/Telephus"
+    },
+    {
+        question: "What was the war between the Seven Against Thebes about?",
+        options: ["Polynices reclaiming throne", "Oedipus's bitter exile", "A dispute over cattle", "Helen's abduction"],
+        correct: 0,
+        funFact: "Seven champions attacked Thebes to restore Polynices. All seven and both brothers died.",
+        wiki: "https://en.wikipedia.org/wiki/Seven_Against_Thebes"
+    },
+    {
+        question: "Who were the Epigoni?",
+        options: ["Sons of the Seven", "The elder Titans", "Earth-born Giants", "Heroes at Troy"],
+        correct: 0,
+        funFact: "Ten years after their fathers' failure, the Epigoni conquered Thebes, fulfilling the prophecy.",
+        wiki: "https://en.wikipedia.org/wiki/Epigoni"
+    },
+    {
+        question: "Who was the prophet who foresaw his own death at Thebes?",
+        options: ["Tiresias", "Amphiaraus", "Calchas", "Mopsus"],
+        correct: 1,
+        funFact: "Amphiaraus knew the expedition would fail. He was swallowed by the earth, becoming an oracular god.",
+        wiki: "https://en.wikipedia.org/wiki/Amphiaraus"
+    },
+    {
+        question: "Who was Briseis?",
+        options: ["Achilles's war prize", "An Olympian goddess", "A warrior Amazon", "Helen's own sister"],
+        correct: 0,
+        funFact: "Briseis was Achilles's war prize. When Agamemnon took her, Achilles withdrew from battle.",
+        wiki: "https://en.wikipedia.org/wiki/Briseis"
+    },
+    {
+        question: "What did Achilles do during his withdrawal from battle?",
+        options: ["Trained warriors", "Played lyre in tent", "Plotted against Agamemnon", "Prayed to Zeus"],
+        correct: 1,
+        funFact: "While Greeks died, Achilles stayed in his tent playing music, only emerging after Patroclus's death.",
+        wiki: "https://en.wikipedia.org/wiki/Achilles"
+    },
+    {
+        question: "What was Achilles's response when offered Agamemnon's gifts of reconciliation?",
+        options: ["Accepted immediately", "Rejected them angrily", "Demanded even more", "Killed the messengers"],
+        correct: 1,
+        funFact: "Despite valuable offers, Achilles refused. Only Patroclus's death motivated his return to battle.",
+        wiki: "https://en.wikipedia.org/wiki/Achilles"
+    },
+    {
+        question: "Who retrieved Patroclus's body from the battlefield?",
+        options: ["Odysseus", "Ajax the Greater", "Diomedes", "Menelaus"],
+        correct: 1,
+        funFact: "Ajax defended Patroclus's body while Menelaus got help. Their brave stand prevented the Trojans from taking it.",
+        wiki: "https://en.wikipedia.org/wiki/Patroclus"
+    },
+    {
+        question: "What was special about the funeral games for Patroclus?",
+        options: ["They modeled future games", "Gods competed in them", "No one won anything", "They lasted a full year"],
+        correct: 0,
+        funFact: "Homer's description of these games influenced Greek athletic competitions, including the Olympics.",
+        wiki: "https://en.wikipedia.org/wiki/Funeral_games_of_Patroclus"
+    },
+    {
+        question: "What Greek stole the Palladium from Troy?",
+        options: ["Ajax", "Achilles", "Diomedes", "Neoptolemus"],
+        correct: 2,
+        funFact: "Diomedes and Odysseus snuck into Troy and stole the Palladium, removing divine protection from the city.",
+        wiki: "https://en.wikipedia.org/wiki/Diomedes"
+    },
+    {
+        question: "Who was Calchas?",
+        options: ["A Greek war seer", "A Trojan prince", "An Olympian god", "A powerful king"],
+        correct: 0,
+        funFact: "Calchas interpreted omens and prophecies for the Greeks. He revealed how to appease Artemis at Aulis.",
+        wiki: "https://en.wikipedia.org/wiki/Calchas"
+    },
+    {
+        question: "What prophecy did Calchas make about Troy?",
+        options: ["It would take ten years", "Achilles would die", "The war would never end", "Greeks would all perish"],
+        correct: 0,
+        funFact: "Calchas also prophesied that Troy could not fall without Philoctetes and his arrows.",
+        wiki: "https://en.wikipedia.org/wiki/Calchas"
+    },
+    {
+        question: "What was the Greek camp called?",
+        options: ["The Achaean camp", "Mycenae", "Argos", "Sparta"],
+        correct: 0,
+        funFact: "Homer often called Greeks 'Achaeans' or 'Danaans' or 'Argives,' terms referring to different ancestral groups.",
+        wiki: "https://en.wikipedia.org/wiki/Achaeans_(Homer)"
+    },
+    // === MORE ADVANCED QUESTIONS ===
+    {
+        question: "Who was Thetis and why was she important?",
+        options: ["Achilles's sea nymph mother", "An ancient Titaness", "Zeus's first wife", "An inspiring Muse"],
+        correct: 0,
+        funFact: "Zeus and Poseidon both wanted Thetis, but a prophecy said her son would be greater than his father.",
+        wiki: "https://en.wikipedia.org/wiki/Thetis"
+    },
+    {
+        question: "What was Peleus famous for?",
+        options: ["Being Achilles's father", "Killing the Minotaur", "Building the horse", "Founding Athens"],
+        correct: 0,
+        funFact: "Peleus won Thetis after wrestling her as she transformed into fire, water, and animals.",
+        wiki: "https://en.wikipedia.org/wiki/Peleus"
+    },
+    {
+        question: "Who was Nereus?",
+        options: ["The Old Man of the Sea", "Poseidon's son", "A Titan", "King of Atlantis"],
+        correct: 0,
+        funFact: "Nereus could shapeshift and had prophetic abilities. He fathered the 50 Nereids with Doris.",
+        wiki: "https://en.wikipedia.org/wiki/Nereus"
+    },
+    {
+        question: "What was Proteus known for?",
+        options: ["Shapeshifting and prophecy", "Great strength", "Musical talent", "Building temples"],
+        correct: 0,
+        funFact: "To get prophecy from Proteus, one had to hold him through all his transformations.",
+        wiki: "https://en.wikipedia.org/wiki/Proteus"
+    },
+    {
+        question: "Who was Glaucus the sea god?",
+        options: ["A transformed fisherman", "Poseidon's brother", "A sea Titan", "The tide creator"],
+        correct: 0,
+        funFact: "Glaucus fell in love with Scylla. When Circe couldn't win his love, she transformed Scylla into a monster.",
+        wiki: "https://en.wikipedia.org/wiki/Glaucus"
+    },
+    {
+        question: "What transformed Scylla into a monster?",
+        options: ["Poseidon's curse", "Circe's poison", "Eating forbidden food", "Athena's wrath"],
+        correct: 1,
+        funFact: "Scylla was originally beautiful. Circe was jealous of Glaucus's love for her and poisoned her bathing pool.",
+        wiki: "https://en.wikipedia.org/wiki/Scylla"
+    },
+    {
+        question: "Who was Ino/Leucothea?",
+        options: ["A mortal-turned-goddess", "A beautiful Nereid", "Poseidon's daughter", "An ancient Titaness"],
+        correct: 0,
+        funFact: "Ino helped raise Dionysus. Driven mad by Hera, she leapt into the sea and became the goddess Leucothea.",
+        wiki: "https://en.wikipedia.org/wiki/Ino_(Greek_mythology)"
+    },
+    {
+        question: "Who gave Odysseus the magical veil that saved him from drowning?",
+        options: ["Athena", "Leucothea/Ino", "Calypso", "Poseidon"],
+        correct: 1,
+        funFact: "Leucothea's veil kept Odysseus afloat during Poseidon's storm after he left Calypso's island.",
+        wiki: "https://en.wikipedia.org/wiki/Leucothea"
+    },
+    {
+        question: "What was unique about the Phaeacian ships?",
+        options: ["They could sail themselves", "They were invisible", "They flew", "They were alive"],
+        correct: 0,
+        funFact: "Phaeacian ships needed no pilot - they knew their passengers' thoughts and found the way themselves.",
+        wiki: "https://en.wikipedia.org/wiki/Phaeacians"
+    },
+    {
+        question: "Who was King Alcinous?",
+        options: ["Ruler of the Phaeacians", "King of great Troy", "A famous Argonaut", "A Cyclops king"],
+        correct: 0,
+        funFact: "Alcinous and his wife Arete welcomed Odysseus. Their daughter Nausicaa found him washed ashore.",
+        wiki: "https://en.wikipedia.org/wiki/Alcinous"
+    },
+    {
+        question: "Who was Nausicaa?",
+        options: ["A Phaeacian princess", "A nature nymph", "Odysseus's mother", "An Olympian goddess"],
+        correct: 0,
+        funFact: "Athena guided Nausicaa to find Odysseus. Some traditions say she later married Telemachus.",
+        wiki: "https://en.wikipedia.org/wiki/Nausicaa"
+    },
+    {
+        question: "What did Odysseus's men do in the land of the Cicones?",
+        options: ["Raided and were attacked", "Made peaceful alliance", "Found hidden treasure", "Met a helpful god"],
+        correct: 0,
+        funFact: "The Cicones were Troy's allies. Odysseus's men's greed led to heavy losses from reinforcements.",
+        wiki: "https://en.wikipedia.org/wiki/Cicones"
+    },
+    {
+        question: "How did Odysseus escape Polyphemus's cave?",
+        options: ["Hiding under sheep", "Through a back passage", "By killing him", "With Athena's help"],
+        correct: 0,
+        funFact: "Odysseus and his men clung to the undersides of Polyphemus's sheep as they left to graze.",
+        wiki: "https://en.wikipedia.org/wiki/Polyphemus"
+    },
+    {
+        question: "What mistake did Odysseus make after escaping Polyphemus?",
+        options: ["Shouted his real name", "Looked back", "Dropped his sword", "Lost his crew"],
+        correct: 0,
+        funFact: "Pride made Odysseus shout his name. This allowed Polyphemus to pray to his father Poseidon for revenge.",
+        wiki: "https://en.wikipedia.org/wiki/Polyphemus"
+    },
+    {
+        question: "What did Aeolus rule over?",
+        options: ["The winds", "The seas", "The underworld", "The sun"],
+        correct: 0,
+        funFact: "Aeolus kept the winds in a bag. He gave Odysseus a bag with all adverse winds trapped inside.",
+        wiki: "https://en.wikipedia.org/wiki/Aeolus_(son_of_Hippotes)"
+    },
+    {
+        question: "How did Circe's transformation of men work?",
+        options: ["A potion in their wine", "A magic wand", "Looking at them", "Speaking a spell"],
+        correct: 0,
+        funFact: "Circe drugged visitors' food and drink, then struck them with her wand to complete the transformation.",
+        wiki: "https://en.wikipedia.org/wiki/Circe"
+    },
+    {
+        question: "What herb protected Odysseus from Circe's magic?",
+        options: ["Moly", "Lotus", "Ambrosia", "Hemlock"],
+        correct: 0,
+        funFact: "Moly had a black root and white flower. Hermes gave it to Odysseus, saying only gods could dig it up.",
+        wiki: "https://en.wikipedia.org/wiki/Moly_(herb)"
+    },
+    {
+        question: "What did Tiresias tell Odysseus in the Underworld?",
+        options: ["How to reach home", "He would never return", "He must kill Poseidon", "His family had died"],
+        correct: 0,
+        funFact: "Tiresias warned against touching Helios's cattle and foretold Odysseus would die peacefully in old age.",
+        wiki: "https://en.wikipedia.org/wiki/Tiresias"
+    },
+    {
+        question: "Who did Odysseus meet in the Underworld besides Tiresias?",
+        options: ["His mother and heroes", "Only nameless ghosts", "Hades himself", "No one else"],
+        correct: 0,
+        funFact: "Odysseus met his mother Anticlea, Achilles, Ajax, Agamemnon, and many other shades of the dead.",
+        wiki: "https://en.wikipedia.org/wiki/Nekyia"
+    },
+    {
+        question: "What did Achilles say about death when Odysseus met him?",
+        options: ["He'd rather be a slave", "He was content there", "He wanted revenge", "He missed nothing"],
+        correct: 0,
+        funFact: "This famous passage shows even the greatest hero found no glory in death - a stark Greek view of mortality.",
+        wiki: "https://en.wikipedia.org/wiki/Achilles"
+    },
+    {
+        question: "What were the Sirens originally?",
+        options: ["Persephone's handmaidens", "Powerful sea goddesses", "Divinely cursed nymphs", "Daughters of Poseidon"],
+        correct: 0,
+        funFact: "The Sirens were either punished for not preventing Persephone's abduction or given wings to search for her.",
+        wiki: "https://en.wikipedia.org/wiki/Siren_(mythology)"
+    },
+    {
+        question: "What happens to those who hear the Sirens' song?",
+        options: ["They die on the rocks", "They fall asleep", "They go completely mad", "They forget their homes"],
+        correct: 0,
+        funFact: "The shore around the Sirens was piled with the bones of men who forgot everything else upon hearing them.",
+        wiki: "https://en.wikipedia.org/wiki/Siren_(mythology)"
+    },
+    {
+        question: "Why did Odysseus want to hear the Sirens?",
+        options: ["To gain their knowledge", "Curiosity", "Athena commanded it", "To prove his courage"],
+        correct: 0,
+        funFact: "The Sirens promised knowledge of all that happened in the world. Odysseus's curiosity was legendary.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "How many of Scylla's heads did she use to take men?",
+        options: ["Six", "Three", "Twelve", "One"],
+        correct: 0,
+        funFact: "Scylla had six heads on long necks. She snatched six sailors from Odysseus's ship.",
+        wiki: "https://en.wikipedia.org/wiki/Scylla"
+    },
+    {
+        question: "What was Charybdis?",
+        options: ["A ship-swallowing whirlpool", "A deadly sea monster", "A rocky island", "A powerful storm god"],
+        correct: 0,
+        funFact: "Charybdis was a daughter of Poseidon, cursed by Zeus to become a whirlpool that drank the sea thrice daily.",
+        wiki: "https://en.wikipedia.org/wiki/Charybdis"
+    },
+    {
+        question: "How many cattle did Helios have?",
+        options: ["350 each of cattle and sheep", "100 sacred cattle", "1000 golden cattle", "Countless herds"],
+        correct: 0,
+        funFact: "The Greeks used a 350-day year. Helios's herds were sacred and immortal, never growing or shrinking.",
+        wiki: "https://en.wikipedia.org/wiki/Helios"
+    },
+    {
+        question: "What strange thing happened when Odysseus's men cooked Helios's cattle?",
+        options: ["The meat crawled and lowed", "It turned to gold", "It vanished completely", "It poisoned them all"],
+        correct: 0,
+        funFact: "The hides crawled and the meat bellowed - signs of the gods' anger at the sacrilege.",
+        wiki: "https://en.wikipedia.org/wiki/Cattle_of_Helios"
+    },
+    {
+        question: "How long was Odysseus with Calypso?",
+        options: ["Seven years", "Three years", "One year", "Ten years"],
+        correct: 0,
+        funFact: "Calypso held Odysseus on Ogygia for seven years. She only released him when Zeus commanded through Hermes.",
+        wiki: "https://en.wikipedia.org/wiki/Calypso_(mythology)"
+    },
+    {
+        question: "What did Calypso offer Odysseus to stay?",
+        options: ["Divine immortality", "Great wealth", "Power over sea", "Revenge on enemies"],
+        correct: 0,
+        funFact: "Despite the offer of becoming a god, Odysseus chose to return to mortal Penelope and Ithaca.",
+        wiki: "https://en.wikipedia.org/wiki/Calypso_(mythology)"
+    },
+    {
+        question: "How did Odysseus build his escape raft?",
+        options: ["Built it with Calypso's tools", "Gods built it for him", "He found one abandoned", "Magic created it"],
+        correct: 0,
+        funFact: "Calypso gave Odysseus bronze tools. He cut twenty trees and built a broad raft with a mast.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "Who were the suitors of Penelope?",
+        options: ["Wealth-consuming nobles", "Foreign princes", "Returning soldiers", "Wealthy merchants"],
+        correct: 0,
+        funFact: "Over 100 suitors lived in Odysseus's palace, eating his food and mistreating his servants for years.",
+        wiki: "https://en.wikipedia.org/wiki/Suitors_of_Penelope"
+    },
+    {
+        question: "What trick did Penelope use to delay choosing a suitor?",
+        options: ["Weaving and unweaving", "Claiming illness", "Setting impossible tasks", "Waiting for a sign"],
+        correct: 0,
+        funFact: "This went on for three years until a servant betrayed her. The suitors then demanded she choose.",
+        wiki: "https://en.wikipedia.org/wiki/Penelope"
+    },
+    {
+        question: "Who was Eumaeus?",
+        options: ["Odysseus's loyal swineherd", "A suitor", "A god in disguise", "A sailor"],
+        correct: 0,
+        funFact: "Eumaeus remained faithful despite thinking Odysseus dead. He helped in the suitors' slaughter.",
+        wiki: "https://en.wikipedia.org/wiki/Eumaeus"
+    },
+    {
+        question: "How did Athena disguise Odysseus when he returned?",
+        options: ["As an old beggar", "As a sailor", "As a priest", "As a merchant"],
+        correct: 0,
+        funFact: "Athena aged Odysseus, shriveled his skin, and gave him rags so no one would recognize him.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "Who was Melanthius?",
+        options: ["A treacherous goatherd", "A loyal servant", "A leading suitor", "Odysseus's cousin"],
+        correct: 0,
+        funFact: "Melanthius kicked and mocked the disguised Odysseus. He suffered terribly for his betrayal.",
+        wiki: "https://en.wikipedia.org/wiki/Melanthius"
+    },
+    {
+        question: "How did Telemachus first react to the beggar (Odysseus)?",
+        options: ["With hospitality", "With disgust", "With great fear", "By ignoring him"],
+        correct: 0,
+        funFact: "Telemachus showed proper hospitality, later recognizing his father when Athena removed the disguise.",
+        wiki: "https://en.wikipedia.org/wiki/Telemachus"
+    },
+    {
+        question: "What happened when Odysseus revealed himself to Telemachus?",
+        options: ["Telemachus thought him a god", "Immediate recognition", "Telemachus fled in fear", "They fought each other"],
+        correct: 0,
+        funFact: "The transformation was so dramatic that Telemachus thought a god stood before him.",
+        wiki: "https://en.wikipedia.org/wiki/Telemachus"
+    },
+    {
+        question: "What was the contest Penelope set for the suitors?",
+        options: ["String bow and shoot axes", "Lift a heavy boulder", "Race swift chariots", "Answer difficult riddles"],
+        correct: 0,
+        funFact: "Odysseus had strung this bow easily in his youth. No suitor could even bend it enough to string it.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "Who tried to string the bow among the suitors?",
+        options: ["All tried and failed", "Only the strongest", "None dared try", "Only three suitors"],
+        correct: 0,
+        funFact: "The suitors even warmed the bow with fire and greased it, but none had the strength to string it.",
+        wiki: "https://en.wikipedia.org/wiki/Mnesterophonia"
+    },
+    {
+        question: "How did Odysseus get the bow?",
+        options: ["Requested to try as a beggar", "Stole it", "Athena gave it to him", "Telemachus handed it over"],
+        correct: 0,
+        funFact: "Despite the suitors' mockery and objections, Telemachus insisted the beggar be allowed to try.",
+        wiki: "https://en.wikipedia.org/wiki/Odysseus"
+    },
+    {
+        question: "Who were the first suitors Odysseus killed?",
+        options: ["The leaders Antinous and Eurymachus", "Random unnamed suitors", "The youngest ones", "The strongest ones"],
+        correct: 0,
+        funFact: "Odysseus shot Antinous through the throat, then revealed himself to the horrified suitors.",
+        wiki: "https://en.wikipedia.org/wiki/Antinous_(Ithacan)"
+    },
+    {
+        question: "Who helped Odysseus fight the suitors?",
+        options: ["His son and loyal servants", "The gods directly", "The townspeople", "No one at all"],
+        correct: 0,
+        funFact: "Four men fought over 100 suitors. Athena deflected spears and gave them supernatural endurance.",
+        wiki: "https://en.wikipedia.org/wiki/Mnesterophonia"
+    },
+    {
+        question: "What happened to the disloyal maidservants?",
+        options: ["They were hanged", "They were exiled", "They were forgiven", "They escaped"],
+        correct: 0,
+        funFact: "The twelve maids who had consorted with suitors were forced to clean up the bloodshed, then hanged.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "How did Odysseus prove his identity to Penelope?",
+        options: ["Knowledge of their bed", "By showing his scar", "Athena revealed it", "By his voice alone"],
+        correct: 0,
+        funFact: "Penelope tested him by suggesting moving their bed. Only Odysseus knew it couldn't be moved.",
+        wiki: "https://en.wikipedia.org/wiki/Penelope"
+    },
+    {
+        question: "Who was Odysseus's father?",
+        options: ["Laertes", "Autolycus", "Anticlea's father", "Sisyphus"],
+        correct: 0,
+        funFact: "Laertes was still alive but had retired to his farm in grief. Some myths say Sisyphus was Odysseus's true father.",
+        wiki: "https://en.wikipedia.org/wiki/Laertes"
+    },
+    {
+        question: "How did Odysseus prove himself to Laertes?",
+        options: ["By describing his orchard", "By his old scar", "Athena revealed it", "By his voice alone"],
+        correct: 0,
+        funFact: "Odysseus listed the exact trees his father had given him, knowledge only his son would have.",
+        wiki: "https://en.wikipedia.org/wiki/Laertes"
+    },
+    {
+        question: "What happened after the suitors' deaths?",
+        options: ["Families sought revenge", "Peace returned easily", "Odysseus was exiled", "A new war began"],
+        correct: 0,
+        funFact: "A battle began, but Athena commanded peace. She made both sides forget the bloodshed.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "Who was Autolycus?",
+        options: ["Odysseus's thief grandfather", "An ancient Titan", "A god of travelers", "A powerful king"],
+        correct: 0,
+        funFact: "Autolycus was son of Hermes and the greatest thief alive. He named his grandson Odysseus ('man of wrath').",
+        wiki: "https://en.wikipedia.org/wiki/Autolycus"
+    },
+    {
+        question: "How did Odysseus get his famous scar?",
+        options: ["A boar gored him hunting", "In the Trojan War", "Fighting Polyphemus", "Training as a youth"],
+        correct: 0,
+        funFact: "Young Odysseus was gored on his leg during a boar hunt. The scar later proved his identity.",
+        wiki: "https://en.wikipedia.org/wiki/Odysseus"
+    },
+    {
+        question: "What was Ithaca like?",
+        options: ["A rocky goat island", "A wealthy mainland city", "A large fertile island", "A harsh desert land"],
+        correct: 0,
+        funFact: "Homer describes Ithaca as rough but nurturing good men. Scholars still debate which island he meant.",
+        wiki: "https://en.wikipedia.org/wiki/Ithaca"
+    },
+    {
+        question: "Who was Mentor?",
+        options: ["Odysseus's old friend", "An Olympian god", "A leading suitor", "Telemachus's tutor"],
+        correct: 0,
+        funFact: "Athena often appeared as Mentor to advise Telemachus. Our word 'mentor' comes from this character.",
+        wiki: "https://en.wikipedia.org/wiki/Mentor_(Odyssey)"
+    },
+    {
+        question: "What was the name of Telemachus's journey to find news of his father?",
+        options: ["The Telemachy", "The Search", "The Quest", "The Wandering"],
+        correct: 0,
+        funFact: "Books 1-4 of the Odyssey are called the Telemachy, following Telemachus to Pylos and Sparta.",
+        wiki: "https://en.wikipedia.org/wiki/Telemachy"
+    },
+    {
+        question: "Who did Telemachus visit first in his search?",
+        options: ["Nestor at Pylos", "Menelaus at Sparta", "Agamemnon's son", "Ajax's family"],
+        correct: 0,
+        funFact: "Nestor was the oldest Greek warrior and known for his wisdom. He couldn't help but sent Telemachus to Sparta.",
+        wiki: "https://en.wikipedia.org/wiki/Nestor_(mythology)"
+    },
+    {
+        question: "What did Menelaus tell Telemachus about Odysseus?",
+        options: ["He was alive on Calypso's isle", "He was dead", "He was still at Troy", "Nothing useful"],
+        correct: 0,
+        funFact: "Menelaus learned this from the sea god Proteus in Egypt after wrestling him through his transformations.",
+        wiki: "https://en.wikipedia.org/wiki/Menelaus"
+    },
+    {
+        question: "What happened to Menelaus and Helen after Troy?",
+        options: ["Delayed in Egypt", "Returned immediately", "Helen sadly died", "They separated forever"],
+        correct: 0,
+        funFact: "Menelaus was blown off course to Egypt. He and Helen reconciled and lived peacefully after returning.",
+        wiki: "https://en.wikipedia.org/wiki/Helen_of_Troy"
+    },
+    {
+        question: "What drug did Helen put in wine in Sparta?",
+        options: ["Nepenthe, to banish grief", "A truth serum", "A sleeping potion", "A poison"],
+        correct: 0,
+        funFact: "Nepenthe was an Egyptian drug that made people forget their sorrows. It may represent opium.",
+        wiki: "https://en.wikipedia.org/wiki/Nepenthe"
+    },
+    {
+        question: "Who was Hermione?",
+        options: ["Helen's daughter", "A minor goddess", "An Amazon queen", "A river nymph"],
+        correct: 0,
+        funFact: "Hermione married Neoptolemus and then Orestes. She was Helen's only child in most accounts.",
+        wiki: "https://en.wikipedia.org/wiki/Hermione_(Greek_mythology)"
+    },
+    {
+        question: "What did the gods do while Odysseus was with Calypso?",
+        options: ["Debated his fate", "Forgot about him", "All wanted him dead", "Prepared a welcome"],
+        correct: 0,
+        funFact: "Zeus finally sided with Athena, sending Hermes to order Calypso to release Odysseus.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "Why did Poseidon hate Odysseus?",
+        options: ["Odysseus blinded his son", "Odysseus insulted him", "Athens beat him", "An old family curse"],
+        correct: 0,
+        funFact: "Polyphemus prayed to his father Poseidon for revenge. The god delayed Odysseus's journey for years.",
+        wiki: "https://en.wikipedia.org/wiki/Poseidon"
+    },
+    {
+        question: "What happened when Poseidon finally caught up with Odysseus?",
+        options: ["Created a terrible storm", "Killed him instantly", "Captured him", "Made peace"],
+        correct: 0,
+        funFact: "Poseidon was returning from the Ethiopians when he saw Odysseus sailing. His storm nearly drowned him.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "What happened to Odysseus's ships besides his own?",
+        options: ["All destroyed by Laestrygonians", "Lost in storms", "Captured by Trojans", "Returned safely"],
+        correct: 0,
+        funFact: "The Laestrygonians destroyed eleven of twelve ships. Only Odysseus's ship escaped the harbor massacre.",
+        wiki: "https://en.wikipedia.org/wiki/Laestrygonians"
+    },
+    {
+        question: "What famous epithet describes Odysseus?",
+        options: ["Polytropos", "Swift-footed", "God-like hero", "City-sacker"],
+        correct: 0,
+        funFact: "The Odyssey's first word after 'sing' is polytropos, setting up Odysseus as cunning and adaptable.",
+        wiki: "https://en.wikipedia.org/wiki/Epithets_in_Homer"
+    },
+    {
+        question: "What epithet is used for the goddess Athena?",
+        options: ["Grey-eyed", "Golden", "Wrathful", "Beautiful"],
+        correct: 0,
+        funFact: "Glaukopis (grey-eyed or owl-eyed) was Athena's regular epithet, connecting her to her sacred owl.",
+        wiki: "https://en.wikipedia.org/wiki/Athena"
+    },
+    {
+        question: "What epithet describes the dawn in Homer?",
+        options: ["Rosy-fingered", "Golden", "Swift", "Gentle"],
+        correct: 0,
+        funFact: "'Rosy-fingered dawn' appears over twenty times in the Odyssey. These repeated phrases aided oral recitation.",
+        wiki: "https://en.wikipedia.org/wiki/Eos"
+    },
+    {
+        question: "What is a formulaic epithet?",
+        options: ["A repeated poetic phrase", "A magical name", "A divine curse", "A sacred prayer"],
+        correct: 0,
+        funFact: "Formulaic phrases helped bards compose and memorize epics. Homer used them extensively.",
+        wiki: "https://en.wikipedia.org/wiki/Epithet"
+    },
+    {
+        question: "Why is the Odyssey considered the first novel?",
+        options: ["Focus on one person's journey", "It's the longest work", "It was the first written", "It has a happy ending"],
+        correct: 0,
+        funFact: "The Odyssey's focus on character, return, recognition, and domestic themes influenced all later Western fiction.",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "What literary device does the Odyssey use for most of Odysseus's adventures?",
+        options: ["Flashback narration", "Direct narration", "Prophecy", "Dream sequences"],
+        correct: 0,
+        funFact: "Books 9-12 are told by Odysseus himself, making him an unreliable narrator - did he exaggerate?",
+        wiki: "https://en.wikipedia.org/wiki/Odyssey"
+    },
+    {
+        question: "What is xenia?",
+        options: ["Sacred hospitality", "A minor goddess", "A divine weapon", "A sacred ship"],
+        correct: 0,
+        funFact: "Xenia was a fundamental Greek value. Zeus protected guests. The suitors violated it catastrophically.",
+        wiki: "https://en.wikipedia.org/wiki/Xenia_(Greek)"
+    },
+    {
+        question: "Why were guest-host relationships so important in Greek culture?",
+        options: ["Zeus protected travelers", "Trade depended on them", "They prevented war", "Religious law demanded"],
+        correct: 0,
+        funFact: "In a world without hotels, travelers depended on hosts. Violating xenia could bring divine punishment.",
+        wiki: "https://en.wikipedia.org/wiki/Xenia_(Greek)"
+    },
+    {
+        question: "What is kleos?",
+        options: ["Eternal glory in song", "Great wealth", "Royal kingship", "Divine wisdom"],
+        correct: 0,
+        funFact: "Greek heroes sought kleos because it was the only immortality mortals could achieve.",
+        wiki: "https://en.wikipedia.org/wiki/Kleos"
+    },
+    {
+        question: "What is nostos?",
+        options: ["Heroic homecoming", "A type of ship", "A battle formation", "A sacred sacrifice"],
+        correct: 0,
+        funFact: "Nostos is the root of 'nostalgia.' Many Greek epics (now lost) told heroes' nostoi after Troy.",
+        wiki: "https://en.wikipedia.org/wiki/Nostos"
+    },
+    {
+        question: "What is hubris?",
+        options: ["God-offending pride", "Heroic bravery", "Divine wisdom", "Religious piety"],
+        correct: 0,
+        funFact: "Hubris often led to nemesis (divine punishment). It was the tragic flaw of many Greek heroes.",
+        wiki: "https://en.wikipedia.org/wiki/Hubris"
+    },
+    {
+        question: "What is ate?",
+        options: ["Divine-sent delusion", "Divine wisdom", "Heroic courage", "Immutable fate"],
+        correct: 0,
+        funFact: "Ate was both the condition and a goddess. Agamemnon blamed ate for his conflict with Achilles.",
+        wiki: "https://en.wikipedia.org/wiki/At%C3%AB"
+    },
+    {
+        question: "What did Greeks believe about fate?",
+        options: ["Even gods couldn't change it", "Fate could be altered", "Only Zeus controlled fate", "Fate didn't exist"],
+        correct: 0,
+        funFact: "The Moirai (Fates) spun, measured, and cut the thread of life. Zeus himself deferred to fate.",
+        wiki: "https://en.wikipedia.org/wiki/Moirai"
+    },
+    {
+        question: "What was the role of the chorus in Greek tragedy?",
+        options: ["Commentary and context", "Background music only", "Fighting in scenes", "Comic relief only"],
+        correct: 0,
+        funFact: "The chorus danced and sang, connecting the audience to the action and often expressing conventional wisdom.",
+        wiki: "https://en.wikipedia.org/wiki/Greek_chorus"
+    },
+    {
+        question: "Who wrote the Oresteia?",
+        options: ["Aeschylus", "Sophocles", "Euripides", "Homer"],
+        correct: 0,
+        funFact: "Aeschylus's trilogy follows Agamemnon's murder, Orestes's revenge, and his trial - the only complete trilogy we have.",
+        wiki: "https://en.wikipedia.org/wiki/Oresteia"
+    },
+    {
+        question: "Who wrote Oedipus the King?",
+        options: ["Sophocles", "Aeschylus", "Euripides", "Homer"],
+        correct: 0,
+        funFact: "Sophocles's play is considered one of the greatest tragedies. Aristotle used it as his model in Poetics.",
+        wiki: "https://en.wikipedia.org/wiki/Oedipus_Rex"
+    },
+    {
+        question: "Who wrote Medea?",
+        options: ["Euripides", "Sophocles", "Aeschylus", "Homer"],
+        correct: 0,
+        funFact: "Euripides's sympathetic portrayal of Medea was controversial. He often explored women's perspectives.",
+        wiki: "https://en.wikipedia.org/wiki/Medea_(play)"
+    },
+    {
+        question: "What innovation did Thespis make?",
+        options: ["Created the first actor", "Invented masks", "Wrote tragedies", "Built theaters"],
+        correct: 0,
+        funFact: "Before Thespis, drama was purely choral. We get 'thespian' from his revolutionary addition of an actor.",
+        wiki: "https://en.wikipedia.org/wiki/Thespis"
+    },
+    {
+        question: "What were the dramatic festivals called?",
+        options: ["The Dionysia", "The Olympics", "The Panathenaea", "The Mysteries"],
+        correct: 0,
+        funFact: "Plays were performed at festivals of Dionysus. Competition was fierce, with prizes for best playwright.",
+        wiki: "https://en.wikipedia.org/wiki/Dionysia"
+    },
+    {
+        question: "Why was theater connected to Dionysus?",
+        options: ["Tragedy evolved from hymns", "He invented it himself", "Temples used it", "Simply by coincidence"],
+        correct: 0,
+        funFact: "Dithyrambs were choral songs honoring Dionysus. Adding a speaking actor created drama.",
+        wiki: "https://en.wikipedia.org/wiki/Dithyramb"
+    },
+    {
+        question: "What was a satyr play?",
+        options: ["A post-tragedy comedy", "A serious drama", "A religious ritual", "A sacred dance"],
+        correct: 0,
+        funFact: "Playwrights submitted three tragedies plus a satyr play. These featured lusty satyrs in comedic situations.",
+        wiki: "https://en.wikipedia.org/wiki/Satyr_play"
+    },
+    {
+        question: "Who was Antigone?",
+        options: ["Oedipus's defiant daughter", "An Olympian goddess", "A warrior Amazon", "An inspiring Muse"],
+        correct: 0,
+        funFact: "Antigone buried her brother Polynices against Creon's decree, choosing divine law over human law.",
+        wiki: "https://en.wikipedia.org/wiki/Antigone"
+    },
+    {
+        question: "What was Creon's dilemma in Antigone?",
+        options: ["State vs. divine law", "War vs. peace", "Love vs. duty", "Wealth vs. honor"],
+        correct: 0,
+        funFact: "Creon's inflexibility led to his son's suicide (Antigone's fiancé) and his wife's suicide.",
+        wiki: "https://en.wikipedia.org/wiki/Antigone_(Sophocles_play)"
+    },
+    {
+        question: "What happened to Thebes after Oedipus?",
+        options: ["His sons killed each other", "It greatly prospered", "It was destroyed", "It joined Athens"],
+        correct: 0,
+        funFact: "Oedipus cursed his sons. Eteocles and Polynices killed each other, leaving Creon as king.",
+        wiki: "https://en.wikipedia.org/wiki/Theban_Cycle"
+    },
+    {
+        question: "Who was Jocasta?",
+        options: ["Oedipus's mother", "A minor goddess", "Creon's wife", "A prophetess"],
+        correct: 0,
+        funFact: "Jocasta unknowingly married her own son. She hanged herself upon discovering the truth.",
+        wiki: "https://en.wikipedia.org/wiki/Jocasta"
+    },
+    {
+        question: "Why did Oedipus blind himself?",
+        options: ["He couldn't bear to see", "A divine punishment", "A terrible curse", "It was accidental"],
+        correct: 0,
+        funFact: "Oedipus used Jocasta's brooches to gouge out his eyes. He had seen but not truly seen.",
+        wiki: "https://en.wikipedia.org/wiki/Oedipus"
+    },
+    {
+        question: "What became of Oedipus after Thebes?",
+        options: ["Wandered and died at Colonus", "Became an Olympian god", "Ruled another city", "Was imprisoned forever"],
+        correct: 0,
+        funFact: "Sophocles's Oedipus at Colonus shows his death as a blessing for Athens, where he was buried.",
+        wiki: "https://en.wikipedia.org/wiki/Oedipus_at_Colonus"
+    },
+    {
+        question: "What was special about Oedipus's grave at Colonus?",
+        options: ["It protected Athens", "It was gold", "It glowed", "Flowers grew there"],
+        correct: 0,
+        funFact: "Only Theseus knew the exact location. Oedipus's burial site was a charm protecting Athens.",
+        wiki: "https://en.wikipedia.org/wiki/Oedipus_at_Colonus"
+    },
+    {
+        question: "Who guided blind Oedipus in his wanderings?",
+        options: ["Antigone", "Ismene", "Creon", "Tiresias"],
+        correct: 0,
+        funFact: "Antigone served as her father's guide through years of exile, demonstrating her devotion.",
+        wiki: "https://en.wikipedia.org/wiki/Antigone"
+    },
+    {
+        question: "What is the Greek concept of miasma?",
+        options: ["Bloodshed pollution", "A divine blessing", "A sacred prayer", "A magical weapon"],
+        correct: 0,
+        funFact: "Murderers carried miasma that could affect their whole community until purified. Oedipus brought plague to Thebes.",
+        wiki: "https://en.wikipedia.org/wiki/Miasma_(Greek_mythology)"
+    },
+    {
+        question: "What ritual purified miasma?",
+        options: ["Katharsis cleansing", "Prayer alone", "Sacrifice of gold", "Permanent exile"],
+        correct: 0,
+        funFact: "Our word 'catharsis' comes from this. Aristotle said tragedy creates catharsis in audiences.",
+        wiki: "https://en.wikipedia.org/wiki/Catharsis"
+    },
+    {
+        question: "Who was Electra?",
+        options: ["Agamemnon's vengeful daughter", "An Olympian goddess", "An ancient Titaness", "A beautiful nymph"],
+        correct: 0,
+        funFact: "Electra helped plot Clytemnestra's death. Freud named the female version of the Oedipus complex after her.",
+        wiki: "https://en.wikipedia.org/wiki/Electra"
+    },
+    {
+        question: "What is the 'Electra complex'?",
+        options: ["A Freudian term", "A theatrical device", "A Greek ritual", "A type of tragedy"],
+        correct: 0,
+        funFact: "Freud named this after Electra's hatred of her mother. It's the female counterpart to the Oedipus complex.",
+        wiki: "https://en.wikipedia.org/wiki/Electra_complex"
+    },
+    {
+        question: "How was Orestes purified of matricide?",
+        options: ["Trial at Athens", "By Zeus directly", "He wasn't ever", "By blood sacrifice"],
+        correct: 0,
+        funFact: "The Areopagus trial in Aeschylus's Eumenides established Athenian justice over blood vengeance.",
+        wiki: "https://en.wikipedia.org/wiki/Eumenides"
+    },
+    {
+        question: "What happened to the Furies after Orestes's trial?",
+        options: ["Became the Eumenides", "They were destroyed", "Returned to Hades", "Became mortal beings"],
+        correct: 0,
+        funFact: "Athena persuaded the Furies to become protectors of Athens. They received a shrine there.",
+        wiki: "https://en.wikipedia.org/wiki/Erinyes"
+    },
+    {
+        question: "Who was Iphigenia?",
+        options: ["Agamemnon's daughter", "A minor goddess", "A sacred Muse", "An Amazon queen"],
+        correct: 0,
+        funFact: "Some versions say Artemis substituted a deer and took Iphigenia to Tauris as her priestess.",
+        wiki: "https://en.wikipedia.org/wiki/Iphigenia"
+    },
+    {
+        question: "What did Iphigenia do at Tauris?",
+        options: ["Became a priestess", "Died in exile", "Married a king", "Became a goddess"],
+        correct: 0,
+        funFact: "Euripides's play shows Iphigenia recognizing Orestes just before sacrificing him. They escaped together.",
+        wiki: "https://en.wikipedia.org/wiki/Iphigenia_in_Tauris"
+    },
+    {
+        question: "Who was Pylades?",
+        options: ["Orestes's friend", "A minor god", "A Trojan king", "A famous seer"],
+        correct: 0,
+        funFact: "Pylades supported Orestes through exile, trial, and adventures. Their friendship was legendary.",
+        wiki: "https://en.wikipedia.org/wiki/Pylades"
+    },
+    {
+        question: "What did Medea do when Jason abandoned her?",
+        options: ["Killed their children and his new bride", "Accepted it", "Returned home", "Cursed him and left"],
+        correct: 0,
+        funFact: "Medea sent a poisoned robe that killed Jason's bride and her father. Then she killed her own sons.",
+        wiki: "https://en.wikipedia.org/wiki/Medea"
+    },
+    {
+        question: "Why did Jason abandon Medea?",
+        options: ["To marry Glauce for political advantage", "She was cursed", "He fell out of love", "His family demanded it"],
+        correct: 0,
+        funFact: "Jason's pragmatic betrayal ignored everything Medea had done for him - including killing her brother.",
+        wiki: "https://en.wikipedia.org/wiki/Jason"
+    },
+    {
+        question: "How did Medea escape after her revenge?",
+        options: ["In a chariot drawn by dragons", "By ship", "On foot", "Magic made her invisible"],
+        correct: 0,
+        funFact: "Her grandfather Helios sent the dragon chariot. Medea flew to Athens, beyond Jason's reach.",
+        wiki: "https://en.wikipedia.org/wiki/Medea"
+    },
+    {
+        question: "Who took Medea in after her escape?",
+        options: ["King Aegeus of Athens", "No one", "The gods", "She returned to Colchis"],
+        correct: 0,
+        funFact: "Aegeus promised her refuge in return for curing his childlessness. She later caused trouble there too.",
+        wiki: "https://en.wikipedia.org/wiki/Aegeus"
+    },
+    {
+        question: "What was Medea's relationship to Circe?",
+        options: ["They were aunts", "They were sisters", "They were enemies", "No blood relation"],
+        correct: 0,
+        funFact: "Both were powerful sorceresses descended from the sun god. Circe purified Jason and Medea after they killed Absyrtus.",
+        wiki: "https://en.wikipedia.org/wiki/Circe"
+    },
+    {
+        question: "Who was Talos?",
+        options: ["A bronze giant", "A fallen Titan", "A mighty king", "A famous hero"],
+        correct: 0,
+        funFact: "Talos circled Crete three times daily, throwing boulders at ships. Medea disabled him by removing his ankle plug.",
+        wiki: "https://en.wikipedia.org/wiki/Talos"
+    },
+    {
+        question: "What was Talos's weakness?",
+        options: ["A single sealed vein", "His glowing eyes", "Inner fire core", "Water in veins"],
+        correct: 0,
+        funFact: "Medea used magic to make Talos scrape his ankle, releasing his ichor and killing him.",
+        wiki: "https://en.wikipedia.org/wiki/Talos"
+    },
+    {
+        question: "Who built Talos?",
+        options: ["Hephaestus", "Daedalus", "Zeus", "Athena"],
+        correct: 0,
+        funFact: "Hephaestus created Talos as a gift to protect Europa or Minos. He was essentially a giant robot.",
+        wiki: "https://en.wikipedia.org/wiki/Talos"
+    },
+    {
+        question: "Who was Pasiphae's father?",
+        options: ["Helios, the sun god", "Zeus", "Poseidon", "Minos"],
+        correct: 0,
+        funFact: "Pasiphae was thus Medea and Circe's aunt. Sorcery ran in the family of the sun.",
+        wiki: "https://en.wikipedia.org/wiki/Pasiphae"
+    },
+    {
+        question: "Why was Minos not sacrificed to the Cretan Bull?",
+        options: ["He kept the bull", "He was king", "Bull was too small", "Zeus protected him"],
+        correct: 0,
+        funFact: "Minos's greed in keeping the beautiful bull led to Poseidon's curse: Pasiphae's unnatural desire.",
+        wiki: "https://en.wikipedia.org/wiki/Cretan_Bull"
+    },
+    {
+        question: "What was the wooden cow Daedalus built?",
+        options: ["A wooden cow", "A war machine", "A golden throne", "A blood sacrifice"],
+        correct: 0,
+        funFact: "Daedalus's craftsmanship knew no moral limits. He enabled the conception of the Minotaur.",
+        wiki: "https://en.wikipedia.org/wiki/Daedalus"
+    },
+    {
+        question: "Why was Daedalus imprisoned?",
+        options: ["Helping Pasiphae", "For brutal murder", "For sacred theft", "For high treason"],
+        correct: 0,
+        funFact: "Minos imprisoned Daedalus for his role in Theseus's escape. Only flight could free him.",
+        wiki: "https://en.wikipedia.org/wiki/Daedalus"
+    },
+    {
+        question: "What happened to Icarus?",
+        options: ["He fell to his death", "He reached safety", "He was captured", "He became a god"],
+        correct: 0,
+        funFact: "Icarus ignored Daedalus's warning about flying too high. The Icarian Sea is named for where he fell.",
+        wiki: "https://en.wikipedia.org/wiki/Icarus"
+    },
+    {
+        question: "Where did Daedalus go after escaping Crete?",
+        options: ["Sicily, to King Cocalus", "Athens", "Egypt", "Olympus"],
+        correct: 0,
+        funFact: "Minos pursued Daedalus by offering a puzzle only he could solve. This led to Minos's death.",
+        wiki: "https://en.wikipedia.org/wiki/Daedalus"
+    },
+    {
+        question: "How did Minos die?",
+        options: ["Killed in a bath", "Died in battle", "Of peaceful old age", "Drowned at sea"],
+        correct: 0,
+        funFact: "Daedalus rigged the bath with boiling water or the daughters scalded him. Fitting revenge.",
+        wiki: "https://en.wikipedia.org/wiki/Minos"
+    },
+    {
+        question: "What happened to Minos after death?",
+        options: ["Became a judge of the dead", "Went to Tartarus", "Became a god", "Was forgotten"],
+        correct: 0,
+        funFact: "Despite his flaws, Minos's reputation for justice made him one of the three judges of the Underworld.",
+        wiki: "https://en.wikipedia.org/wiki/Minos"
+    },
+    {
+        question: "What was the Minotaur's actual name?",
+        options: ["Asterion", "It had no name", "Taurus", "Minos"],
+        correct: 0,
+        funFact: "Asterion means 'starry one.' The creature was named for Minos's stepfather, the previous king.",
+        wiki: "https://en.wikipedia.org/wiki/Minotaur"
+    },
+    {
+        question: "How often were Athenians sacrificed to the Minotaur?",
+        options: ["Fourteen youths", "One hundred gold", "Seven ships yearly", "A single champion"],
+        correct: 0,
+        funFact: "Athens owed this tribute for the death of Minos's son Androgeus. Theseus ended it.",
+        wiki: "https://en.wikipedia.org/wiki/Minotaur"
+    },
+    {
+        question: "Who killed Theseus's father's son Androgeus?",
+        options: ["Jealous Athenians", "Theseus himself", "A tragic accident", "The Minotaur"],
+        correct: 0,
+        funFact: "Androgeus won at the Panathenaic games. Aegeus sent him against the Marathonian bull, which killed him.",
+        wiki: "https://en.wikipedia.org/wiki/Androgeus"
+    },
+    {
+        question: "What was the Marathonian bull?",
+        options: ["The Cretan Bull", "A different monster", "A bronze statue", "Just a metaphor"],
+        correct: 0,
+        funFact: "After Heracles captured it, the bull roamed to Marathon. It was finally killed by Theseus.",
+        wiki: "https://en.wikipedia.org/wiki/Marathonian_Bull"
+    },
+    {
+        question: "Who was Phaedra?",
+        options: ["Theseus's second wife", "A minor goddess", "A wood nymph", "An Amazon queen"],
+        correct: 0,
+        funFact: "Phaedra was Ariadne's sister. Her doomed love for her stepson led to tragedy.",
+        wiki: "https://en.wikipedia.org/wiki/Phaedra_(mythology)"
+    },
+    {
+        question: "Who was Hippolytus?",
+        options: ["Theseus's chaste son", "A wild centaur", "A river god", "A young Titan"],
+        correct: 0,
+        funFact: "Hippolytus devoted himself to Artemis and scorned Aphrodite. The love goddess punished him through Phaedra.",
+        wiki: "https://en.wikipedia.org/wiki/Hippolytus_(mythology)"
+    },
+    {
+        question: "What happened to Hippolytus?",
+        options: ["Killed by Poseidon", "Became a deity", "Married Phaedra", "Killed Phaedra"],
+        correct: 0,
+        funFact: "Poseidon sent a bull from the sea that frightened Hippolytus's horses. He was dragged to death.",
+        wiki: "https://en.wikipedia.org/wiki/Hippolytus_(mythology)"
+    },
+    {
+        question: "What became of Hippolytus after death?",
+        options: ["He was revived", "Nothing happened", "Went to Tartarus", "Became constellation"],
+        correct: 0,
+        funFact: "The Italians worshipped him as Virbius. This resurrection was one reason Zeus killed Asclepius.",
+        wiki: "https://en.wikipedia.org/wiki/Virbius"
+    },
+    {
+        question: "Who was Peirithous's father?",
+        options: ["Zeus or Ixion", "Poseidon", "Apollo", "Ares"],
+        correct: 0,
+        funFact: "Depending on the version, Peirithous was either divine-born or descended from the notorious sinner Ixion.",
+        wiki: "https://en.wikipedia.org/wiki/Pirithous"
+    },
+    {
+        question: "What happened at Peirithous's wedding?",
+        options: ["Centaurs attacked", "It went perfectly", "He was killed", "His bride vanished"],
+        correct: 0,
+        funFact: "The Centauromachy began when centaurs tried to abduct Hippodamia. Theseus helped fight them off.",
+        wiki: "https://en.wikipedia.org/wiki/Centauromachy"
+    },
+    {
+        question: "Where did Theseus and Peirithous try to abduct brides from?",
+        options: ["Sparta and the Underworld", "Olympus and Delphi", "Athens and Thebes", "Troy and Corinth"],
+        correct: 0,
+        funFact: "They successfully took young Helen but were trapped in the Underworld trying for Persephone.",
+        wiki: "https://en.wikipedia.org/wiki/Theseus"
+    },
+    {
+        question: "How old was Helen when Theseus abducted her?",
+        options: ["Just a child", "A young woman", "Middle-aged", "An infant"],
+        correct: 0,
+        funFact: "Helen was perhaps 10-12. Her brothers Castor and Pollux rescued her while Theseus was in Hades.",
+        wiki: "https://en.wikipedia.org/wiki/Helen_of_Troy"
+    },
+    {
+        question: "What were the Chairs of Forgetfulness?",
+        options: ["Trapping seats in Hades", "Thrones of judgment", "Punishment devices", "A poetic metaphor"],
+        correct: 0,
+        funFact: "Once seated, they grew into the chairs and forgot why they came. Only Heracles freed Theseus.",
+        wiki: "https://en.wikipedia.org/wiki/Pirithous"
+    },
+    {
+        question: "Why couldn't Heracles free Peirithous?",
+        options: ["The gods forbade it", "Peirithous refused", "He was already dead", "Hades demanded trade"],
+        correct: 0,
+        funFact: "Peirithous's plan to abduct a goddess was too great a crime. He remains trapped forever.",
+        wiki: "https://en.wikipedia.org/wiki/Pirithous"
+    },
+    {
+        question: "Who founded the city of Athens according to myth?",
+        options: ["Cecrops or Erechtheus", "Athena directly", "Theseus the hero", "Zeus from Olympus"],
+        correct: 0,
+        funFact: "Various kings like Cecrops, Erechtheus, and Theseus shaped Athens. Athena won it in her contest with Poseidon.",
+        wiki: "https://en.wikipedia.org/wiki/Athens#Mythology"
+    },
+    {
+        question: "What was unusual about Erechtheus/Erichthonius?",
+        options: ["Born from the earth", "He had great wings", "He was immortal", "He was a giant"],
+        correct: 0,
+        funFact: "Athena raised him after his strange birth. He was half-serpent and became an early Athenian king.",
+        wiki: "https://en.wikipedia.org/wiki/Erichthonius_of_Athens"
+    },
+    {
+        question: "Who was Ion?",
+        options: ["Ancestor of Ionians", "A powerful Titan", "A river deity", "A fearsome giant"],
+        correct: 0,
+        funFact: "Euripides's play Ion tells how he discovered his divine parentage and became ancestor of the Ionian Greeks.",
+        wiki: "https://en.wikipedia.org/wiki/Ion_(mythology)"
+    },
+    {
+        question: "Who was Dorus?",
+        options: ["Ancestor of the Dorians", "A god", "A Titan", "A monster"],
+        correct: 0,
+        funFact: "Dorus, Aeolus, and Xuthus were ancestors of major Greek tribal groups.",
+        wiki: "https://en.wikipedia.org/wiki/Dorus"
+    },
+    {
+        question: "Who was Hellen?",
+        options: ["Ancestor of Greeks", "Helen's brother", "A minor goddess", "A hero of Troy"],
+        correct: 0,
+        funFact: "Greeks called themselves Hellenes after this mythical ancestor. 'Greece' is a Roman term.",
+        wiki: "https://en.wikipedia.org/wiki/Hellen"
+    },
+    {
+        question: "What did Prometheus create humans from?",
+        options: ["Clay and water", "Stone", "Plants", "Fire"],
+        correct: 0,
+        funFact: "Prometheus shaped humans in the gods' image. Athena breathed life into them.",
+        wiki: "https://en.wikipedia.org/wiki/Prometheus"
+    },
+    {
+        question: "What trick did Prometheus play at Mecone?",
+        options: ["Deceived Zeus at sacrifice", "Stole fire from gods", "Created first women", "Freed the Titans"],
+        correct: 0,
+        funFact: "This is why Greeks burned bones and fat to gods while eating the meat themselves.",
+        wiki: "https://en.wikipedia.org/wiki/Prometheus#Hesiod"
+    },
+    {
+        question: "How did Prometheus steal fire?",
+        options: ["In a fennel stalk", "In a pot", "In his hands", "With a torch"],
+        correct: 0,
+        funFact: "The fennel stalk's pithy interior could carry an ember. Prometheus brought it from Hephaestus's forge or the sun.",
+        wiki: "https://en.wikipedia.org/wiki/Prometheus"
+    },
+    {
+        question: "What did Zeus create to punish mankind for receiving fire?",
+        options: ["Woman", "Great storms", "Painful death", "Plague disease"],
+        correct: 0,
+        funFact: "Pandora was meant as a 'beautiful evil.' Hesiod's account is notably misogynistic.",
+        wiki: "https://en.wikipedia.org/wiki/Pandora"
+    },
+    {
+        question: "What was actually in Pandora's jar?",
+        options: ["Evils and hardships", "Treasures and gold", "Nothing at all", "Secret knowledge"],
+        correct: 0,
+        funFact: "The 'box' is a mistranslation. It was a pithos (storage jar). Only Hope remained inside.",
+        wiki: "https://en.wikipedia.org/wiki/Pandora%27s_box"
+    },
+    {
+        question: "Why did Hope remain in the jar?",
+        options: ["Its meaning is debated", "It was stuck inside", "It chose to remain", "Zeus commanded it"],
+        correct: 0,
+        funFact: "The meaning is ambiguous. Either humans still have hope, or hope is just another delusion.",
+        wiki: "https://en.wikipedia.org/wiki/Pandora%27s_box"
+    },
+    {
+        question: "Who finally freed Prometheus?",
+        options: ["Heracles", "Zeus", "Athena", "Hephaestus"],
+        correct: 0,
+        funFact: "Heracles shot the eagle and broke Prometheus's chains. Zeus allowed it after Prometheus revealed a crucial prophecy.",
+        wiki: "https://en.wikipedia.org/wiki/Prometheus"
+    },
+    {
+        question: "What prophecy did Prometheus know that Zeus needed?",
+        options: ["About Thetis's son", "Zeus's overthrow", "Defeating the Giants", "The source of fire"],
+        correct: 0,
+        funFact: "This knowledge saved Prometheus. Zeus married Thetis to a mortal, producing Achilles.",
+        wiki: "https://en.wikipedia.org/wiki/Prometheus"
+    },
+    // === FINAL BATCH - EXPERT LEVEL ===
+    {
+        question: "What was the Gigantomachy?",
+        options: ["The war between gods and Giants", "A festival", "A dance", "A type of sacrifice"],
+        correct: 0,
+        funFact: "The Giants attacked Olympus but could only be killed with mortal help - hence Heracles joined the battle.",
+        wiki: "https://en.wikipedia.org/wiki/Gigantomachy"
+    },
+    {
+        question: "Who was the most dangerous Giant?",
+        options: ["Alcyoneus or Porphyrion", "Enceladus", "Polybotes", "Mimas"],
+        correct: 0,
+        funFact: "Alcyoneus was immortal on his home soil. Heracles had to drag him off Pallene before killing him.",
+        wiki: "https://en.wikipedia.org/wiki/Alcyoneus"
+    },
+    {
+        question: "What Giant is buried under Mount Etna?",
+        options: ["Enceladus", "Typhon", "Both in different traditions", "Porphyrion"],
+        correct: 2,
+        funFact: "Some say Typhon, others Enceladus. Volcanic eruptions were the monster's fiery breath.",
+        wiki: "https://en.wikipedia.org/wiki/Enceladus_(giant)"
+    },
+    {
+        question: "Who was Briareos/Aegaeon?",
+        options: ["A Hundred-Handed One", "A powerful Titan", "A mighty Giant", "A skilled Cyclops"],
+        correct: 0,
+        funFact: "Briareos helped free Zeus when Hera, Poseidon, and Athena tried to bind him.",
+        wiki: "https://en.wikipedia.org/wiki/Briareus"
+    },
+    {
+        question: "What was Typhoeus/Typhon's relationship to Gaia?",
+        options: ["Her youngest child", "Her first child", "No blood relation", "Her divine husband"],
+        correct: 0,
+        funFact: "Gaia bore Typhon after the Olympians defeated her Titan and Giant children.",
+        wiki: "https://en.wikipedia.org/wiki/Typhon"
+    },
+    {
+        question: "What happened when Zeus first fought Typhon?",
+        options: ["Zeus was defeated", "Zeus won easily", "They were tied", "Zeus quickly fled"],
+        correct: 0,
+        funFact: "Typhon removed Zeus's sinews and hid them. Hermes and Pan recovered them.",
+        wiki: "https://en.wikipedia.org/wiki/Typhon"
+    },
+    {
+        question: "Where did Zeus imprison Typhon?",
+        options: ["Under Mount Etna", "In Tartarus", "In the sea", "Both in different accounts"],
+        correct: 3,
+        funFact: "Zeus buried Typhon under Etna or cast him to Tartarus. Either way, he causes volcanic eruptions.",
+        wiki: "https://en.wikipedia.org/wiki/Typhon"
+    },
+    {
+        question: "Who was Campe?",
+        options: ["A monstrous jailer", "A powerful Titan", "A sea nymph", "A minor goddess"],
+        correct: 0,
+        funFact: "Zeus killed Campe to free the Cyclopes and Hundred-Handed Ones before the Titanomachy.",
+        wiki: "https://en.wikipedia.org/wiki/Campe"
+    },
+    {
+        question: "What weapons did the Cyclopes forge for the gods?",
+        options: ["Divine weapons for gods", "Only the thunderbolt", "Bronze swords", "Golden arrows"],
+        correct: 0,
+        funFact: "These three weapons gave the Olympians the edge against the Titans.",
+        wiki: "https://en.wikipedia.org/wiki/Cyclopes"
+    },
+    {
+        question: "Who was Coeus?",
+        options: ["Titan of intellect", "A fierce Cyclops", "A mighty Giant", "A river deity"],
+        correct: 0,
+        funFact: "Coeus was father of Leto (mother of Apollo and Artemis) and Asteria.",
+        wiki: "https://en.wikipedia.org/wiki/Coeus"
+    },
+    {
+        question: "Who was Crius?",
+        options: ["Titan of constellations", "A god of war", "A mighty Giant", "A forge Cyclops"],
+        correct: 0,
+        funFact: "Crius was father of Astraeus (stars), Pallas, and Perses by Eurybia.",
+        wiki: "https://en.wikipedia.org/wiki/Crius"
+    },
+    {
+        question: "Who was Iapetus?",
+        options: ["Father of Prometheus", "A mighty Cyclops", "A fearsome Giant", "A sky deity"],
+        correct: 0,
+        funFact: "Iapetus was grandfather of all humanity through Prometheus. His name may relate to 'Japheth' from the Bible.",
+        wiki: "https://en.wikipedia.org/wiki/Iapetus_(mythology)"
+    },
+    {
+        question: "Who was Asteria?",
+        options: ["Titaness of Delos", "A star goddess", "An epic Muse", "A sea Nereid"],
+        correct: 0,
+        funFact: "Asteria threw herself into the sea to escape Zeus, becoming the floating island where Leto gave birth.",
+        wiki: "https://en.wikipedia.org/wiki/Asteria_(Titaness)"
+    },
+    {
+        question: "What was special about Delos as a birthplace?",
+        options: ["It floated freely", "It was golden", "It was invisible", "It was underwater"],
+        correct: 0,
+        funFact: "Hera forbade any land to shelter Leto. Floating Delos wasn't technically 'land' until Apollo anchored it.",
+        wiki: "https://en.wikipedia.org/wiki/Delos"
+    },
+    {
+        question: "Who was Leto's tormentor during her pregnancy?",
+        options: ["Jealous Hera", "Zeus himself", "Angry Poseidon", "Rival Athena"],
+        correct: 0,
+        funFact: "Hera also sent Python to pursue Leto and delayed the birth goddess Eileithyia.",
+        wiki: "https://en.wikipedia.org/wiki/Leto"
+    },
+    {
+        question: "How long was Leto in labor with Apollo?",
+        options: ["Nine long days", "Just one day", "A single hour", "An entire month"],
+        correct: 0,
+        funFact: "The goddesses on Delos bribed Eileithyia with a golden necklace to defy Hera.",
+        wiki: "https://en.wikipedia.org/wiki/Apollo"
+    },
+    {
+        question: "What did the infant Apollo do first?",
+        options: ["Demanded weapons", "Cried loudly", "Slept peacefully", "Drank nectar"],
+        correct: 0,
+        funFact: "Apollo was precocious even by divine standards, immediately seeking his weapons and killing Python.",
+        wiki: "https://en.wikipedia.org/wiki/Apollo"
+    },
+    {
+        question: "Why did Apollo kill Python?",
+        options: ["To avenge Leto", "It attacked him", "Zeus ordered it", "For hunting sport"],
+        correct: 0,
+        funFact: "Apollo took over Python's oracle at Delphi. He had to be purified for the killing.",
+        wiki: "https://en.wikipedia.org/wiki/Python_(mythology)"
+    },
+    {
+        question: "What were the Pythian Games?",
+        options: ["Games at Delphi", "War game events", "Funeral contests", "Marriage festivals"],
+        correct: 0,
+        funFact: "Second only to the Olympics in prestige, these games featured music and poetry as well as athletics.",
+        wiki: "https://en.wikipedia.org/wiki/Pythian_Games"
+    },
+    {
+        question: "Who was the Pythia?",
+        options: ["Apollo's priestess", "A temple monster", "A minor goddess", "A mountain nymph"],
+        correct: 0,
+        funFact: "The Pythia sat on a tripod over a chasm, entering trance to deliver prophecies.",
+        wiki: "https://en.wikipedia.org/wiki/Pythia"
+    },
+    {
+        question: "What made the Oracle at Delphi reliable?",
+        options: ["Apollo spoke through her", "It was never wrong", "Zeus guaranteed it", "Athena verified it"],
+        correct: 0,
+        funFact: "The oracle's often ambiguous pronouncements required interpretation - failures could be blamed on misunderstanding.",
+        wiki: "https://en.wikipedia.org/wiki/Delphi"
+    },
+    {
+        question: "What was the famous Delphic maxim about self-knowledge?",
+        options: ["Know thyself", "Nothing in excess", "Both were inscribed at Delphi", "Seek wisdom"],
+        correct: 2,
+        funFact: "'Know thyself' and 'Nothing in excess' were inscribed at Apollo's temple - core Greek values.",
+        wiki: "https://en.wikipedia.org/wiki/Know_thyself"
+    },
+    {
+        question: "Who was Aristaeus?",
+        options: ["Son of Apollo", "A famous hero", "A minor Titan", "A river deity"],
+        correct: 0,
+        funFact: "Aristaeus taught humans many practical arts. His bees died after he caused Eurydice's death.",
+        wiki: "https://en.wikipedia.org/wiki/Aristaeus"
+    },
+    {
+        question: "What did Aristaeus do to cause Eurydice's death?",
+        options: ["Chased her fatally", "Poisoned her drink", "Cursed her soul", "Nothing directly"],
+        correct: 0,
+        funFact: "Fleeing Aristaeus's advances, Eurydice was bitten by a viper and died, setting up Orpheus's tragedy.",
+        wiki: "https://en.wikipedia.org/wiki/Eurydice_(mythology)"
+    },
+    {
+        question: "How did Aristaeus recover his bees?",
+        options: ["Cattle sacrifice", "Fervent prayer", "Stealing them", "Powerful magic"],
+        correct: 0,
+        funFact: "Greeks believed bees could spontaneously generate from cattle carcasses.",
+        wiki: "https://en.wikipedia.org/wiki/Bugonia"
+    },
+    {
+        question: "Who was Arion?",
+        options: ["A magical horse", "A famous poet", "A Spartan king", "A Trojan hero"],
+        correct: 0,
+        funFact: "Demeter transformed into a mare to escape Poseidon. Arion was incredibly fast and could speak.",
+        wiki: "https://en.wikipedia.org/wiki/Arion_(horse)"
+    },
+    {
+        question: "Why did Demeter transform into a mare?",
+        options: ["To escape Poseidon", "Just for fun", "Due to a curse", "To race others"],
+        correct: 0,
+        funFact: "Poseidon became a stallion and caught her anyway. This dark myth shows gods' power over other gods.",
+        wiki: "https://en.wikipedia.org/wiki/Demeter"
+    },
+    {
+        question: "Who was Despoina?",
+        options: ["A secret goddess", "A fierce Titaness", "An Amazon queen", "A forest nymph"],
+        correct: 0,
+        funFact: "Despoina's true name was revealed only to initiates of her mysteries in Arcadia.",
+        wiki: "https://en.wikipedia.org/wiki/Despoina"
+    },
+    {
+        question: "What were the Cabeiri?",
+        options: ["Mystery cult deities", "Primordial Giants", "Fallen Titans", "Forge Cyclopes"],
+        correct: 0,
+        funFact: "The Cabeiric mysteries promised protection at sea. Many sailors were initiated.",
+        wiki: "https://en.wikipedia.org/wiki/Cabeiri"
+    },
+    {
+        question: "What mystery cult was associated with Eleusis?",
+        options: ["Eleusinian Mysteries", "Orphic mysteries", "Dionysiac mysteries", "Cabeiric mysteries"],
+        correct: 0,
+        funFact: "These were the most famous Greek mysteries. Initiation promised a better afterlife.",
+        wiki: "https://en.wikipedia.org/wiki/Eleusinian_Mysteries"
+    },
+    {
+        question: "What was shown to initiates at the climax of the Eleusinian Mysteries?",
+        options: ["Unknown still", "Sacred fire", "A holy statue", "The goddess herself"],
+        correct: 0,
+        funFact: "Despite thousands of initiates, including emperors, no one ever revealed the secret.",
+        wiki: "https://en.wikipedia.org/wiki/Eleusinian_Mysteries"
+    },
+    {
+        question: "Who could be initiated into the Eleusinian Mysteries?",
+        options: ["Most Greek speakers", "Only noble elites", "Only Greek men", "Only Greek women"],
+        correct: 0,
+        funFact: "The mysteries were remarkably inclusive for their time - slaves, women, and foreigners could join.",
+        wiki: "https://en.wikipedia.org/wiki/Eleusinian_Mysteries"
+    },
+    {
+        question: "What happened during the Lesser Mysteries?",
+        options: ["Purification rites", "Animal sacrifice", "Athletic games", "Public feasting"],
+        correct: 0,
+        funFact: "The Lesser Mysteries at Agrae prepared initiates. The Greater Mysteries at Eleusis were the main event.",
+        wiki: "https://en.wikipedia.org/wiki/Eleusinian_Mysteries"
+    },
+    {
+        question: "What was the kykeon?",
+        options: ["A ritual drink", "A sacred prayer", "A holy dance", "A burnt sacrifice"],
+        correct: 0,
+        funFact: "Made of barley, water, and pennyroyal, kykeon may have contained psychoactive ergot.",
+        wiki: "https://en.wikipedia.org/wiki/Kykeon"
+    },
+    {
+        question: "Who profaned the Mysteries and was condemned?",
+        options: ["Alcibiades", "Socrates", "Plato", "Pericles"],
+        correct: 0,
+        funFact: "Alcibiades was accused of performing mock mysteries at a party. This led to his exile during the Sicilian Expedition.",
+        wiki: "https://en.wikipedia.org/wiki/Alcibiades"
+    },
+    {
+        question: "What god was 'married' to the wife of the Athenian archon?",
+        options: ["Dionysus", "Zeus", "Apollo", "Poseidon"],
+        correct: 0,
+        funFact: "This sacred marriage (hieros gamos) ensured the city's fertility.",
+        wiki: "https://en.wikipedia.org/wiki/Anthesteria"
+    },
+    {
+        question: "What was the Panathenaea?",
+        options: ["Athena's festival", "A mystery cult", "A state funeral", "A royal wedding"],
+        correct: 0,
+        funFact: "Every four years, the Greater Panathenaea featured games, processions, and a new robe for Athena's statue.",
+        wiki: "https://en.wikipedia.org/wiki/Panathenaic_Games"
+    },
+    {
+        question: "What was depicted on the Parthenon frieze?",
+        options: ["The Panathenaic procession", "The Trojan War", "The gods on Olympus", "The birth of Athena"],
+        correct: 0,
+        funFact: "The frieze showed Athenians bringing the peplos (robe) to Athena - mortals on a divine temple.",
+        wiki: "https://en.wikipedia.org/wiki/Parthenon_Frieze"
+    },
+    {
+        question: "What was the peplos offered to Athena?",
+        options: ["A sacred robe", "A gold crown", "A divine weapon", "A burnt sacrifice"],
+        correct: 0,
+        funFact: "Young women wove this enormous robe for years. It dressed Athena's ancient wooden statue.",
+        wiki: "https://en.wikipedia.org/wiki/Peplos"
+    },
+    {
+        question: "What was the xoanon?",
+        options: ["A wooden cult image", "A ceremonial weapon", "A temple building", "A burnt offering"],
+        correct: 0,
+        funFact: "These primitive wooden statues were the holiest images - believed to have fallen from heaven.",
+        wiki: "https://en.wikipedia.org/wiki/Xoanon"
+    },
+    {
+        question: "What was housed in the Erechtheion on the Acropolis?",
+        options: ["Sacred relics of Athena and Poseidon", "The great throne of Zeus", "Apollo's golden lyre", "Hera's immortal peacocks"],
+        correct: 0,
+        funFact: "This temple preserved the marks of their contest for Athens - the spring and the sacred olive.",
+        wiki: "https://en.wikipedia.org/wiki/Erechtheion"
+    },
+    {
+        question: "What was the Caryatid porch of the Erechtheion?",
+        options: ["Maiden-shaped columns", "A sacred garden", "A temple treasury", "A sacrificial altar"],
+        correct: 0,
+        funFact: "Six maidens still stand today - one was taken by Lord Elgin. They may represent the women of Caryae.",
+        wiki: "https://en.wikipedia.org/wiki/Caryatid"
+    },
+    // === MONSTERS EXTENDED - 200 NEW QUESTIONS ===
+    {
+        question: "How many Gorgon sisters were there in Greek mythology?",
+        options: ["Two", "Three", "Four", "Five"],
+        correct: 1,
+        funFact: "The three Gorgons were Stheno, Euryale, and Medusa. Only Medusa was mortal.",
+        wiki: "https://en.wikipedia.org/wiki/Gorgon"
+    },
+    {
+        question: "What were the names of Medusa's immortal Gorgon sisters?",
+        options: ["Stheno and Euryale", "Clotho and Lachesis", "Tisiphone and Alecto", "Selene and Eos"],
+        correct: 0,
+        funFact: "Stheno means 'strength' and Euryale means 'wide-stepping'. They mourned Medusa eternally.",
+        wiki: "https://en.wikipedia.org/wiki/Stheno"
+    },
+    {
+        question: "Who were the parents of the Gorgons?",
+        options: ["Zeus and Hera", "Phorcys and Ceto", "Typhon and Echidna", "Poseidon and Amphitrite"],
+        correct: 1,
+        funFact: "Phorcys and Ceto were ancient sea deities who spawned many monsters of Greek myth.",
+        wiki: "https://en.wikipedia.org/wiki/Phorcys"
+    },
+    {
+        question: "What creature was Echidna, mother of monsters, described as?",
+        options: ["Full serpent", "Half-woman, half-snake", "Dragon", "Giant spider"],
+        correct: 1,
+        funFact: "Echidna was beautiful above the waist but a serpent below. She lived in a cave and lured men to their doom.",
+        wiki: "https://en.wikipedia.org/wiki/Echidna_(mythology)"
+    },
+    {
+        question: "Who was Typhon in Greek mythology?",
+        options: ["A fallen Titan", "Father of monsters", "A primordial giant", "A powerful centaur"],
+        correct: 1,
+        funFact: "Typhon was so powerful that all the gods except Zeus fled to Egypt. He had a hundred dragon heads.",
+        wiki: "https://en.wikipedia.org/wiki/Typhon"
+    },
+    {
+        question: "Where did Zeus imprison Typhon after defeating him?",
+        options: ["Tartarus", "Under Mount Etna", "In the sea", "In Hades"],
+        correct: 1,
+        funFact: "Mount Etna's eruptions were said to be Typhon's fiery breath as he struggled beneath the mountain.",
+        wiki: "https://en.wikipedia.org/wiki/Typhon#Mythology"
+    },
+    {
+        question: "Which monster was the offspring of Typhon and Echidna and guarded the Golden Fleece?",
+        options: ["Ladon", "Colchian Dragon", "Python", "Campe"],
+        correct: 1,
+        funFact: "The Colchian Dragon never slept and had teeth that could be sown to grow warriors.",
+        wiki: "https://en.wikipedia.org/wiki/Colchian_dragon"
+    },
+    {
+        question: "What was the Colchian Dragon's distinguishing feature?",
+        options: ["Multiple heads", "It never slept", "Wings of gold", "Fire breath"],
+        correct: 1,
+        funFact: "Medea used magic herbs to put the sleepless dragon to sleep so Jason could steal the fleece.",
+        wiki: "https://en.wikipedia.org/wiki/Colchian_dragon"
+    },
+    {
+        question: "Who was the hundred-headed dragon that guarded the golden apples of the Hesperides?",
+        options: ["Python", "Ladon", "Typhon", "Draco"],
+        correct: 1,
+        funFact: "After Heracles killed Ladon, Hera placed him in the sky as the constellation Draco.",
+        wiki: "https://en.wikipedia.org/wiki/Ladon_(mythology)"
+    },
+    {
+        question: "What monster did Apollo slay at Delphi to establish his oracle?",
+        options: ["Typhon", "Python", "Ladon", "Campe"],
+        correct: 1,
+        funFact: "Python was a massive serpent born from the mud after the great flood. The Pythian Games honored this victory.",
+        wiki: "https://en.wikipedia.org/wiki/Python_(mythology)"
+    },
+    {
+        question: "What was Scylla before she became a monster?",
+        options: ["A goddess", "A beautiful nymph", "A Titan", "A mortal queen"],
+        correct: 1,
+        funFact: "Circe transformed Scylla out of jealousy when Glaucus fell in love with her instead of Circe.",
+        wiki: "https://en.wikipedia.org/wiki/Scylla"
+    },
+    {
+        question: "How many heads did Scylla have?",
+        options: ["Three", "Six", "Nine", "Twelve"],
+        correct: 1,
+        funFact: "Each of Scylla's six heads had three rows of teeth. She would snatch sailors from passing ships.",
+        wiki: "https://en.wikipedia.org/wiki/Scylla"
+    },
+    {
+        question: "What was Charybdis?",
+        options: ["A sea serpent", "A whirlpool monster", "A giant squid", "A siren"],
+        correct: 1,
+        funFact: "Charybdis swallowed and regurgitated the sea three times daily. She was once a naiad cursed by Zeus.",
+        wiki: "https://en.wikipedia.org/wiki/Charybdis"
+    },
+    {
+        question: "Why was Charybdis punished by Zeus?",
+        options: ["She stole his thunderbolt", "She flooded lands for Poseidon", "She helped the Titans", "She insulted Hera"],
+        correct: 1,
+        funFact: "Charybdis was so greedy she helped Poseidon flood lands, angering Zeus who turned her into a whirlpool.",
+        wiki: "https://en.wikipedia.org/wiki/Charybdis"
+    },
+    {
+        question: "What expression comes from Scylla and Charybdis?",
+        options: ["Between a rock and a hard place", "Calm before the storm", "Sink or swim", "In deep water"],
+        correct: 0,
+        funFact: "Being caught between Scylla and Charybdis meant facing two equally dangerous choices.",
+        wiki: "https://en.wikipedia.org/wiki/Between_Scylla_and_Charybdis"
+    },
+    {
+        question: "What was Cetus in Greek mythology?",
+        options: ["A kraken beast", "A devouring sea monster", "A massive whale", "A giant sea serpent"],
+        correct: 1,
+        funFact: "Poseidon sent Cetus to ravage Ethiopia after Cassiopeia boasted she was more beautiful than the Nereids.",
+        wiki: "https://en.wikipedia.org/wiki/Cetus_(mythology)"
+    },
+    {
+        question: "How did Perseus kill Cetus?",
+        options: ["With his sword", "With Medusa's head", "With Poseidon's trident", "By drowning it"],
+        correct: 1,
+        funFact: "Perseus turned Cetus to stone by showing it Medusa's severed head, saving Andromeda.",
+        wiki: "https://en.wikipedia.org/wiki/Cetus_(mythology)"
+    },
+    {
+        question: "What were the Graeae also known as?",
+        options: ["The Gray Sisters", "The Old Women", "The Blind Ones", "The Sea Hags"],
+        correct: 0,
+        funFact: "The Graeae were born as old women and shared one eye and one tooth among them.",
+        wiki: "https://en.wikipedia.org/wiki/Graeae"
+    },
+    {
+        question: "How many Graeae sisters were there?",
+        options: ["Two", "Three", "Four", "Five"],
+        correct: 1,
+        funFact: "The three Graeae were Deino (dread), Enyo (horror), and Pemphredo (alarm).",
+        wiki: "https://en.wikipedia.org/wiki/Graeae"
+    },
+    {
+        question: "What was Orthrus?",
+        options: ["A two-headed dog", "A three-headed dog", "A giant wolf", "A hellhound"],
+        correct: 0,
+        funFact: "Orthrus was Cerberus's two-headed brother and guarded Geryon's cattle. Heracles killed him.",
+        wiki: "https://en.wikipedia.org/wiki/Orthrus"
+    },
+    {
+        question: "How many heads did the original Cerberus have in the earliest myths?",
+        options: ["Three", "Fifty", "One hundred", "Two"],
+        correct: 1,
+        funFact: "Hesiod described Cerberus with fifty heads. The three-headed version became standard later.",
+        wiki: "https://en.wikipedia.org/wiki/Cerberus"
+    },
+    {
+        question: "What grew on Cerberus's back according to some myths?",
+        options: ["Wings", "Snakes", "Spines", "Flames"],
+        correct: 1,
+        funFact: "Cerberus was often depicted with a mane of serpents and a snake for a tail.",
+        wiki: "https://en.wikipedia.org/wiki/Cerberus"
+    },
+    {
+        question: "Who besides Heracles managed to get past Cerberus?",
+        options: ["Orpheus", "Theseus", "Perseus", "Jason"],
+        correct: 0,
+        funFact: "Orpheus lulled Cerberus to sleep with his music when he descended to rescue Eurydice.",
+        wiki: "https://en.wikipedia.org/wiki/Cerberus#Mythology"
+    },
+    {
+        question: "What was the Sphinx's body composed of?",
+        options: ["Lion, woman, and wings", "Snake body, woman head", "Horse body, woman head", "Bull body, woman head"],
+        correct: 0,
+        funFact: "The Greek Sphinx differed from Egyptian ones by having wings and being female.",
+        wiki: "https://en.wikipedia.org/wiki/Sphinx#Greek_sphinx"
+    },
+    {
+        question: "Who sent the Sphinx to terrorize Thebes?",
+        options: ["Zeus", "Hera", "Athena", "Apollo"],
+        correct: 1,
+        funFact: "Hera sent the Sphinx to punish Thebes for not properly atoning for a crime against the gods.",
+        wiki: "https://en.wikipedia.org/wiki/Sphinx#Greek_traditions"
+    },
+    {
+        question: "What happened to the Sphinx when Oedipus answered her riddle correctly?",
+        options: ["She flew away", "She killed herself", "She turned to stone", "She became human"],
+        correct: 1,
+        funFact: "The Sphinx threw herself from a cliff when Oedipus solved her riddle, ending her terror.",
+        wiki: "https://en.wikipedia.org/wiki/Sphinx#The_riddle_of_the_Sphinx"
+    },
+    {
+        question: "Which creature had a lion's head, goat's body, and serpent's tail?",
+        options: ["Manticore", "Chimera", "Griffin", "Sphinx"],
+        correct: 1,
+        funFact: "The Chimera breathed fire and was virtually invincible until Bellerophon killed her.",
+        wiki: "https://en.wikipedia.org/wiki/Chimera_(mythology)"
+    },
+    {
+        question: "How did Bellerophon kill the Chimera?",
+        options: ["Shot arrows from Pegasus", "With a lead-tipped spear", "Cut off all its heads", "Drowned it in the sea"],
+        correct: 1,
+        funFact: "The lead melted from the Chimera's fire breath and burned its insides, killing it.",
+        wiki: "https://en.wikipedia.org/wiki/Chimera_(mythology)#Bellerophon"
+    },
+    {
+        question: "What was the Griffin (Gryphon)?",
+        options: ["Eagle head and wings, lion body", "Horse with wings", "Lion with eagle wings", "Dragon with feathers"],
+        correct: 0,
+        funFact: "Griffins guarded gold deposits and treasures. They were sacred to Apollo.",
+        wiki: "https://en.wikipedia.org/wiki/Griffin"
+    },
+    {
+        question: "What were Griffins said to guard in Scythia?",
+        options: ["Silver mines", "Gold deposits", "Diamond caves", "Sacred temples"],
+        correct: 1,
+        funFact: "The Arimaspians, a one-eyed people, constantly battled griffins for the gold they protected.",
+        wiki: "https://en.wikipedia.org/wiki/Griffin#Greco-Roman_tradition"
+    },
+    {
+        question: "What was a Hippogriff?",
+        options: ["Half horse, half griffin", "Half hippo, half griffin", "Half horse, half eagle", "Half horse, half lion"],
+        correct: 0,
+        funFact: "The Hippogriff was said to be even rarer than griffins because griffins supposedly hated horses.",
+        wiki: "https://en.wikipedia.org/wiki/Hippogriff"
+    },
+    {
+        question: "What were the Harpies?",
+        options: ["Beautiful singing maidens", "Bird-bodied wind spirits", "Oceanic sea nymphs", "Underworld death goddesses"],
+        correct: 1,
+        funFact: "Harpies snatched food and left a terrible stench. Their name means 'snatchers.'",
+        wiki: "https://en.wikipedia.org/wiki/Harpy"
+    },
+    {
+        question: "How many Harpies were there originally?",
+        options: ["Two", "Three", "Five", "Seven"],
+        correct: 0,
+        funFact: "The original Harpies were Aello (storm swift) and Ocypete (swift wing). Later myths added more.",
+        wiki: "https://en.wikipedia.org/wiki/Harpy"
+    },
+    {
+        question: "Who was tormented by the Harpies for revealing Zeus's secrets?",
+        options: ["Tantalus", "Sisyphus", "Phineus", "Prometheus"],
+        correct: 2,
+        funFact: "King Phineus was blinded and the Harpies stole or defiled his food. The Argonauts freed him.",
+        wiki: "https://en.wikipedia.org/wiki/Phineus"
+    },
+    {
+        question: "Who drove away the Harpies from Phineus?",
+        options: ["Heracles himself", "The winged Boreads", "Jason their leader", "Orpheus the singer"],
+        correct: 1,
+        funFact: "Calais and Zetes, the winged sons of Boreas, chased the Harpies but were forbidden from killing them.",
+        wiki: "https://en.wikipedia.org/wiki/Boreads"
+    },
+    {
+        question: "What were the Sirens in Greek mythology?",
+        options: ["Fish-tailed mermaids", "Deadly singing bird-women", "Giant sea serpents", "Freshwater nymphs"],
+        correct: 1,
+        funFact: "The Sirens were originally depicted as bird-women, not mermaids as in later traditions.",
+        wiki: "https://en.wikipedia.org/wiki/Siren_(mythology)"
+    },
+    {
+        question: "How did Odysseus survive the Sirens' song?",
+        options: ["He wore wax earplugs", "He was bound to the mast", "He outsung their voices", "He sailed past at night"],
+        correct: 1,
+        funFact: "Odysseus wanted to hear their song, so he had his crew bind him to the mast while they plugged their ears with beeswax.",
+        wiki: "https://en.wikipedia.org/wiki/Siren_(mythology)#Odyssey"
+    },
+    {
+        question: "How did the Argonauts survive the Sirens?",
+        options: ["They wore earplugs", "Orpheus played louder than they sang", "They sailed too fast", "They attacked them"],
+        correct: 1,
+        funFact: "Orpheus's music was so beautiful it drowned out the Sirens' deadly song, saving the crew.",
+        wiki: "https://en.wikipedia.org/wiki/Siren_(mythology)#Argonautica"
+    },
+    {
+        question: "What happened to the Sirens if someone resisted their song?",
+        options: ["They attacked", "They died", "They flew away", "They turned to stone"],
+        correct: 1,
+        funFact: "It was prophesied the Sirens would die if anyone escaped their song. They drowned themselves after Odysseus passed.",
+        wiki: "https://en.wikipedia.org/wiki/Siren_(mythology)#Death"
+    },
+    {
+        question: "What were the Empousai?",
+        options: ["Deadly sea monsters", "Bronze-legged demons", "Winged harpy spirits", "Avenging Furies"],
+        correct: 1,
+        funFact: "Empousai seduced young men and then drank their blood. They served Hecate.",
+        wiki: "https://en.wikipedia.org/wiki/Empusa"
+    },
+    {
+        question: "What goddess did the Empousai serve?",
+        options: ["Artemis", "Hecate", "Persephone", "Nyx"],
+        correct: 1,
+        funFact: "Hecate was goddess of witchcraft and crossroads, commanding various nocturnal demons.",
+        wiki: "https://en.wikipedia.org/wiki/Empusa"
+    },
+    {
+        question: "What was Lamia in Greek mythology?",
+        options: ["A deadly sea serpent", "A child-eating monster", "A winged harpy", "A snake-haired gorgon"],
+        correct: 1,
+        funFact: "Lamia was a Libyan queen whose children were killed by Hera. She went mad and now devours others' children.",
+        wiki: "https://en.wikipedia.org/wiki/Lamia"
+    },
+    {
+        question: "What unusual ability did Lamia have regarding her eyes?",
+        options: ["She could see in darkness", "She could remove them", "She had a third eye", "Her gaze petrified victims"],
+        correct: 1,
+        funFact: "Lamia could remove her eyes and put them back. Some say this was so she could rest from seeing her crimes.",
+        wiki: "https://en.wikipedia.org/wiki/Lamia"
+    },
+    {
+        question: "What were the Mormo?",
+        options: ["Deep sea creatures", "Child-biting spirits", "Mountain-dwelling giants", "Fresh-water nymphs"],
+        correct: 1,
+        funFact: "Greek mothers used the Mormo as a bogeywoman to frighten children into behaving.",
+        wiki: "https://en.wikipedia.org/wiki/Mormo"
+    },
+    {
+        question: "What was the Manticore?",
+        options: ["Lion-bodied man-eater", "Eagle-bodied hybrid", "Horse-tailed sea beast", "Bull-bodied monster"],
+        correct: 0,
+        funFact: "The Manticore originated in Persian myth but was adopted by the Greeks. Its name means 'man-eater.'",
+        wiki: "https://en.wikipedia.org/wiki/Manticore"
+    },
+    {
+        question: "What could the Manticore shoot from its tail?",
+        options: ["Fire", "Poison spines", "Lightning", "Acid"],
+        correct: 1,
+        funFact: "The Manticore could shoot venomous spines from its tail like arrows at its prey.",
+        wiki: "https://en.wikipedia.org/wiki/Manticore"
+    },
+    {
+        question: "How many rows of teeth did the Manticore have?",
+        options: ["Two", "Three", "Four", "Five"],
+        correct: 1,
+        funFact: "The Manticore had three rows of sharp teeth like a shark, able to devour prey bones and all.",
+        wiki: "https://en.wikipedia.org/wiki/Manticore"
+    },
+    {
+        question: "What was a Centaur?",
+        options: ["Half man, half horse", "Half man, half bull", "Half man, half goat", "Half man, half fish"],
+        correct: 0,
+        funFact: "Centaurs were wild and lawless, known for drinking and violence, with few exceptions like Chiron.",
+        wiki: "https://en.wikipedia.org/wiki/Centaur"
+    },
+    {
+        question: "Who was the wisest and most civilized of the Centaurs?",
+        options: ["Nessus", "Pholus", "Chiron", "Eurytion"],
+        correct: 2,
+        funFact: "Chiron tutored many heroes including Achilles, Jason, and Asclepius. He was immortal unlike other centaurs.",
+        wiki: "https://en.wikipedia.org/wiki/Chiron"
+    },
+    {
+        question: "Why was Chiron different from other Centaurs?",
+        options: ["He had divine parentage", "He was blessed by Zeus", "He consumed ambrosia", "Athena created him"],
+        correct: 0,
+        funFact: "Chiron's parents were the Titan Cronus and the nymph Philyra, making him a different race entirely.",
+        wiki: "https://en.wikipedia.org/wiki/Chiron"
+    },
+    {
+        question: "How did Chiron die despite being immortal?",
+        options: ["Zeus struck him down", "He traded immortality away", "Heracles killed him", "He chose mortal death"],
+        correct: 1,
+        funFact: "Wounded by Heracles' poisoned arrow and in eternal pain, Chiron traded his immortality to free Prometheus.",
+        wiki: "https://en.wikipedia.org/wiki/Chiron#Death"
+    },
+    {
+        question: "What started the battle between the Lapiths and Centaurs?",
+        options: ["A territorial land dispute", "Centaurs attacking a wedding", "A fatal hunting accident", "Theft of sacred horses"],
+        correct: 1,
+        funFact: "Drunk centaurs tried to carry off the bride and other women at the wedding of Pirithous, starting a war.",
+        wiki: "https://en.wikipedia.org/wiki/Centauromachy"
+    },
+    {
+        question: "Which Centaur poisoned Heracles through deception?",
+        options: ["Chiron", "Nessus", "Pholus", "Eurytion"],
+        correct: 1,
+        funFact: "Dying Nessus told Deianira his blood was a love potion. She later used it on Heracles, killing him.",
+        wiki: "https://en.wikipedia.org/wiki/Nessus_(mythology)"
+    },
+    {
+        question: "What was a Satyr in Greek mythology?",
+        options: ["A goat-legged reveler", "A horse-bodied hybrid", "A fish-tailed creature", "A bird-winged being"],
+        correct: 0,
+        funFact: "Satyrs were companions of Dionysus, known for their love of wine, music, and wild behavior.",
+        wiki: "https://en.wikipedia.org/wiki/Satyr"
+    },
+    {
+        question: "Who was Silenus?",
+        options: ["The king of Satyrs", "A powerful river god", "An ancient Titan", "A mortal hero"],
+        correct: 0,
+        funFact: "Silenus was often depicted as drunk and riding a donkey, but he possessed great wisdom when sober.",
+        wiki: "https://en.wikipedia.org/wiki/Silenus"
+    },
+    {
+        question: "What did Silenus tell King Midas about the best fate for humans?",
+        options: ["To acquire great wealth", "Never to be born at all", "To gain ultimate power", "To achieve true wisdom"],
+        correct: 1,
+        funFact: "Silenus's pessimistic wisdom said the best thing was never to be born, second best to die young.",
+        wiki: "https://en.wikipedia.org/wiki/Silenus#Midas"
+    },
+    {
+        question: "What was Pan?",
+        options: ["A goat-legged nature god", "An ancient Titan deity", "A powerful river god", "A fearsome monster"],
+        correct: 0,
+        funFact: "Pan caused 'panic' - sudden, irrational fear. His scream could terrify armies.",
+        wiki: "https://en.wikipedia.org/wiki/Pan_(god)"
+    },
+    {
+        question: "Which nymph did Pan pursue, who turned into reeds?",
+        options: ["Echo", "Daphne", "Syrinx", "Pitys"],
+        correct: 2,
+        funFact: "When Syrinx transformed into reeds, Pan made the first pan pipes from them to keep her song.",
+        wiki: "https://en.wikipedia.org/wiki/Syrinx"
+    },
+    {
+        question: "What were the Cyclopes known for crafting?",
+        options: ["Divine weapons for the gods", "Shields and swords", "Sacred temple structures", "Warships for battles"],
+        correct: 0,
+        funFact: "The three original Cyclopes were master smiths who forged the gods' greatest weapons.",
+        wiki: "https://en.wikipedia.org/wiki/Cyclopes"
+    },
+    {
+        question: "How many types of Cyclopes were there in Greek myth?",
+        options: ["One", "Two", "Three", "Four"],
+        correct: 2,
+        funFact: "There were divine smiths (Uranus's sons), savage giants (Polyphemus's kin), and builder Cyclopes (wall-makers).",
+        wiki: "https://en.wikipedia.org/wiki/Cyclopes#Types"
+    },
+    {
+        question: "Who were the three original Cyclopes, children of Uranus?",
+        options: ["Brontes, Steropes, Arges", "Polyphemus, Telemus, Acis", "Atlas, Prometheus, Epimetheus", "Cottus, Briareus, Gyges"],
+        correct: 0,
+        funFact: "Their names meant Thunder, Lightning, and Bright - elements of Zeus's thunderbolt.",
+        wiki: "https://en.wikipedia.org/wiki/Cyclopes#Hesiodic_and_later_Cyclopes"
+    },
+    {
+        question: "Which Cyclops did Odysseus blind?",
+        options: ["Brontes", "Polyphemus", "Arges", "Steropes"],
+        correct: 1,
+        funFact: "Polyphemus was Poseidon's son. Blinding him earned Odysseus the god's wrath for his journey home.",
+        wiki: "https://en.wikipedia.org/wiki/Polyphemus"
+    },
+    {
+        question: "What name did Odysseus give Polyphemus to trick him?",
+        options: ["Nobody", "Nothing", "No man", "Never"],
+        correct: 0,
+        funFact: "When Polyphemus cried that 'Nobody' hurt him, the other Cyclopes didn't come to help.",
+        wiki: "https://en.wikipedia.org/wiki/Polyphemus#Odyssey"
+    },
+    {
+        question: "How did Odysseus and his men escape Polyphemus's cave?",
+        options: ["Fighting their way out", "Hiding under sheep", "Climbing out a hole", "Digging a tunnel"],
+        correct: 1,
+        funFact: "They clung to the undersides of Polyphemus's sheep as he let them out to graze.",
+        wiki: "https://en.wikipedia.org/wiki/Polyphemus#Odyssey"
+    },
+    {
+        question: "What were the Hecatoncheires?",
+        options: ["Hundred-handed giants", "Deep sea monsters", "Powerful wind spirits", "Underworld fire demons"],
+        correct: 0,
+        funFact: "The Hundred-Handed Ones were so terrifying that Uranus imprisoned them in Tartarus at birth.",
+        wiki: "https://en.wikipedia.org/wiki/Hecatoncheires"
+    },
+    {
+        question: "How many Hecatoncheires were there?",
+        options: ["Two", "Three", "Four", "Five"],
+        correct: 1,
+        funFact: "Cottus, Briareus, and Gyges helped Zeus defeat the Titans by throwing hundreds of boulders at once.",
+        wiki: "https://en.wikipedia.org/wiki/Hecatoncheires"
+    },
+    {
+        question: "What role did the Hecatoncheires play after the Titanomachy?",
+        options: ["They ruled on Olympus", "They guarded Tartarus", "They became mortal beings", "They returned to the sea"],
+        correct: 1,
+        funFact: "Zeus appointed the Hecatoncheires as eternal guards of the defeated Titans in Tartarus.",
+        wiki: "https://en.wikipedia.org/wiki/Hecatoncheires#Role_in_mythology"
+    },
+    {
+        question: "What were the Gigantes (Giants)?",
+        options: ["Earth-born Olympian foes", "The elder Titans", "Half-divine demigods", "Monstrous sea creatures"],
+        correct: 0,
+        funFact: "The Giants were born from Gaia's blood when Cronus castrated Uranus. They had serpent legs.",
+        wiki: "https://en.wikipedia.org/wiki/Giants_(Greek_mythology)"
+    },
+    {
+        question: "What was the Gigantomachy?",
+        options: ["Titans versus Olympians", "Giants versus Olympians", "Mortals versus gods", "Monsters versus heroes"],
+        correct: 1,
+        funFact: "The Giants could only be killed by a combined effort of a god and a mortal, so Heracles was essential.",
+        wiki: "https://en.wikipedia.org/wiki/Gigantomachy"
+    },
+    {
+        question: "Which Giant was the most powerful enemy of Zeus?",
+        options: ["Alcyoneus", "Enceladus", "Porphyrion", "Polybotes"],
+        correct: 2,
+        funFact: "Porphyrion, king of Giants, attacked Hera and was struck down by Zeus and Heracles together.",
+        wiki: "https://en.wikipedia.org/wiki/Porphyrion"
+    },
+    {
+        question: "What island did Athena throw on the Giant Enceladus?",
+        options: ["Crete", "Sicily", "Cyprus", "Rhodes"],
+        correct: 1,
+        funFact: "Sicily's volcanic activity was said to be Enceladus struggling beneath the island.",
+        wiki: "https://en.wikipedia.org/wiki/Enceladus_(mythology)"
+    },
+    {
+        question: "What were the Aloadae?",
+        options: ["Beautiful sea nymphs", "Heaven-storming twin giants", "Powerful river gods", "Tempestuous wind spirits"],
+        correct: 1,
+        funFact: "Otus and Ephialtes grew nine inches every month and tried to stack mountains to reach heaven.",
+        wiki: "https://en.wikipedia.org/wiki/Aloadae"
+    },
+    {
+        question: "How did the Aloadae plan to reach Mount Olympus?",
+        options: ["Building a great tower", "Stacking mountains high", "Flying up on wings", "Climbing a cosmic tree"],
+        correct: 1,
+        funFact: "They planned to pile Pelion on Ossa on Olympus. This myth gave us the phrase 'piling Pelion on Ossa.'",
+        wiki: "https://en.wikipedia.org/wiki/Aloadae"
+    },
+    {
+        question: "How were the Aloadae killed?",
+        options: ["Zeus struck them down", "They killed each other accidentally", "Heracles slew them", "They starved"],
+        correct: 1,
+        funFact: "Artemis ran between them as a deer. Each brother threw a spear at it and killed the other.",
+        wiki: "https://en.wikipedia.org/wiki/Aloadae#Mythology"
+    },
+    {
+        question: "Who was Antaeus?",
+        options: ["A one-eyed Cyclops", "An earth-powered giant", "An elder Titan", "A mighty sea god"],
+        correct: 1,
+        funFact: "Antaeus forced travelers to wrestle and was invincible while touching the ground. Heracles lifted and crushed him.",
+        wiki: "https://en.wikipedia.org/wiki/Antaeus"
+    },
+    {
+        question: "Who was Antaeus's divine parent?",
+        options: ["Zeus", "Poseidon", "Gaia", "Hera"],
+        correct: 2,
+        funFact: "As Gaia's son, Antaeus drew strength from his mother Earth. Heracles won by holding him aloft.",
+        wiki: "https://en.wikipedia.org/wiki/Antaeus"
+    },
+    {
+        question: "What was Talos?",
+        options: ["A giant bronze automaton", "A sea monster", "A dragon", "A giant"],
+        correct: 0,
+        funFact: "Talos was a bronze robot made by Hephaestus to guard Crete. He threw boulders at ships.",
+        wiki: "https://en.wikipedia.org/wiki/Talos"
+    },
+    {
+        question: "How was Talos killed?",
+        options: ["Heracles destroyed him", "Medea removed his bolt", "Zeus struck him down", "He fell into the sea"],
+        correct: 1,
+        funFact: "Talos had one vein of ichor sealed by a bronze nail in his ankle. Medea used magic to remove it.",
+        wiki: "https://en.wikipedia.org/wiki/Talos#Death"
+    },
+    {
+        question: "How many times did Talos circle Crete each day?",
+        options: ["Once", "Twice", "Three times", "Four times"],
+        correct: 2,
+        funFact: "Talos patrolled Crete three times daily, making it impossible for invaders to land safely.",
+        wiki: "https://en.wikipedia.org/wiki/Talos"
+    },
+    {
+        question: "What was the Minotaur's actual name?",
+        options: ["Minotaur", "Asterion", "Taurus", "Minos"],
+        correct: 1,
+        funFact: "Asterion means 'starry one.' Minotaur simply means 'Bull of Minos.'",
+        wiki: "https://en.wikipedia.org/wiki/Minotaur"
+    },
+    {
+        question: "Who was the Minotaur's mother?",
+        options: ["Europa", "Pasiphaë", "Ariadne", "Phaedra"],
+        correct: 1,
+        funFact: "Pasiphaë was cursed by Poseidon to desire a bull. Daedalus built a wooden cow for her to hide in.",
+        wiki: "https://en.wikipedia.org/wiki/Pasiphaë"
+    },
+    {
+        question: "Why did Poseidon curse Pasiphaë?",
+        options: ["She had insulted him", "Minos kept his sacred bull", "She rejected his advances", "She stole temple treasures"],
+        correct: 1,
+        funFact: "Minos asked Poseidon for a bull to sacrifice but kept the beautiful creature. The curse was Poseidon's revenge.",
+        wiki: "https://en.wikipedia.org/wiki/Cretan_Bull"
+    },
+    {
+        question: "What did the Minotaur eat?",
+        options: ["Cattle from Crete", "Human sacrifices", "Fish from the sea", "Sacred grain only"],
+        correct: 1,
+        funFact: "Athens sent seven young men and seven young women as tribute every nine years to feed the Minotaur.",
+        wiki: "https://en.wikipedia.org/wiki/Minotaur"
+    },
+    {
+        question: "Who designed the Labyrinth that held the Minotaur?",
+        options: ["Hephaestus", "Daedalus", "Minos", "Athena"],
+        correct: 1,
+        funFact: "Daedalus made the Labyrinth so complex that he himself could barely escape it.",
+        wiki: "https://en.wikipedia.org/wiki/Daedalus"
+    },
+    {
+        question: "What was the Cretan Bull?",
+        options: ["The monster Minotaur", "The Minotaur's father", "A sacred bronze statue", "A celestial constellation"],
+        correct: 1,
+        funFact: "This bull was captured by Heracles as his seventh labor and later terrorized Marathon until Theseus killed it.",
+        wiki: "https://en.wikipedia.org/wiki/Cretan_Bull"
+    },
+    {
+        question: "What was the Lernaean Hydra's lair?",
+        options: ["A dark cave", "A deadly swamp", "A dense forest", "A remote island"],
+        correct: 1,
+        funFact: "The Hydra guarded an entrance to the Underworld beneath the waters of Lake Lerna.",
+        wiki: "https://en.wikipedia.org/wiki/Lernaean_Hydra"
+    },
+    {
+        question: "What made the Hydra's blood so dangerous?",
+        options: ["It was highly acidic", "It was deadly poison", "It carried a curse", "It spawned new hydras"],
+        correct: 1,
+        funFact: "Heracles dipped his arrows in Hydra blood, making even small wounds fatal. This eventually killed him too.",
+        wiki: "https://en.wikipedia.org/wiki/Lernaean_Hydra"
+    },
+    {
+        question: "What sent a giant crab to help the Hydra fight Heracles?",
+        options: ["Poseidon", "Hera", "Ares", "Gaia"],
+        correct: 1,
+        funFact: "Hera sent the crab Carcinus to distract Heracles. He crushed it, and Hera placed it in the sky as Cancer.",
+        wiki: "https://en.wikipedia.org/wiki/Cancer_(constellation)#Mythology"
+    },
+    {
+        question: "What was the Nemean Lion's origin?",
+        options: ["Born of Typhon", "Fell from the moon", "Created by Hera", "Fathered by Zeus"],
+        correct: 1,
+        funFact: "Some myths say the Nemean Lion fell from the moon goddess Selene. Others say it was Typhon's child.",
+        wiki: "https://en.wikipedia.org/wiki/Nemean_lion"
+    },
+    {
+        question: "Why couldn't weapons harm the Nemean Lion?",
+        options: ["It was too fast", "Its hide was impenetrable", "It could regenerate", "It was blessed by Zeus"],
+        correct: 1,
+        funFact: "No weapon could pierce the lion's golden fur. Heracles had to strangle it and use its own claws to skin it.",
+        wiki: "https://en.wikipedia.org/wiki/Nemean_lion"
+    },
+    {
+        question: "What constellation is the Nemean Lion?",
+        options: ["Ursa Major", "Leo", "Draco", "Lupus"],
+        correct: 1,
+        funFact: "Zeus placed the Nemean Lion among the stars as the constellation Leo to honor Heracles' victory.",
+        wiki: "https://en.wikipedia.org/wiki/Leo_(constellation)#Mythology"
+    },
+    {
+        question: "What were the Stymphalian Birds made of?",
+        options: ["Normal feathers only", "Bronze and metal", "Solid gold plating", "Living fire essence"],
+        correct: 1,
+        funFact: "These man-eating birds could shoot their metallic feathers like arrows at their victims.",
+        wiki: "https://en.wikipedia.org/wiki/Stymphalian_birds"
+    },
+    {
+        question: "How did Heracles drive away the Stymphalian Birds?",
+        options: ["With blazing fire", "With a divine rattle", "With poison arrows", "With his mighty roar"],
+        correct: 1,
+        funFact: "Athena gave Heracles a rattle (krotala) made by Hephaestus. The noise scared the birds into flight where he shot them.",
+        wiki: "https://en.wikipedia.org/wiki/Stymphalian_birds#Sixth_labour"
+    },
+    {
+        question: "Where did the remaining Stymphalian Birds flee to?",
+        options: ["Distant Africa", "The Island of Ares", "The island of Crete", "The dark Underworld"],
+        correct: 1,
+        funFact: "The surviving birds fled to the Island of Ares in the Black Sea, where the Argonauts later encountered them.",
+        wiki: "https://en.wikipedia.org/wiki/Stymphalian_birds#Later_myths"
+    },
+    {
+        question: "What was the Erymanthian Boar?",
+        options: ["A magical pig spirit", "A giant terrorizing boar", "A demonic creature", "A transformed king"],
+        correct: 1,
+        funFact: "This massive boar lived on Mount Erymanthus and devastated the surrounding farmland.",
+        wiki: "https://en.wikipedia.org/wiki/Erymanthian_Boar"
+    },
+    {
+        question: "What happened when Eurystheus saw the Erymanthian Boar?",
+        options: ["He rewarded Heracles", "He hid in a jar", "He fainted in fear", "He ran away quickly"],
+        correct: 1,
+        funFact: "Cowardly Eurystheus was so terrified he hid in a large storage jar and begged Heracles to remove it.",
+        wiki: "https://en.wikipedia.org/wiki/Erymanthian_Boar"
+    },
+    {
+        question: "What was the Calydonian Boar?",
+        options: ["A pet of Artemis", "A monstrous divine boar", "A sacred temple animal", "A cursed transformation"],
+        correct: 1,
+        funFact: "Artemis sent this boar because King Oeneus forgot to include her in his harvest sacrifices.",
+        wiki: "https://en.wikipedia.org/wiki/Calydonian_Boar"
+    },
+    {
+        question: "Who dealt the first wound to the Calydonian Boar?",
+        options: ["Meleager", "Atalanta", "Heracles", "Theseus"],
+        correct: 1,
+        funFact: "Atalanta's arrow was the first to hit the boar. Meleager awarded her the hide, causing deadly conflict.",
+        wiki: "https://en.wikipedia.org/wiki/Calydonian_Boar#The_hunt"
+    },
+    {
+        question: "Who finally killed the Calydonian Boar?",
+        options: ["Atalanta", "Meleager", "Heracles", "Theseus"],
+        correct: 1,
+        funFact: "Meleager killed the boar but then killed his uncles who objected to giving Atalanta the prize.",
+        wiki: "https://en.wikipedia.org/wiki/Meleager"
+    },
+    {
+        question: "What was the Teumessian Fox's special ability?",
+        options: ["It could take flight", "It could never be caught", "It could speak words", "It was fully invisible"],
+        correct: 1,
+        funFact: "The fox was destined never to be caught, but the hound Laelaps was fated to catch everything. An impossible paradox!",
+        wiki: "https://en.wikipedia.org/wiki/Teumessian_fox"
+    },
+    {
+        question: "How did Zeus resolve the paradox of the Teumessian Fox and Laelaps?",
+        options: ["Killed them both", "Turned both to stone", "Separated them forever", "Made both immortal"],
+        correct: 1,
+        funFact: "Zeus turned both the uncatchable fox and the inescapable hound to stone and placed them in the stars.",
+        wiki: "https://en.wikipedia.org/wiki/Teumessian_fox"
+    },
+    {
+        question: "What were the Mares of Diomedes fed?",
+        options: ["Grain", "Human flesh", "Ambrosia", "Fish"],
+        correct: 1,
+        funFact: "King Diomedes of Thrace fed his horses human flesh, making them wild and dangerous.",
+        wiki: "https://en.wikipedia.org/wiki/Mares_of_Diomedes"
+    },
+    {
+        question: "How did Heracles tame the Mares of Diomedes?",
+        options: ["With soothing music", "By feeding them Diomedes", "With powerful magic", "By starving them out"],
+        correct: 1,
+        funFact: "Heracles fed Diomedes to his own horses, which calmed them enough to be led away.",
+        wiki: "https://en.wikipedia.org/wiki/Mares_of_Diomedes"
+    },
+    {
+        question: "What creature guarded the Cattle of Geryon?",
+        options: ["Cerberus", "Orthrus", "Ladon", "A dragon"],
+        correct: 1,
+        funFact: "The two-headed dog Orthrus and the giant herdsman Eurytion guarded Geryon's red cattle.",
+        wiki: "https://en.wikipedia.org/wiki/Orthrus"
+    },
+    {
+        question: "Where did Geryon live with his cattle?",
+        options: ["Mainland Greece", "The island Erytheia", "The island of Crete", "The shores of Africa"],
+        correct: 1,
+        funFact: "Erytheia was so far west that Heracles set up the Pillars of Heracles (Gibraltar) to mark his journey.",
+        wiki: "https://en.wikipedia.org/wiki/Geryon"
+    },
+    {
+        question: "What was a Basilisk in Greek mythology?",
+        options: ["A giant serpent", "A deadly small serpent", "A fire-breathing dragon", "A fearsome sea monster"],
+        correct: 1,
+        funFact: "The basilisk was the king of serpents. Its name means 'little king.' Weasels were immune to its poison.",
+        wiki: "https://en.wikipedia.org/wiki/Basilisk"
+    },
+    {
+        question: "What animal could kill a Basilisk?",
+        options: ["Eagle", "Weasel", "Lion", "Wolf"],
+        correct: 1,
+        funFact: "Weasels were said to be the only creature immune to basilisk venom and could kill them in their burrows.",
+        wiki: "https://en.wikipedia.org/wiki/Basilisk#Description"
+    },
+    {
+        question: "What was the Catoblepas?",
+        options: ["A winged flying serpent", "A petrifying gaze beast", "A towering giant", "A massive sea creature"],
+        correct: 1,
+        funFact: "The Catoblepas had a head so heavy it always looked down. Anyone who met its gaze died instantly.",
+        wiki: "https://en.wikipedia.org/wiki/Catoblepas"
+    },
+    {
+        question: "What were the Keres?",
+        options: ["Bountiful harvest goddesses", "Violent death spirits", "Beautiful sea nymphs", "Sacred river goddesses"],
+        correct: 1,
+        funFact: "The Keres hovered over battlefields in dark robes, drinking blood and carrying souls to Hades.",
+        wiki: "https://en.wikipedia.org/wiki/Keres_(mythology)"
+    },
+    {
+        question: "Who was the mother of the Keres?",
+        options: ["Gaia", "Nyx (Night)", "Hera", "Rhea"],
+        correct: 1,
+        funFact: "Nyx bore many dark children alone, including the Keres, Thanatos (Death), and Hypnos (Sleep).",
+        wiki: "https://en.wikipedia.org/wiki/Keres_(mythology)"
+    },
+    {
+        question: "What were the Erinyes (Furies)?",
+        options: ["Goddesses of love", "Goddesses of vengeance", "Goddesses of fate", "Goddesses of the sea"],
+        correct: 1,
+        funFact: "The Furies drove murderers mad and pursued them relentlessly. They were born from Uranus's blood.",
+        wiki: "https://en.wikipedia.org/wiki/Erinyes"
+    },
+    {
+        question: "What were the names of the three Furies?",
+        options: ["Alecto, Tisiphone, Megaera", "Clotho, Lachesis, Atropos", "Aglaea, Thalia, Euphrosyne", "Stheno, Euryale, Medusa"],
+        correct: 0,
+        funFact: "Alecto (unceasing), Tisiphone (avenging murder), and Megaera (grudging) punished different crimes.",
+        wiki: "https://en.wikipedia.org/wiki/Erinyes"
+    },
+    {
+        question: "What crime did the Furies primarily punish?",
+        options: ["Theft", "Murder of family members", "Lying", "Blasphemy"],
+        correct: 1,
+        funFact: "The Furies especially pursued those who killed blood relatives, as Orestes learned after killing his mother.",
+        wiki: "https://en.wikipedia.org/wiki/Erinyes#Function"
+    },
+    {
+        question: "What were the Furies called in their benevolent aspect?",
+        options: ["The Kindly Ones", "The Graces", "The Muses", "The Fates"],
+        correct: 0,
+        funFact: "After Athena transformed their role, they became the Eumenides (Kindly Ones), protectors of justice.",
+        wiki: "https://en.wikipedia.org/wiki/Eumenides"
+    },
+    {
+        question: "Who were the Moirai?",
+        options: ["Fearsome monsters", "The three Fates", "Nature nymphs", "Ancient Titans"],
+        correct: 1,
+        funFact: "Even Zeus was subject to the Fates. They spun, measured, and cut the thread of every life.",
+        wiki: "https://en.wikipedia.org/wiki/Moirai"
+    },
+    {
+        question: "What did Clotho, the first Fate, do?",
+        options: ["Cut the thread of life", "Measured the thread", "Spun the thread of life", "Wove the thread"],
+        correct: 2,
+        funFact: "Clotho (Spinner) spun the thread of life, determining when someone was born.",
+        wiki: "https://en.wikipedia.org/wiki/Clotho"
+    },
+    {
+        question: "What did Lachesis, the second Fate, do?",
+        options: ["Spun the thread", "Measured the length of life", "Cut the thread", "Colored the thread"],
+        correct: 1,
+        funFact: "Lachesis (Allotter) measured the thread, determining how long each person would live.",
+        wiki: "https://en.wikipedia.org/wiki/Lachesis"
+    },
+    {
+        question: "What did Atropos, the third Fate, do?",
+        options: ["Spun the thread", "Measured the thread", "Cut the thread of life", "Started the thread"],
+        correct: 2,
+        funFact: "Atropos (Inevitable) cut the thread with her shears, and her decision could not be reversed.",
+        wiki: "https://en.wikipedia.org/wiki/Atropos"
+    },
+    {
+        question: "Who was Thanatos?",
+        options: ["The god of war", "The god of death", "The underworld ruler", "The god of sleep"],
+        correct: 1,
+        funFact: "Thanatos was death personified, twin of Hypnos (Sleep). The Keres handled violent deaths.",
+        wiki: "https://en.wikipedia.org/wiki/Thanatos"
+    },
+    {
+        question: "Who tricked Thanatos and escaped death temporarily?",
+        options: ["The bard Orpheus", "The hero Odysseus", "The king Sisyphus", "The mighty Heracles"],
+        correct: 2,
+        funFact: "Sisyphus chained Thanatos, so no one could die until Ares freed Death and killed Sisyphus himself.",
+        wiki: "https://en.wikipedia.org/wiki/Sisyphus#Cheating_Death"
+    },
+    {
+        question: "Who was Hypnos?",
+        options: ["The god of death", "The god of sleep", "The god of dreams", "The god of night"],
+        correct: 1,
+        funFact: "Hypnos could put even Zeus to sleep. He lived in a cave where the sun never shone.",
+        wiki: "https://en.wikipedia.org/wiki/Hypnos"
+    },
+    {
+        question: "Who were Hypnos's children?",
+        options: ["The Keres", "The Oneiroi", "The Fates", "The Furies"],
+        correct: 1,
+        funFact: "The Oneiroi were dream spirits. Morpheus (shapes), Phobetor (fears), and Phantasos (phantoms) led them.",
+        wiki: "https://en.wikipedia.org/wiki/Oneiroi"
+    },
+    {
+        question: "What was Morpheus the god of?",
+        options: ["Restful sleep", "Human-shaped dreams", "Terrible nightmares", "Divine prophecy"],
+        correct: 1,
+        funFact: "Morpheus could take any human form in dreams. 'Morphine' is named after him.",
+        wiki: "https://en.wikipedia.org/wiki/Morpheus"
+    },
+    {
+        question: "What was Phobetor the god of?",
+        options: ["Pleasant dreams only", "Nightmares and beasts", "Prophetic visions", "Memory and recall"],
+        correct: 1,
+        funFact: "Phobetor appeared as animals or monsters in dreams. His name means 'frightening.'",
+        wiki: "https://en.wikipedia.org/wiki/Phobetor"
+    },
+    {
+        question: "What was Phantasos the god of?",
+        options: ["True prophetic dreams", "Object and landscape dreams", "Terrifying nightmares", "Divine prophecy"],
+        correct: 1,
+        funFact: "Phantasos created dreams of objects and scenery, the surreal environments of the dream world.",
+        wiki: "https://en.wikipedia.org/wiki/Phantasos"
+    },
+    {
+        question: "Who was Nyx?",
+        options: ["Goddess of the moon", "Goddess of the night", "Goddess of death", "Queen of the dead"],
+        correct: 1,
+        funFact: "Nyx was so powerful that even Zeus feared her. She rode across the sky in a chariot of black.",
+        wiki: "https://en.wikipedia.org/wiki/Nyx"
+    },
+    {
+        question: "Who was Erebus?",
+        options: ["God of darkness", "God of the dead", "An elder Titan", "God of shadows"],
+        correct: 0,
+        funFact: "Erebus was both a primordial deity and the dark region of the underworld souls passed through.",
+        wiki: "https://en.wikipedia.org/wiki/Erebus"
+    },
+    {
+        question: "What was Campe?",
+        options: ["A beautiful sea nymph", "A dragon-woman jailer", "A winged harpy", "A deadly siren"],
+        correct: 1,
+        funFact: "Campe guarded the Cyclopes and Hecatoncheires in Tartarus until Zeus killed her and freed them.",
+        wiki: "https://en.wikipedia.org/wiki/Campe"
+    },
+    {
+        question: "Who was Menoetius?",
+        options: ["A violent Titan", "A wild centaur", "A mighty giant", "A one-eyed cyclops"],
+        correct: 0,
+        funFact: "Menoetius was a Titan of rash action. Zeus struck him with a thunderbolt for his insolence.",
+        wiki: "https://en.wikipedia.org/wiki/Menoetius_(Titan)"
+    },
+    {
+        question: "Who was Coeus?",
+        options: ["Titan of the sun", "Titan of intellect", "Titan of the sea", "Titan of time"],
+        correct: 1,
+        funFact: "Coeus was grandfather to Apollo and Artemis through his daughter Leto.",
+        wiki: "https://en.wikipedia.org/wiki/Coeus"
+    },
+    {
+        question: "Who was Crius?",
+        options: ["Titan of constellations", "Titan of destruction", "Titan of the ocean", "Titan of fire"],
+        correct: 0,
+        funFact: "Crius was associated with the stars of the southern sky. His name means 'ram.'",
+        wiki: "https://en.wikipedia.org/wiki/Crius"
+    },
+    {
+        question: "Who was Iapetus?",
+        options: ["Titan of mortality", "Titan of the sun", "Titan of the moon", "Titan of the sea"],
+        correct: 0,
+        funFact: "Iapetus was father to Atlas, Prometheus, Epimetheus, and Menoetius - the generation that aided or defied Zeus.",
+        wiki: "https://en.wikipedia.org/wiki/Iapetus_(mythology)"
+    },
+    {
+        question: "Who was Tethys?",
+        options: ["Titaness of fresh water", "Titaness of the earth", "Titaness of the moon", "Titaness of wisdom"],
+        correct: 0,
+        funFact: "Tethys and Oceanus were parents to all the world's rivers and three thousand ocean nymphs.",
+        wiki: "https://en.wikipedia.org/wiki/Tethys_(mythology)"
+    },
+    {
+        question: "What was a Drakon in Greek mythology?",
+        options: ["A flying lizard", "A giant serpent", "A lion-eagle griffin", "A winged horse"],
+        correct: 1,
+        funFact: "Greek drakons were more like giant serpents than medieval dragons. They rarely breathed fire.",
+        wiki: "https://en.wikipedia.org/wiki/Greek_dragon"
+    },
+    {
+        question: "What was the Ismenian Dragon?",
+        options: ["Ares's sacred serpent", "A deadly sea monster", "A mountain dragon", "Hera's guardian beast"],
+        correct: 0,
+        funFact: "Cadmus killed this dragon and sowed its teeth to grow the Spartoi, founders of Theban nobility.",
+        wiki: "https://en.wikipedia.org/wiki/Ismenian_dragon"
+    },
+    {
+        question: "What were the Spartoi?",
+        options: ["Famous Spartan warriors", "Dragon-teeth warriors", "Earth-born giants", "Ancient Titans"],
+        correct: 1,
+        funFact: "The 'Sown Men' grew from dragon teeth planted by Cadmus. Only five survived their mutual battle.",
+        wiki: "https://en.wikipedia.org/wiki/Spartoi"
+    },
+    {
+        question: "What was Aegis?",
+        options: ["A divine protective cloak", "A fearsome monster", "An enchanted weapon", "A magical helmet"],
+        correct: 0,
+        funFact: "The Aegis bore Medusa's head and could terrify enemies. It was made from the skin of the goat Amalthea.",
+        wiki: "https://en.wikipedia.org/wiki/Aegis"
+    },
+    {
+        question: "What was a Telchine?",
+        options: ["A sea demon smith", "A mountain spirit", "A river deity", "A forest nymph"],
+        correct: 0,
+        funFact: "The Telchines were the original inhabitants of Rhodes and forged Poseidon's trident, but Zeus destroyed most of them for evil magic.",
+        wiki: "https://en.wikipedia.org/wiki/Telchines"
+    },
+    {
+        question: "Who were the Dactyls?",
+        options: ["Primordial giants", "Iron-working spirits", "Ocean creatures", "Powerful wind spirits"],
+        correct: 1,
+        funFact: "The Dactyls ('fingers') sprang from the ground where Rhea pressed her fingers during Zeus's birth.",
+        wiki: "https://en.wikipedia.org/wiki/Dactyls"
+    },
+    {
+        question: "What were the Curetes?",
+        options: ["Divine war dancers", "Fearsome sea monsters", "Mountain giants", "Underworld spirits"],
+        correct: 0,
+        funFact: "The Curetes clashed their shields to cover Zeus's cries and keep Cronus from finding him.",
+        wiki: "https://en.wikipedia.org/wiki/Curetes_(mythology)"
+    },
+    {
+        question: "What was the Ophiotaurus?",
+        options: ["A bull-serpent hybrid", "A horse-man centaur", "An eagle-lion griffin", "A many-headed hydra"],
+        correct: 0,
+        funFact: "Prophecy said whoever burned the Ophiotaurus's entrails would defeat the gods. The Titans tried during their war.",
+        wiki: "https://en.wikipedia.org/wiki/Ophiotaurus"
+    },
+    {
+        question: "Who was Amalthea?",
+        options: ["Zeus's divine nurse", "An ancient titan", "A fearsome monster", "An Olympian goddess"],
+        correct: 0,
+        funFact: "Zeus later placed Amalthea's horn as the Cornucopia (Horn of Plenty) and her hide became the Aegis.",
+        wiki: "https://en.wikipedia.org/wiki/Amalthea_(mythology)"
+    },
+    {
+        question: "What were Ichthyocentaurs?",
+        options: ["Fish-tailed sea centaurs", "Giant sea serpents", "Human-fish mermaids", "Sacred dolphins"],
+        correct: 0,
+        funFact: "These sea-centaurs had human torsos, horse forelegs, and fish tails. Aphrodite rode them from the sea.",
+        wiki: "https://en.wikipedia.org/wiki/Ichthyocentaur"
+    },
+    {
+        question: "Who were Bythos and Aphros?",
+        options: ["Sea gods", "The two Ichthyocentaurs", "River spirits", "Titans"],
+        correct: 1,
+        funFact: "Bythos (Sea-Depths) and Aphros (Sea-Foam) carried newborn Aphrodite to Cyprus on their backs.",
+        wiki: "https://en.wikipedia.org/wiki/Ichthyocentaur"
+    },
+    {
+        question: "What were Tritons?",
+        options: ["Fish-tailed sea beings", "Giant sea serpents", "Monstrous sharks", "Sacred whales"],
+        correct: 0,
+        funFact: "Tritons were Poseidon's attendants who calmed the seas by blowing conch shell trumpets.",
+        wiki: "https://en.wikipedia.org/wiki/Triton_(mythology)"
+    },
+    {
+        question: "Who was the original Triton?",
+        options: ["An ancient Titan", "Poseidon's son", "A sea monster", "A river god"],
+        correct: 1,
+        funFact: "Triton helped the Argonauts navigate to the Mediterranean. Later myths created a whole race of Tritons.",
+        wiki: "https://en.wikipedia.org/wiki/Triton_(mythology)"
+    },
+    {
+        question: "What was Scylla's home?",
+        options: ["A seaside cliff cave", "The deep ocean floor", "A remote island", "Inside a whirlpool"],
+        correct: 0,
+        funFact: "Scylla lived in a cave opposite Charybdis. Ships had to choose which danger to sail closer to.",
+        wiki: "https://en.wikipedia.org/wiki/Scylla#Location"
+    },
+    {
+        question: "What creatures surrounded Scylla's waist according to some myths?",
+        options: ["Snakes", "Dog heads", "Octopus tentacles", "Fish"],
+        correct: 1,
+        funFact: "Scylla had twelve feet and six long necks with dog heads that barked and snatched sailors.",
+        wiki: "https://en.wikipedia.org/wiki/Scylla"
+    },
+    {
+        question: "Who was Glaucus before becoming a sea god?",
+        options: ["A transformed fisherman", "An ordinary sailor", "A mortal king", "A famous hero"],
+        correct: 0,
+        funFact: "Glaucus ate herbs that made fish come alive. When he ate them too, he became immortal and part fish.",
+        wiki: "https://en.wikipedia.org/wiki/Glaucus"
+    },
+    {
+        question: "What was the Leucrocota?",
+        options: ["A voice-mimicking beast", "A fire-breathing dragon", "A deadly sea monster", "A giant carnivorous bird"],
+        correct: 0,
+        funFact: "The Leucrocota lured prey by mimicking human voices, had the body of a lion and head of a horse.",
+        wiki: "https://en.wikipedia.org/wiki/Leucrocota"
+    },
+    {
+        question: "What was the Yale (Eale)?",
+        options: ["A swivel-horned beast", "A giant predatory bird", "A deep sea creature", "A fire-breathing dragon"],
+        correct: 0,
+        funFact: "The Yale could rotate its horns to face any direction, making it a formidable fighter.",
+        wiki: "https://en.wikipedia.org/wiki/Yale_(mythical_creature)"
+    },
+    {
+        question: "What was the Bonnacon?",
+        options: ["An acid-dung bull", "A fierce lion beast", "A winged dragon", "A giant serpent"],
+        correct: 0,
+        funFact: "The Bonnacon's horns curled inward uselessly, so it sprayed burning dung to escape predators.",
+        wiki: "https://en.wikipedia.org/wiki/Bonnacon"
+    },
+    {
+        question: "What creature is associated with the story of Bellerophon?",
+        options: ["The multi-headed Hydra", "Pegasus and Chimera", "The hound Cerberus", "The riddling Sphinx"],
+        correct: 1,
+        funFact: "Bellerophon tamed Pegasus with Athena's golden bridle and used him to kill the Chimera.",
+        wiki: "https://en.wikipedia.org/wiki/Bellerophon"
+    },
+    {
+        question: "What happened to Bellerophon when he tried to fly to Olympus?",
+        options: ["He succeeded fully", "Zeus made him fall", "He was turned to stone", "He was welcomed there"],
+        correct: 1,
+        funFact: "Zeus punished Bellerophon's hubris. He survived the fall but wandered alone, lame and blind.",
+        wiki: "https://en.wikipedia.org/wiki/Bellerophon#Death"
+    },
+    {
+        question: "What became of Pegasus after Bellerophon's fall?",
+        options: ["He died of grief", "He served on Olympus", "He became mortal", "He returned to earth"],
+        correct: 1,
+        funFact: "Pegasus was welcomed to Olympus and bore Zeus's thunder and lightning. He became a constellation.",
+        wiki: "https://en.wikipedia.org/wiki/Pegasus#Ascent_to_Heaven"
+    },
+    {
+        question: "Who was Chrysaor, born alongside Pegasus?",
+        options: ["Another winged horse", "A golden warrior", "A fearsome sea monster", "A fire-breathing dragon"],
+        correct: 1,
+        funFact: "Chrysaor ('Golden Sword') emerged from Medusa's neck. He fathered Geryon with the Oceanid Callirhoe.",
+        wiki: "https://en.wikipedia.org/wiki/Chrysaor"
+    },
+    {
+        question: "What was the Amphisbaena?",
+        options: ["A two-headed serpent", "A winged dragon", "A deadly sea monster", "An eagle-lion griffin"],
+        correct: 0,
+        funFact: "The Amphisbaena could move in either direction. It was born from Medusa's blood.",
+        wiki: "https://en.wikipedia.org/wiki/Amphisbaena"
+    },
+    {
+        question: "What creature reportedly sprang from the blood dripping from Medusa's head over Libya?",
+        options: ["Fire-breathing dragons", "Venomous serpents", "Deadly scorpions", "Poisonous spiders"],
+        correct: 1,
+        funFact: "As Perseus flew over Libya, Medusa's blood dripped down and spawned all the deadly serpents there.",
+        wiki: "https://en.wikipedia.org/wiki/Medusa#Post-death"
+    },
+    {
+        question: "What was Arion?",
+        options: ["A mighty sea god", "An immortal horse", "A wise centaur", "A winged pegasus"],
+        correct: 1,
+        funFact: "Arion was born from Poseidon and Demeter (both in horse form). He could speak and was incredibly fast.",
+        wiki: "https://en.wikipedia.org/wiki/Arion_(horse)"
+    },
+    {
+        question: "What were the Khalkotauroi?",
+        options: ["Fire-breathing bronze bulls", "Golden temple statues", "Mechanical iron horses", "Living copper serpents"],
+        correct: 0,
+        funFact: "Hephaestus made these bulls for Aeëtes. Jason had to yoke them to plow a field with dragon teeth.",
+        wiki: "https://en.wikipedia.org/wiki/Khalkotauroi"
+    },
+    {
+        question: "What made the Khalkotauroi particularly dangerous?",
+        options: ["Their massive size", "Their fiery breath", "Their invisibility", "Their ability to fly"],
+        correct: 1,
+        funFact: "Medea's magic ointment protected Jason from their fire long enough to yoke them.",
+        wiki: "https://en.wikipedia.org/wiki/Khalkotauroi"
+    },
+    {
+        question: "What was Laelaps?",
+        options: ["An unerring hunting hound", "A fearsome monster", "A deadly dragon", "A towering giant"],
+        correct: 0,
+        funFact: "Laelaps was a gift from Zeus to Europa. It was set against the uncatchable Teumessian Fox.",
+        wiki: "https://en.wikipedia.org/wiki/Laelaps_(mythology)"
+    },
+    {
+        question: "Who originally owned Laelaps?",
+        options: ["The hero Heracles", "Zeus gave it to Europa", "The goddess Artemis", "The god Apollo"],
+        correct: 1,
+        funFact: "The hound passed through many owners, from Europa to Minos to Procris to Cephalus.",
+        wiki: "https://en.wikipedia.org/wiki/Laelaps_(mythology)"
+    },
+    {
+        question: "What was unique about the Golden Hind of Artemis?",
+        options: ["It was solid gold", "It had golden antlers", "It could take flight", "It was invisible"],
+        correct: 1,
+        funFact: "Though a female deer, it had antlers of gold and hooves of bronze, sacred to Artemis.",
+        wiki: "https://en.wikipedia.org/wiki/Ceryneian_Hind"
+    },
+    {
+        question: "How long did Heracles chase the Ceryneian Hind?",
+        options: ["One day", "One month", "One year", "Ten years"],
+        correct: 2,
+        funFact: "Heracles chased the sacred deer for a full year before capturing it without harming it.",
+        wiki: "https://en.wikipedia.org/wiki/Ceryneian_Hind"
+    },
+    {
+        question: "What was unique about the Caucasian Eagle?",
+        options: ["It was made of bronze", "It was immortal", "It could speak words", "It was the largest"],
+        correct: 1,
+        funFact: "This giant eagle was a child of Typhon and Echidna. Heracles eventually killed it to free Prometheus.",
+        wiki: "https://en.wikipedia.org/wiki/Aetos_Kaukasios"
+    },
+    {
+        question: "Who sent the Caucasian Eagle to torment Prometheus?",
+        options: ["The goddess Hera", "The god Zeus", "The god Poseidon", "The god Ares"],
+        correct: 1,
+        funFact: "Zeus punished Prometheus for stealing fire by having this eagle eat his regenerating liver daily.",
+        wiki: "https://en.wikipedia.org/wiki/Prometheus#Punishment"
+    },
+    {
+        question: "What were the Onocentaurs?",
+        options: ["Donkey-bodied centaurs", "Fish-tailed sea centaurs", "Winged flying centaurs", "Miniature small centaurs"],
+        correct: 0,
+        funFact: "These creatures had human upper bodies attached to donkey bodies instead of horses.",
+        wiki: "https://en.wikipedia.org/wiki/Onocentaur"
+    },
+    {
+        question: "What was the Nemean Dragon?",
+        options: ["A sacred grove guardian", "The many-headed Hydra", "The golden Ladon", "The oracle's Python"],
+        correct: 0,
+        funFact: "This dragon guarded a sacred grove. It wasn't as famous as other dragons but was part of local Nemean myth.",
+        wiki: "https://en.wikipedia.org/wiki/Greek_dragon"
+    },
+    {
+        question: "What creature was Aeëtes's personal guardian besides the Colchian Dragon?",
+        options: ["The Khalkotauroi", "The Golden Fleece's own light", "The Spartoi warriors", "All of the above"],
+        correct: 3,
+        funFact: "Aeëtes had multiple layers of protection: fire-breathing bulls, dragon-teeth warriors, and the ever-wakeful serpent.",
+        wiki: "https://en.wikipedia.org/wiki/Ae%C3%ABtes"
+    },
+    {
+        question: "What was Carcinus?",
+        options: ["A giant crab ally", "A deadly sea monster", "A fire-breathing dragon", "An ancient titan"],
+        correct: 0,
+        funFact: "Hera sent this giant crab to distract Heracles, but he crushed it. She placed it in the sky as Cancer.",
+        wiki: "https://en.wikipedia.org/wiki/Cancer_(constellation)#Mythology"
+    },
+    {
+        question: "What constellation did the crab Carcinus become?",
+        options: ["Scorpio", "Cancer", "Aquarius", "Pisces"],
+        correct: 1,
+        funFact: "Though Heracles crushed it easily, Hera honored the crab's loyalty by making it a constellation.",
+        wiki: "https://en.wikipedia.org/wiki/Cancer_(constellation)"
+    },
+    {
+        question: "What mythological origin is given for the coral?",
+        options: ["Medusa's petrifying blood", "Poseidon's fallen tears", "Aphrodite's lost jewelry", "Solidified sea foam"],
+        correct: 0,
+        funFact: "Where Perseus laid Medusa's head, the seaweed turned to stone - creating the first coral.",
+        wiki: "https://en.wikipedia.org/wiki/Medusa#Post-death"
+    },
+    {
+        question: "Who was Phaea?",
+        options: ["A monstrous sow", "A winged harpy", "A snake-haired gorgon", "A nature nymph"],
+        correct: 0,
+        funFact: "The Crommyonian Sow was named after the old woman who kept her. Some say she was actually a bandit.",
+        wiki: "https://en.wikipedia.org/wiki/Crommyonian_Sow"
+    },
+    {
+        question: "What threat did the Crommyonian Sow pose?",
+        options: ["She devoured crops", "She killed road travelers", "She destroyed temples", "She caused earthquakes"],
+        correct: 1,
+        funFact: "Theseus killed this dangerous sow on his way to Athens, one of his earliest heroic deeds.",
+        wiki: "https://en.wikipedia.org/wiki/Crommyonian_Sow"
+    },
+    {
+        question: "Who was Periphetes?",
+        options: ["A club-wielding bandit", "A wild centaur", "A mighty giant", "A one-eyed cyclops"],
+        correct: 0,
+        funFact: "Periphetes the 'Club-Bearer' killed travelers with his bronze club. Theseus took it and kept it as his weapon.",
+        wiki: "https://en.wikipedia.org/wiki/Periphetes"
+    },
+    {
+        question: "Who was Sciron?",
+        options: ["A cliff-kicking bandit", "A one-eyed cyclops", "A wild centaur", "A towering giant"],
+        correct: 0,
+        funFact: "Sciron made travelers wash his feet on a cliff, then kicked them to a sea turtle that ate them.",
+        wiki: "https://en.wikipedia.org/wiki/Sciron"
+    },
+    {
+        question: "What creature waited at the bottom of Sciron's cliff?",
+        options: ["A shark", "A giant turtle", "A sea serpent", "An octopus"],
+        correct: 1,
+        funFact: "A monstrous turtle devoured those Sciron kicked off. Theseus gave Sciron the same death.",
+        wiki: "https://en.wikipedia.org/wiki/Sciron"
+    },
+    {
+        question: "Who was Cercyon?",
+        options: ["A deadly wrestler", "A wild centaur", "A towering giant", "A fearsome sea monster"],
+        correct: 0,
+        funFact: "Cercyon challenged all passersby to wrestling and killed them. Theseus used skill to lift and slam him.",
+        wiki: "https://en.wikipedia.org/wiki/Cercyon"
+    },
+    {
+        question: "How did Theseus defeat Cercyon?",
+        options: ["With a sharp sword", "With superior technique", "With powerful magic", "With a heavy club"],
+        correct: 1,
+        funFact: "Theseus invented scientific wrestling, using leverage and skill to defeat the stronger Cercyon.",
+        wiki: "https://en.wikipedia.org/wiki/Cercyon"
+    },
+    {
+        question: "What were the Gryphon-Lions?",
+        options: ["Dionysian war beasts", "Deep sea creatures", "Mountain spirits", "Powerful river gods"],
+        correct: 0,
+        funFact: "In myths of Dionysus's conquest of India, various fantastic beasts including gryphon-lions appeared.",
+        wiki: "https://en.wikipedia.org/wiki/Dionysus#Travels_and_conquests"
+    },
+    {
+        question: "What was the Chimaera of Tarsus?",
+        options: ["A local Chimera variant", "A deadly sea monster", "A fire-breathing dragon", "A towering giant"],
+        correct: 0,
+        funFact: "Different regions had their own versions of the Chimera story, each with local variations.",
+        wiki: "https://en.wikipedia.org/wiki/Chimera_(mythology)"
+    },
+    {
+        question: "What was the Maeonian Drakon?",
+        options: ["A serpent that guarded sacred trees", "A sea dragon", "A flying dragon", "A two-headed dragon"],
+        correct: 0,
+        funFact: "Various local dragons guarded sacred groves and springs throughout the Greek world.",
+        wiki: "https://en.wikipedia.org/wiki/Greek_dragon"
+    },
+    {
+        question: "What was special about the Trojan Sea Monster sent by Poseidon?",
+        options: ["It punished Laomedon", "It could fly through air", "It was fully invisible", "It was made of stone"],
+        correct: 0,
+        funFact: "Laomedon refused to pay Poseidon for building Troy's walls. The monster demanded Hesione as sacrifice until Heracles killed it.",
+        wiki: "https://en.wikipedia.org/wiki/Cetus_(mythology)#Heracles_and_Hesione"
+    },
+    {
+        question: "Who was Hesione in the Trojan Sea Monster myth?",
+        options: ["A sacrificial princess", "An Olympian goddess", "A fearsome monster", "A beautiful nymph"],
+        correct: 0,
+        funFact: "Heracles saved Hesione but was cheated of his reward by Laomedon, leading to Troy's first destruction.",
+        wiki: "https://en.wikipedia.org/wiki/Hesione"
+    },
+    {
+        question: "What were the Acheloides?",
+        options: ["The Sirens", "River nymphs", "Sea monsters", "Mountain spirits"],
+        correct: 0,
+        funFact: "The Sirens were sometimes called Acheloides as daughters of the river god Achelous.",
+        wiki: "https://en.wikipedia.org/wiki/Siren_(mythology)#Origins"
+    },
+    {
+        question: "Who was Achelous?",
+        options: ["A shape-shifting river god", "A powerful sea god", "An ancient titan", "A famous hero"],
+        correct: 0,
+        funFact: "Achelous fought Heracles for Deianira, transforming into a serpent and bull before losing his horn.",
+        wiki: "https://en.wikipedia.org/wiki/Achelous"
+    },
+    {
+        question: "What became of Achelous's broken horn?",
+        options: ["It was thrown away", "It became the Cornucopia", "It dissolved completely", "It was buried deep"],
+        correct: 1,
+        funFact: "The nymphs filled Achelous's horn with fruit and flowers, creating the original Horn of Plenty.",
+        wiki: "https://en.wikipedia.org/wiki/Cornucopia#Mythology"
+    },
+    {
+        question: "What was the Monster of Troy in Athenian art?",
+        options: ["A rock-emerging beast", "A winged dragon", "A coiling sea serpent", "An eagle-lion griffin"],
+        correct: 0,
+        funFact: "Athenian vase paintings show a peculiar monster with just a large head emerging from a cliff or rocks.",
+        wiki: "https://en.wikipedia.org/wiki/Cetus_(mythology)"
+    },
+    {
+        question: "What kind of monster was Porphyrion?",
+        options: ["The king of the Giants", "A Titan", "A Cyclops", "A sea monster"],
+        correct: 0,
+        funFact: "Porphyrion led the Giants against Olympus and attacked Hera before Zeus and Heracles killed him.",
+        wiki: "https://en.wikipedia.org/wiki/Porphyrion"
+    },
+    {
+        question: "What monster did Poseidon create to punish Cassiopeia's boast?",
+        options: ["The Hydra", "The monster Cetus", "The beast Scylla", "The Kraken"],
+        correct: 1,
+        funFact: "Cassiopeia claimed to be more beautiful than the Nereids. Poseidon sent Cetus to ravage Ethiopia.",
+        wiki: "https://en.wikipedia.org/wiki/Cetus_(mythology)"
+    },
+    {
+        question: "What was the Aethiopian Cetus?",
+        options: ["Andromeda's sea monster", "A local sea god", "A known whale species", "A river monster"],
+        correct: 0,
+        funFact: "This was the monster Perseus killed to save Andromeda. It's now the constellation Cetus.",
+        wiki: "https://en.wikipedia.org/wiki/Cetus_(constellation)"
+    }
+];

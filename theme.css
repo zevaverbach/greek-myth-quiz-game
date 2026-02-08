@@ -1,0 +1,26 @@
+/**
+ * Greek Mythology Theme
+ *
+ * This theme customizes the quiz-game-kit for Greek mythology.
+ * It uses gold, marble, and deep purple colors to evoke ancient Greece.
+ */
+
+:root {
+    /* Greek Mythology Color Palette */
+    --gold: #d4af37;
+    --gold-light: #f4e4a6;
+    --gold-dark: #996515;
+    --marble: #f5f5f0;
+    --navy: #1a1a2e;
+    --purple: #4a1a6b;
+    --lightning: #00d4ff;
+
+    /* Fonts for ancient aesthetic */
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Spectral', serif;
+}
+
+/* Keep the Greek mythology gradient */
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 50%, #1a1a2e 100%);
+}
